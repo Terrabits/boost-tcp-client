@@ -11,7 +11,7 @@ class RohdeSchwarzConan(ConanFile):
     license = "R&S Royalty Free License"
     author  = "Nick Lalic <nick.lalic@rsa.rohde-schwarz.com"
     url     = ""
-    description = "TCP Socket example for Rohde & Schwarz instrument control"
+    description = "Boost TCP Socket example for Rohde & Schwarz instrument control"
     topics  = ("Rohde", "Schwarz", "R&S", "Boost", "tcp", "socket")
 
 
