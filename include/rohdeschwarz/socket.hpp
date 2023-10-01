@@ -3,6 +3,7 @@
 
 
 // rohdeschwarz
+#include "rohdeschwarz/address.hpp"
 #include "rohdeschwarz/buffer.hpp"
 
 
@@ -12,7 +13,6 @@
 
 // std lib
 #include <cstddef>
-#include <memory>
 #include <string>
 
 
@@ -32,26 +32,23 @@ public:
 
   // constructors / destructor
 
-  Socket(const char* address, int port = 5025);
-  Socket(const std::string& address, int port = 5025);
+  Socket(const char* host,        int port = 5025);
+  Socket(const std::string& host, int port = 5025);
   ~Socket();
 
 
-  // address
+  // host, port
 
-  std::string address() const;
-
-
-  // port
+  std::string host() const;
 
   int port() const;
 
 
-  // read buffer
+  // buffer
 
   std::size_t bufferSize_B() const;
 
-  void setBufferSize(std::size_t bufferSize_B);
+  void setBufferSize(std::size_t size_B);
 
 
   // i/o
@@ -77,33 +74,13 @@ public:
 
 private:
 
-  // address, port
-  std::string _address;
-  int         _port;
-
-
-  // socket
+  Address _address;
+  Buffer  _buffer;
   boost::asio::io_context _io_context;
   boost::asio::ip::tcp::socket _socket;
 
 
-  // buffer
-  Buffer _buffer;
-
-
-  // asio buffers
-
-  boost::asio::mutable_buffer getBuffer();
-
-  static boost::asio::mutable_buffer getBuffer(Buffer& buffer);
-
-  static boost::asio::mutable_buffer getBuffer(char* buffer, std::size_t bufferSize_B);
-
-  static boost::asio::const_buffer getBuffer(const char* buffer, std::size_t bufferSize_B);
-
-
   // helpers
-  boost::asio::ip::basic_resolver<boost::asio::ip::tcp>::results_type resolve_endpoints();
 
   bool open();
 

@@ -15,6 +15,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 # rohdeschwarz socket library
 add_library(
   rohdeschwarz
+  src/address.cpp
   src/buffer.cpp
   src/socket.cpp
 )

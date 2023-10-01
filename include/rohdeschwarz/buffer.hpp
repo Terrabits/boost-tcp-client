@@ -1,16 +1,28 @@
+/**
+ * \file  buffer.hpp
+ * \brief RohdeSchwarz::Buffer class definition
+ */
 #ifndef ROHDESCHWARZ_BUFFER_HPP
 #define ROHDESCHWARZ_BUFFER_HPP
 
 
 // std lib
 #include <cstddef>
-#include <memory>
+#include <string>
+#include <vector>
+
+
+// boost
+#include <boost/asio.hpp>
 
 
 namespace RohdeSchwarz
 {
 
 
+/**
+ * \brief A managed `char[]` buffer for use with `boost::asio`
+ */
 class Buffer
 {
 
@@ -21,30 +33,41 @@ public:
 
   Buffer(std::size_t size);
 
-  ~Buffer();
-
 
   // size
 
   std::size_t size() const;
 
-  void setSize(std::size_t size);
+  void resize(std::size_t size);
 
 
-  // contents
+  // data
 
   char* data();
 
   const char* data() const;
 
 
+  // to string
+
+  std::string toString() const;
+
+  std::string toString(std::size_t size_B) const;
+
+
+  // to boost buffer
+
+  boost::asio::mutable_buffer toMutableBuffer();
+
+  boost::asio::const_buffer toConstBuffer() const;
+
+
 private:
 
-  std::size_t _size;
-  std::unique_ptr<char[]> _buffer;
+  std::vector<char> _buffer;
 
 
-};
+};  // class Buffer
 
 
 }       // namespace RohdeSchwarz

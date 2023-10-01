@@ -4,40 +4,55 @@ using namespace RohdeSchwarz;
 
 
 Buffer::Buffer(std::size_t size) :
-  _size(size),
-  _buffer(new char[size])
+  _buffer(size)
 {
   // pass
 }
 
 
-Buffer::~Buffer()
-{
-  _buffer.reset();
-}
-
-
 std::size_t Buffer::size() const
 {
-  return _size;
+  return _buffer.size();
 }
 
 
-void Buffer::setSize(std::size_t size)
+void Buffer::resize(std::size_t size)
 {
-  // TODO: thread safety?
-  _size = size;
-  _buffer.reset(new char[size]);
+  _buffer.resize(size);
 }
 
 
 char* Buffer::data()
 {
-  return _buffer.get();
+  return _buffer.data();
 }
 
 
 const char* Buffer::data() const
 {
-  return _buffer.get();
+  return _buffer.data();
+}
+
+
+std::string Buffer::toString() const
+{
+  return std::string(data());
+}
+
+
+std::string Buffer::toString(std::size_t size) const
+{
+  return std::string(data(), size);
+}
+
+
+boost::asio::mutable_buffer Buffer::toMutableBuffer()
+{
+  return boost::asio::buffer(data(), size());
+}
+
+
+boost::asio::const_buffer Buffer::toConstBuffer() const
+{
+  return boost::asio::buffer(data(), size());
 }
