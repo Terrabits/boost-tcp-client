@@ -8,8 +8,8 @@ class RohdeSchwarzConan(ConanFile):
     license = "R&S Royalty Free License"
     author  = "Nick Lalic <nick.lalic@rsa.rohde-schwarz.com"
     url     = "https://github.com/Terrabits/boost-tcp-client"
-    description = "Boost TCP Socket example for Rohde & Schwarz instrument control"
-    topics  = ("Rohde", "Schwarz", "R&S", "Boost", "tcp", "socket")
+    description = "TCPIP socket library for Rohde & Schwarz instrument control"
+    topics  = ("Rohde", "Schwarz", "R&S", "Test", "Measurement", "Instrument", "Automation")
 
 
     # Binary configuration
