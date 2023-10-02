@@ -1,3 +1,9 @@
+/**
+ * \file  address.cpp
+ * \brief RohdeSchwarz::Address class implementation
+ */
+
+
 // rohdeschwarz
 #include "rohdeschwarz/address.hpp"
 using namespace RohdeSchwarz;

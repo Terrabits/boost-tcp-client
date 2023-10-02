@@ -19,8 +19,7 @@ namespace RohdeSchwarz
 
 
 /**
- * \brief A convenience class for calling
- *   `boost::asio::ip::tcp::resolver::resolve()`
+ * \brief A class for resolving boost::asio TCP IP endpoints from host, port
  */
 class Address
 {
@@ -28,25 +27,34 @@ class Address
 public:
 
 
-  // constructor
-
+  /**
+   * \brief Constructor
+   *
+   * \param[in] host host name or address
+   * \param[in] port port number
+   */
   Address(std::string host, int port);
 
 
-  // host, port
-
+  /**
+   * \brief host or address
+   */
   std::string host() const;
 
+
+  /**
+   * \brief port number
+   */
   int port() const;
 
 
   // resolve
 
   /**
-   * /brief Resolves TCP IP endpoint(s) from host, port
+   * \brief Resolves TCP IP endpoint(s) from host, port
    *
-   * \param[in] io_context IO Context for scheduling resolution
-   * \returns   TCPIP endpoint(s)
+   * \param[in] io_context IO Context for scheduling resolve()
+   * \returns   A non-empty list if endpoints could be resolved; an empty list otherwise
    */
   boost::asio::ip::basic_resolver<boost::asio::ip::tcp>::results_type resolve(boost::asio::io_context& io_context) const;
 

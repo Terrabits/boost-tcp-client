@@ -1,4 +1,10 @@
-// socket
+/**
+ * \file  socket.cpp
+ * \brief RohdeSchwarz::Socket class implementation
+ */
+
+
+// rohdeschwarz
 #include "rohdeschwarz/socket.hpp"
 using namespace RohdeSchwarz;
 
