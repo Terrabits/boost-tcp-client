@@ -1,0 +1,186 @@
+\doxysection{socket.\+cpp}
+\hypertarget{src_2socket_8cpp_source}{}\label{src_2socket_8cpp_source}\index{src/socket.cpp@{src/socket.cpp}}
+\mbox{\hyperlink{src_2socket_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00007}00007\ \textcolor{comment}{//\ rohdeschwarz}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{socket_8hpp}{rohdeschwarz/socket.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00009}00009\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_rohde_schwarz}{RohdeSchwarz}};}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00012}00012\ \textcolor{comment}{//\ boost}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00013}00013\ \textcolor{keyword}{using\ }boost::asio::ip::tcp;}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00016}00016\ \textcolor{comment}{//\ std\ lib}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00020}00020\ \textcolor{comment}{//\ constants}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00021}\mbox{\hyperlink{src_2socket_8cpp_aeb10dd33796e8e04a5fda179d447d932}{00021}}\ \textcolor{keyword}{const}\ std::size\_t\ \mbox{\hyperlink{src_2socket_8cpp_aeb10dd33796e8e04a5fda179d447d932}{DEFAULT\_BUFFER\_SIZE\_B}}\ =\ 5\ *\ 1024;\ \ \textcolor{comment}{//\ 5\ kB}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00024}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a9e140e4db985a447727c086af0389b5b}{00024}}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a9e140e4db985a447727c086af0389b5b}{Socket::Socket}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ host,\ \textcolor{keywordtype}{int}\ port)\ :}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00025}00025\ \ \ \_address(host,\ port),}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00026}00026\ \ \ \_buffer(\mbox{\hyperlink{src_2socket_8cpp_aeb10dd33796e8e04a5fda179d447d932}{DEFAULT\_BUFFER\_SIZE\_B}}),}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00027}00027\ \ \ \_socket(\_io\_context)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00029}00029\ \ \ open();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00033}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7cebd5b5f1131eb34a43797245485457}{00033}}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a9e140e4db985a447727c086af0389b5b}{Socket::Socket}}(\textcolor{keyword}{const}\ std::string\&\ host,\ \textcolor{keywordtype}{int}\ port)\ :}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00034}00034\ \ \ \_address(host,\ port),}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00035}00035\ \ \ \_buffer(\mbox{\hyperlink{src_2socket_8cpp_aeb10dd33796e8e04a5fda179d447d932}{DEFAULT\_BUFFER\_SIZE\_B}}),}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00036}00036\ \ \ \_socket(\_io\_context)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00039}00039\ \ \ open();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00043}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_aeac4eb6379a543d38ed88977d3b6630a}{00043}}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_aeac4eb6379a543d38ed88977d3b6630a}{Socket::\string~Socket}}()}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00045}00045\ \ \ close();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00049}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab880562cadaac7ed4f4bf69d852ba31e}{00049}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab880562cadaac7ed4f4bf69d852ba31e}{Socket::host}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00050}00050\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00051}00051\ \ \ \textcolor{keywordflow}{return}\ \_address.\mbox{\hyperlink{class_rohde_schwarz_1_1_address_a139d0916ebc6cb6f0bf769ed34936e82}{host}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00055}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a616d167860ab2264f8d23dcf5c497583}{00055}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a616d167860ab2264f8d23dcf5c497583}{Socket::port}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00056}00056\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00057}00057\ \ \ \textcolor{keywordflow}{return}\ \_address.\mbox{\hyperlink{class_rohde_schwarz_1_1_address_a6f0d017e4a5b67b099fbd57a1016194f}{port}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00061}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{00061}}\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{Socket::bufferSize\_B}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00062}00062\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00063}00063\ \ \ \textcolor{keywordflow}{return}\ \_buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_ad72b167940d615e471cc1370b21be117}{size}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00067}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab9828176723d02ef77dd0910ff9da0cc}{00067}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab9828176723d02ef77dd0910ff9da0cc}{Socket::setBufferSize}}(std::size\_t\ size\_B)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00069}00069\ \ \ \_buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_a42a868d591474b9a3cc639e5d94b0cc8}{resize}}(size\_B);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00073}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{00073}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{Socket::read}}()}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00074}00074\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00075}00075\ \ \ \textcolor{keyword}{auto}\ mutable\_buffer\ =\ \_buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_a0f9afb039e722aacb28b884a28fe2d53}{toMutableBuffer}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00076}00076\ \ \ \textcolor{keyword}{auto}\ size\ \ \ \ \ \ \ \ \ \ \ =\ boost::asio::read(\_socket,\ mutable\_buffer);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00077}00077\ \ \ \textcolor{keywordflow}{return}\ \_buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_a43486a43c5e286502997af0f1c4b383d}{toString}}(size);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00078}00078\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00081}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7c862b233af8d1281b51c3588e37a022}{00081}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{Socket::read}}(std::size\_t\ bufferSize\_B)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00082}00082\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00083}00083\ \ \ \textcolor{comment}{//\ create\ mutable\ buffer}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00084}00084\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_buffer}{Buffer}}\ buffer(\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00085}00085\ \ \ \textcolor{keyword}{auto}\ mutable\_buffer\ =\ buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_a0f9afb039e722aacb28b884a28fe2d53}{toMutableBuffer}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00087}00087\ \ \ \textcolor{comment}{//\ read}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00088}00088\ \ \ \textcolor{keyword}{auto}\ size\ =\ boost::asio::read(\_socket,\ mutable\_buffer);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00089}00089\ \ \ \textcolor{keywordflow}{return}\ buffer.\mbox{\hyperlink{class_rohde_schwarz_1_1_buffer_a43486a43c5e286502997af0f1c4b383d}{toString}}(size);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00090}00090\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00093}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{00093}}\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{Socket::write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00094}00094\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00095}00095\ \ \ \textcolor{keyword}{auto}\ size\ =\ std::strlen(data);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00096}00096\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(data,\ size);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00097}00097\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00100}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_abb0178d13b9d3114192808ee01aba73c}{00100}}\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{Socket::write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ std::size\_t\ size)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00101}00101\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00102}00102\ \ \ \textcolor{keyword}{auto}\ const\_buffer\ =\ boost::asio::buffer(data,\ size);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00103}00103\ \ \ \textcolor{keywordflow}{return}\ boost::asio::write(\_socket,\ const\_buffer);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00104}00104\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00107}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a47c52afde57d479ec8c977ebc3d20160}{00107}}\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{Socket::write}}(\textcolor{keyword}{const}\ std::string\&\ data)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00108}00108\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00109}00109\ \ \ \textcolor{keyword}{auto}\ const\_buffer\ =\ boost::asio::buffer(data.c\_str(),\ data.size());}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00110}00110\ \ \ \textcolor{keywordflow}{return}\ boost::asio::write(\_socket,\ const\_buffer);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00114}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{00114}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{Socket::query}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scpi)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00115}00115\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00116}00116\ \ \ \textcolor{comment}{//\ write}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00117}00117\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(scpi)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00118}00118\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//\ write\ failed}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00121}00121\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00123}00123\ \ \ \textcolor{comment}{//\ read}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00124}00124\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00125}00125\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00128}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_adfc435ce81329ec68b93a675c1869eda}{00128}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{Socket::query}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scpi,\ std::size\_t\ bufferSize\_B)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00129}00129\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00130}00130\ \ \ \textcolor{comment}{//\ write}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00131}00131\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(scpi)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00132}00132\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ write\ failed}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00135}00135\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00137}00137\ \ \ \textcolor{comment}{//\ read}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00138}00138\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}(\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00139}00139\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00142}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a56e6caa27afad4fa45b367fe51b3b44f}{00142}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{Socket::query}}(\textcolor{keyword}{const}\ std::string\&\ scpi)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00143}00143\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00144}00144\ \ \ \textcolor{comment}{//\ write}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00145}00145\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(scpi)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00146}00146\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{comment}{//\ write\ failed}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00149}00149\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00151}00151\ \ \ \textcolor{comment}{//\ read}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00152}00152\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00153}00153\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00156}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_aaab6e32df8461f0e70835eb26ece68e1}{00156}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{Socket::query}}(\textcolor{keyword}{const}\ std::string\&\ scpi,\ std::size\_t\ bufferSize\_B)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00157}00157\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00158}00158\ \ \ \textcolor{comment}{//\ write}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00159}00159\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(scpi)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00160}00160\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ write\ failed}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00163}00163\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00165}00165\ \ \ \textcolor{comment}{//\ read}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00166}00166\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}(\mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00167}00167\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00170}00170\ \textcolor{keywordtype}{bool}\ Socket::open()}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00171}00171\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00172}00172\ \ \ \textcolor{comment}{//\ resolve\ host,\ port}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00173}00173\ \ \ \textcolor{keyword}{auto}\ endpoints\ =\ \_address.\mbox{\hyperlink{class_rohde_schwarz_1_1_address_afaff4212846312e6f90b6b02035b476c}{resolve}}(\_io\_context);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00175}00175\ \ \ \textcolor{comment}{//\ connect}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00176}00176\ \ \ boost::asio::connect(\_socket,\ endpoints);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00177}00177\ \ \ \textcolor{keywordflow}{return}\ \_socket.is\_open();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00181}00181\ \textcolor{keywordtype}{void}\ Socket::close()}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00182}00182\ \{}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00183}00183\ \ \ \_socket.shutdown(tcp::socket::shutdown\_both);}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00184}00184\ \ \ \_socket.close();}
+\DoxyCodeLine{\Hypertarget{src_2socket_8cpp_source_l00185}00185\ \}}
+
+\end{DoxyCode}

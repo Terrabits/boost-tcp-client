@@ -1,0 +1,41 @@
+\doxysection{address.\+cpp}
+\hypertarget{address_8cpp_source}{}\label{address_8cpp_source}\index{src/address.cpp@{src/address.cpp}}
+\mbox{\hyperlink{address_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00007}00007\ \textcolor{comment}{//\ rohdeschwarz}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{address_8hpp}{rohdeschwarz/address.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00009}00009\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_rohde_schwarz}{RohdeSchwarz}};}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00012}\mbox{\hyperlink{class_rohde_schwarz_1_1_address_a46e83b715f13f44db43995b54b9eebcb}{00012}}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_a46e83b715f13f44db43995b54b9eebcb}{Address::Address}}(std::string\ host,\ \textcolor{keywordtype}{int}\ port)\ :}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00013}00013\ \ \ \_host(host),}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00014}00014\ \ \ \_port(port)}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00016}00016\ \ \ \textcolor{comment}{//\ pass}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00020}\mbox{\hyperlink{class_rohde_schwarz_1_1_address_a139d0916ebc6cb6f0bf769ed34936e82}{00020}}\ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_a139d0916ebc6cb6f0bf769ed34936e82}{Address::host}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00021}00021\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00022}00022\ \ \ \textcolor{keywordflow}{return}\ \_host;}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00026}\mbox{\hyperlink{class_rohde_schwarz_1_1_address_a6f0d017e4a5b67b099fbd57a1016194f}{00026}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_a6f0d017e4a5b67b099fbd57a1016194f}{Address::port}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00027}00027\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00028}00028\ \ \ \textcolor{keywordflow}{return}\ \_port;}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00032}\mbox{\hyperlink{class_rohde_schwarz_1_1_address_afaff4212846312e6f90b6b02035b476c}{00032}}\ boost::asio::ip::basic\_resolver<boost::asio::ip::tcp>::results\_type\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_afaff4212846312e6f90b6b02035b476c}{Address::resolve}}(boost::asio::io\_context\&\ io\_context)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00033}00033\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00034}00034\ \ \ \textcolor{comment}{//\ get\ port\ string}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00035}00035\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_a6f0d017e4a5b67b099fbd57a1016194f}{port}}\ =\ std::to\_string(\_port);}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00037}00037\ \ \ \textcolor{comment}{//\ resolve\ endpoint(s)}}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00038}00038\ \ \ boost::asio::ip::tcp::resolver\ resolver(io\_context);}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00039}00039\ \ \ \textcolor{keywordflow}{return}\ resolver.resolve(\_host.c\_str(),\ \mbox{\hyperlink{class_rohde_schwarz_1_1_address_a6f0d017e4a5b67b099fbd57a1016194f}{port}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{address_8cpp_source_l00040}00040\ \}}
+
+\end{DoxyCode}

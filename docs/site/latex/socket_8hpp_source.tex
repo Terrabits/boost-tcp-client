@@ -1,0 +1,108 @@
+\doxysection{socket.\+hpp}
+\hypertarget{socket_8hpp_source}{}\label{socket_8hpp_source}\index{include/rohdeschwarz/socket.hpp@{include/rohdeschwarz/socket.hpp}}
+\mbox{\hyperlink{socket_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#ifndef\ ROHDESCHWARZ\_SOCKET\_HPP}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#define\ ROHDESCHWARZ\_SOCKET\_HPP}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00009}00009\ \textcolor{comment}{//\ rohdeschwarz}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{address_8hpp}{rohdeschwarz/address.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{buffer_8hpp}{rohdeschwarz/buffer.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00014}00014\ \textcolor{comment}{//\ boost}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <boost/asio.hpp>}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00018}00018\ \textcolor{comment}{//\ std\ lib}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00023}00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_rohde_schwarz}{RohdeSchwarz}}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00033}\mbox{\hyperlink{namespace_rohde_schwarz_af0b6a78bb899b0e9ceb271684dd9ed42}{00033}}\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_rohde_schwarz_af0b6a78bb899b0e9ceb271684dd9ed42}{system\_error}}\ =\ boost::system::system\_error;}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00039}\mbox{\hyperlink{class_rohde_schwarz_1_1_socket}{00039}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_rohde_schwarz_1_1_socket}{Socket}}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00040}00040\ \{}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00042}00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00055}00055\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket}{Socket}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab880562cadaac7ed4f4bf69d852ba31e}{host}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a616d167860ab2264f8d23dcf5c497583}{port}}\ =\ 5025);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00068}00068\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket}{Socket}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab880562cadaac7ed4f4bf69d852ba31e}{host}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a616d167860ab2264f8d23dcf5c497583}{port}}\ =\ 5025);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00076}00076\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_aeac4eb6379a543d38ed88977d3b6630a}{\string~Socket}}();}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00082}00082\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab880562cadaac7ed4f4bf69d852ba31e}{host}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00088}00088\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a616d167860ab2264f8d23dcf5c497583}{port}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00094}00094\ \ \ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00102}00102\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ab9828176723d02ef77dd0910ff9da0cc}{setBufferSize}}(std::size\_t\ size\_B);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00114}00114\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}();}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00123}00123\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a7a71ed12c4f8239ade516a110beeb8e3}{read}}(std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00131}00131\ \ \ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00141}00141\ \ \ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data,\ std::size\_t\ size);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00150}00150\ \ \ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_a0eb869ad91041d6f2d72f50b66a3fe56}{write}}(\textcolor{keyword}{const}\ std::string\&\ data);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00162}00162\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{query}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scpi);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00172}00172\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{query}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scpi,\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00184}00184\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{query}}(\textcolor{keyword}{const}\ std::string\&\ scpi);}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00194}00194\ \ \ std::string\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ac4780133301b7fc472cb8f74a0c78ab4}{query}}(\textcolor{keyword}{const}\ std::string\&\ scpi,\ std::size\_t\ \mbox{\hyperlink{class_rohde_schwarz_1_1_socket_ae57630d01d13cf6cbd2772a179a06ca3}{bufferSize\_B}});}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00197}00197\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00199}00199\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_address}{Address}}\ \_address;}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00200}00200\ \ \ \mbox{\hyperlink{class_rohde_schwarz_1_1_buffer}{Buffer}}\ \ \_buffer;}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00201}00201\ \ \ boost::asio::io\_context\ \_io\_context;}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00202}00202\ \ \ boost::asio::ip::tcp::socket\ \_socket;}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00205}00205\ \ \ \textcolor{comment}{//\ helpers}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00211}00211\ \ \ \textcolor{keywordtype}{bool}\ open();}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00217}00217\ \ \ \textcolor{keywordtype}{void}\ close();}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00220}00220\ \};\ \ \textcolor{comment}{//\ class\ Socket}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00223}00223\ \}\ \ \ \ \ \ \ \textcolor{comment}{//\ namespace\ RohdeSchwarz}}
+\DoxyCodeLine{\Hypertarget{socket_8hpp_source_l00224}00224\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ROHDESCHWARZ\_SOCKET\_HPP}}
+
+\end{DoxyCode}

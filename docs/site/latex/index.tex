@@ -1,0 +1,19 @@
+\chapter{Boost TCP Client}
+\hypertarget{index}{}\label{index}\index{Boost TCP Client@{Boost TCP Client}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+ A TCP socket example for Rohde \& Schwarz (R\&S) instrument control.\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item \href{https::/cmake.org}{\texttt{ CMake}} \texorpdfstring{$\sim$}{\string~}= 3.\+20
+\item \href{https://conan.io}{\texttt{ Conan}} \texorpdfstring{$\sim$}{\string~}= 2.\+0
+\item \href{https://www.boost.org/development/tests/develop/developer/summary.html}{\texttt{ A compatible compiler}}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+\texorpdfstring{$\ast$}{*}\+See the \href{https://www.boost.org/development/tests/develop/developer/summary.html}{\texttt{ Boost OS and Compiler Regression Testing Result Tables}} for a list of known-\/good compilers and versions for the latest version of Boost.\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Conan Extension for Visual Studio}{Conan Extension for Visual Studio}}\label{index_autotoc_md3}
+The \href{https://marketplace.visualstudio.com/items?itemName=conan-io.conan-vs-extension&ssr=false\#review-details}{\texttt{ Conan Extension for Visual Studio}} is required to build this project in Visual Studio, as conan is required.\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Build}{Build}}\label{index_autotoc_md4}
+Build scripts can be found in the \mbox{[}scripts\mbox{]}(scripts) folder.\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Clean}{Clean}}\label{index_autotoc_md5}
+\href{scripts/clean}{\texttt{ scripts/clean}} removes the {\ttfamily build} folder, which removes references to packages install by conan as well as all build artifacts.\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Static Release}{Static Release}}\label{index_autotoc_md6}
+The scripts \href{scripts/install}{\texttt{ scripts/install}} and \href{scripts/build}{\texttt{ scripts/build}} will build statically-\/linked release binaries by default.\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Shared}{Shared}}\label{index_autotoc_md7}
+The scripts in the \href{scripts/shared}{\texttt{ scripts/shared}} folder can be used to build shared binaries.\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{Debug}{Debug}}\label{index_autotoc_md8}
+The scripts in the \href{scripts/debug}{\texttt{ scripts/debug}} and \href{scripts/shared/debug}{\texttt{ scripts/shared/debug}} folders can be used to build debug binaries with dynamically linked and statically linked binaries, respectively. 
