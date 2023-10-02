@@ -27,8 +27,8 @@ install(DIRECTORY include DESTINATION .)
 
 # main
 add_executable(
-  main
-  src/main.cpp
+  socket-example
+  examples/socket.cpp
 )
-target_link_libraries(main rohdeschwarz)
-install(TARGETS main)
+target_link_libraries(socket-example rohdeschwarz)
+install(TARGETS socket-example)

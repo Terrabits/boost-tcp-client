@@ -1,3 +1,13 @@
+/**
+ * \file  socket.cpp
+ * \brief RohdeSchwarz::Socket example
+ *
+ * This example demonstrates basic use of the `RohdeSchwarz::Socket` class.
+ *
+ * \include socket.cpp
+ */
+
+
 // rohdeschwarz
 #include "rohdeschwarz/socket.hpp"
 using namespace RohdeSchwarz;
