@@ -8,6 +8,12 @@ project(rohdeschwarz)
 # set(Boost_USE_STATIC_RUNTIME $<NOT:BUILD_SHARED_LIBS)
 
 
+# windows __declspec work-around
+if (WIN32 AND BUILD_SHARED_LIBS)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
+
+
 # find boost components
 find_package(Boost 1.83.0 REQUIRED COMPONENTS system)
 
