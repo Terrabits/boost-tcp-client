@@ -18,10 +18,6 @@ using namespace rohdeschwarz::busses::socket;
 #include <string>
 
 
-// constants
-const int TELNET_PORT = 5025;
-
-
 int main(int argc, char* argv[])
 {
 
@@ -34,16 +30,20 @@ int main(int argc, char* argv[])
   }
 
 
+  // get host argument
+  auto host = argv[1];
+
+
   try
   {
     // create open socket
-    auto host = argv[1];
-    Socket socket(host, TELNET_PORT);
-
+    Socket socket(host, 5025);
 
     // print instrument id string
-    std::cout << socket.query("*IDN?");
+    std::cout << socket.query("*IDN?\n");
   }
+
+  
   catch (std::exception& e)
   {
     std::cerr << "Exception: " << e.what() << std::endl;
