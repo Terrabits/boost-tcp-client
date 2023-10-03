@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
     std::cout << socket.query("*IDN?\n");
   }
 
-  
+
   catch (std::exception& e)
   {
     std::cerr << "Exception: " << e.what() << std::endl;
