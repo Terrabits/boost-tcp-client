@@ -29,7 +29,7 @@ class RohdeSchwarzConan(ConanFile):
 
 
     # sources
-    exports_sources = "CMakeLists.txt", "src/*", "include/*"
+    exports_sources = "CMakeLists.txt", "LICENSE.txt", "README.md", "src/*", "include/*", "examples/*"
 
 
     # requirements
