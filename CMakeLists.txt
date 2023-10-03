@@ -9,7 +9,7 @@ project(BoostTcpClient)
 
 
 # find boost components
-find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost 1.83.0 REQUIRED COMPONENTS system)
 
 
 # rohdeschwarz socket library
