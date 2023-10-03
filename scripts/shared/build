@@ -7,4 +7,4 @@ cd "$ROOT_DIR"
 
 
 # build
-scripts/build --options */*:shared=True
+scripts/build --options */*:shared=True "$@"

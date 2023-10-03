@@ -7,4 +7,4 @@ cd "$ROOT_DIR"
 
 
 # build
-scripts/build --options */*:shared=True --settings build_type=Debug
+scripts/build --options */*:shared=True --settings build_type=Debug "$@"

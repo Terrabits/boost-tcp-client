@@ -7,4 +7,4 @@ cd "$ROOT_DIR"
 
 
 # install
-scripts/install --options */*:shared=True
+scripts/install --options */*:shared=True "$@"

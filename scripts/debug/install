@@ -7,4 +7,4 @@ cd "$ROOT_DIR"
 
 
 # install
-scripts/install --settings build_type=Debug
+scripts/install --settings build_type=Debug "$@"
