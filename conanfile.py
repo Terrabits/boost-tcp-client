@@ -3,18 +3,37 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
 
 class RohdeSchwarzConan(ConanFile):
+
+    # basic info
     name    = "rohdeschwarz"
-    version = "1.0.0"
+    version = "0.1.0"
     license = "R&S Royalty Free License"
     author  = "Nick Lalic <nick.lalic@rsa.rohde-schwarz.com"
     url     = "https://github.com/Terrabits/boost-tcp-client"
-    description = "TCPIP socket library for Rohde & Schwarz instrument control"
-    topics  = ("Rohde", "Schwarz", "R&S", "Test", "Measurement", "Instrument", "Automation")
+    description = (
+        "An object-oriented library for automation of Rohde & Schwarz general "
+        "purpose test and measurement equipment"
+    )
+    topics  = (
+        "Rohde",
+        "Schwarz",
+        "R&S",
+        "Test",
+        "Measurement",
+        "Instrument",
+        "Automation"
+    )
 
 
-    # Binary configuration
-    settings = "os", "compiler", "build_type", "arch"
-    options  = {
+    # requirements
+    requires      = 'boost/[>=1.83 <2.0]'
+    tool_requires = 'cmake/[>=3.27 <4.0]'
+
+
+    # build configuration, options
+    package_type  = 'library'
+    settings      = "os", "compiler", "build_type", "arch"
+    options = {
         "shared": [True, False],
         "fPIC":   [True, False]
     }
@@ -22,19 +41,6 @@ class RohdeSchwarzConan(ConanFile):
         "shared": False,
         "fPIC":   True
     }
-
-
-    # package type
-    package_type = 'library'
-
-
-    # sources
-    exports_sources = "CMakeLists.txt", "LICENSE.txt", "README.md", "src/*", "include/*", "examples/*"
-
-
-    # requirements
-    requires      = 'boost/[>=1.83 <2.0]'
-    tool_requires = 'cmake/[>=3.27 <4.0]'
 
 
     def config_options(self):
