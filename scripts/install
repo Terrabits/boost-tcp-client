@@ -7,6 +7,4 @@ cd "$ROOT_DIR"
 
 
 # install
-mkdir -p build/bin
-cd build
-exec conan install .. --update --build missing "$@"
+exec conan install . --update --build missing "$@"

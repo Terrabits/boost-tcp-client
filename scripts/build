@@ -7,5 +7,4 @@ cd "$ROOT_DIR"
 
 
 # build
-mkdir -p build/bin
 exec conan build . "$@"
