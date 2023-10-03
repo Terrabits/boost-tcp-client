@@ -1,12 +1,12 @@
 /**
  * \file  address.cpp
- * \brief RohdeSchwarz::Address class implementation
+ * \brief rohdeschwarz::Address class implementation
  */
 
 
 // rohdeschwarz
-#include "rohdeschwarz/address.hpp"
-using namespace RohdeSchwarz;
+#include "rohdeschwarz/busses/socket/address.hpp"
+using namespace rohdeschwarz::busses::socket;
 
 
 Address::Address(std::string host, int port) :

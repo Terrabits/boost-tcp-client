@@ -1,6 +1,6 @@
 /**
  * \file  buffer.hpp
- * \brief RohdeSchwarz::Buffer class definition
+ * \brief rohdeschwarz::Buffer class definition
  */
 #ifndef ROHDESCHWARZ_BUFFER_HPP
 #define ROHDESCHWARZ_BUFFER_HPP
@@ -16,14 +16,14 @@
 #include <boost/asio.hpp>
 
 
-namespace RohdeSchwarz
+namespace rohdeschwarz::busses::socket
 {
 
 
 /**
  * \brief A convenience class for boost::asio::buffer()
  *
- * The RohdeSchwarz::Buffer class manages a resizable `char[]` array and
+ * The rohdeschwarz::Buffer class manages a resizable `char[]` array and
  * generates `boost::asio` `const_buffer` and `mutable_buffer` objects for use
  # in IO operations.
  */
@@ -121,5 +121,5 @@ private:
 };  // class Buffer
 
 
-}       // namespace RohdeSchwarz
+}       // namespace rohdeschwarz::busses::socket
 #endif  // ROHDESCHWARZ_BUFFER_HPP

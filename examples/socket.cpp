@@ -1,16 +1,16 @@
 /**
  * \file  socket.cpp
- * \brief RohdeSchwarz::Socket example
+ * \brief rohdeschwarz::Socket example
  *
- * This example demonstrates basic use of the `RohdeSchwarz::Socket` class.
+ * This example demonstrates basic use of the `rohdeschwarz::Socket` class.
  *
  * \include socket.cpp
  */
 
 
 // rohdeschwarz
-#include "rohdeschwarz/socket.hpp"
-using namespace RohdeSchwarz;
+#include "rohdeschwarz/busses/socket/socket.hpp"
+using namespace rohdeschwarz::busses::socket;
 
 
 // std lib

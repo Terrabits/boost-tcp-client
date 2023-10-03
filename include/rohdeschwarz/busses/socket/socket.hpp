@@ -1,14 +1,14 @@
 /**
  * \file  socket.hpp
- * \brief RohdeSchwarz::Socket class definition
+ * \brief rohdeschwarz::Socket class definition
  */
 #ifndef ROHDESCHWARZ_SOCKET_HPP
 #define ROHDESCHWARZ_SOCKET_HPP
 
 
 // rohdeschwarz
-#include "rohdeschwarz/address.hpp"
-#include "rohdeschwarz/buffer.hpp"
+#include "rohdeschwarz/busses/socket/address.hpp"
+#include "rohdeschwarz/busses/socket/buffer.hpp"
 
 
 // boost
@@ -20,7 +20,7 @@
 #include <string>
 
 
-namespace RohdeSchwarz
+namespace rohdeschwarz::busses::socket
 {
 
 
@@ -220,5 +220,5 @@ private:
 };  // class Socket
 
 
-}       // namespace RohdeSchwarz
+}       // namespace rohdeschwarz::busses::socket
 #endif  // ROHDESCHWARZ_SOCKET_HPP

@@ -1,12 +1,12 @@
 /**
  * \file  socket.cpp
- * \brief RohdeSchwarz::Socket class implementation
+ * \brief rohdeschwarz::Socket class implementation
  */
 
 
 // rohdeschwarz
-#include "rohdeschwarz/socket.hpp"
-using namespace RohdeSchwarz;
+#include "rohdeschwarz/busses/socket/socket.hpp"
+using namespace rohdeschwarz::busses::socket;
 
 
 // boost

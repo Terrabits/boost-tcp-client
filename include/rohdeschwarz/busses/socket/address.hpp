@@ -1,6 +1,6 @@
 /**
  * \file  address.hpp
- * \brief RohdeSchwarz::Address class definition
+ * \brief rohdeschwarz::Address class definition
  */
 #ifndef ROHDESCHWARZ_ADDRESS_HPP
 #define ROHDESCHWARZ_ADDRESS_HPP
@@ -14,7 +14,7 @@
 #include <boost/asio.hpp>
 
 
-namespace RohdeSchwarz
+namespace rohdeschwarz::busses::socket
 {
 
 
@@ -68,5 +68,5 @@ private:
 };  // class Address
 
 
-}       // namespace RohdeSchwarz
+}       // namespace rohdeschwarz::busses::socket
 #endif  // ROHDESCHWARZ_ADDRESS_HPP

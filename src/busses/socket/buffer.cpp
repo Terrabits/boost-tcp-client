@@ -1,12 +1,12 @@
 /**
  * \file  buffer.cpp
- * \brief RohdeSchwarz::Buffer class implementation
+ * \brief rohdeschwarz::Buffer class implementation
  */
 
 
 // rohdeschwarz
-#include "rohdeschwarz/buffer.hpp"
-using namespace RohdeSchwarz;
+#include "rohdeschwarz/busses/socket/buffer.hpp"
+using namespace rohdeschwarz::busses::socket;
 
 
 Buffer::Buffer(std::size_t size) :
