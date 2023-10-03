@@ -5,4 +5,4 @@ cd /d "%ROOT_DIR%"
 
 
 REM clean
-rmdir /Q /S build
+rmdir /Q /S build >nul 2>&1
