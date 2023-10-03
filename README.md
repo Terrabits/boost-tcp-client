@@ -1,8 +1,8 @@
-# RohdeSchwarz (C++)
+# rohdeschwarz (C++)
 
 A C++ TCPIP socket library for Rohde & Schwarz (R&S) instrument control
 
-## Requirements
+## Build Requirements
 
 -   [CMake](https::/cmake.org) ~= 3.20
 -   [Conan](https://conan.io) ~= 2.0
@@ -17,3 +17,9 @@ The [Conan Extension for Visual Studio](https://marketplace.visualstudio.com/ite
 ## Build
 
 Build scripts can be found in the [scripts](./scripts) folder.
+
+## Examples
+
+### rohdeschwarz::busses::Socket
+
+See [examples/socket.cpp](examples/socket.cpp) for a TCPIP sockets example.
