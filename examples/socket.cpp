@@ -15,8 +15,11 @@ using namespace rohdeschwarz::busses::socket;
 
 // std lib
 #include <iostream>
-#include <sstream>
 #include <string>
+
+
+// constants
+const int TELNET_PORT = 5025;
 
 
 int main(int argc, char* argv[])
@@ -25,38 +28,26 @@ int main(int argc, char* argv[])
   // check args
   if (argc != 2)
   {
-    std::cerr << "Usage: http-get <host>\n";
+    std::cerr << "Usage: `socket-example <host>`" << std::endl;
+    std::cerr << "Connects to the instrument at <host> and prints the id string" << std::endl;
     return 1;
   }
 
 
   try
   {
-    // create socket; connect
-    Socket socket(argv[1], 80);
+    // create open socket
+    auto host = argv[1];
+    Socket socket(host, TELNET_PORT);
 
 
-    // create http get header
-    std::stringstream header;
-    header << "GET / HTTP/1.1\r\nHost: ";
-    header << argv[1];
-    header << ":80\r\n\r\n";
-
-
-    // make request; print response
-    std::string response = socket.query(header.str());
-    std::cout << response << std::endl << std::endl;
-
-
+    // print instrument id string
+    std::cout << socket.query("*IDN?");
   }
-
-
   catch (std::exception& e)
   {
-
-    std::cerr << "Exception: " << e.what() << "\n";
+    std::cerr << "Exception: " << e.what() << std::endl;
     return 2;
-
   }
 
 
