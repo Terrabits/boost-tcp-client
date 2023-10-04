@@ -1,16 +1,16 @@
 /**
- * \file  socket.cpp
- * \brief rohdeschwarz::Socket example
+ * \file  main.cpp
+ * \brief rohdeschwarz::busses::socket::Socket example
  *
- * This example demonstrates basic use of the `rohdeschwarz::Socket` class.
+ * This example demonstrates basic use of the `rohdeschwarz::busses::socket::Socket` class.
  *
- * \include socket.cpp
+ * \include main.cpp
  */
 
 
 // rohdeschwarz
 #include "rohdeschwarz/busses/socket/socket.hpp"
-using namespace rohdeschwarz::busses::socket;
+using namespace rohdeschwarz::busses::socket::Socket;
 
 
 // std lib
@@ -44,6 +44,7 @@ int main(int argc, char* argv[])
   }
 
 
+  // socket error?
   catch (std::exception& e)
   {
     std::cerr << "Exception: " << e.what() << std::endl;
