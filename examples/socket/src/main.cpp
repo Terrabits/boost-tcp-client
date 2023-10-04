@@ -10,7 +10,7 @@
 
 // rohdeschwarz
 #include "rohdeschwarz/busses/socket/socket.hpp"
-using namespace rohdeschwarz::busses::socket::Socket;
+using Socket = rohdeschwarz::busses::socket::Socket;
 
 
 // std lib
@@ -18,40 +18,17 @@ using namespace rohdeschwarz::busses::socket::Socket;
 #include <string>
 
 
-int main(int argc, char* argv[])
+// constants
+const char* HOST = "localhost";
+const int   PORT = 5025;
+
+
+int main()
 {
+  // create open socket
+  Socket socket(HOST, PORT);
 
-  // check args
-  if (argc != 2)
-  {
-    std::cerr << "Usage: `socket-example <host>`" << std::endl;
-    std::cerr << "Connects to the instrument at <host> and prints the id string" << std::endl;
-    return 1;
-  }
-
-
-  // get host argument
-  auto host = argv[1];
-
-
-  try
-  {
-    // create open socket
-    Socket socket(host, 5025);
-
-    // print instrument id string
-    std::cout << socket.query("*IDN?\n");
-  }
-
-
-  // socket error?
-  catch (std::exception& e)
-  {
-    std::cerr << "Exception: " << e.what() << std::endl;
-    return 2;
-  }
-
-
-  // success
+  // print instrument id string
+  std::cout << socket.query("*IDN?\n");
   return 0;
 }
