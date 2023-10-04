@@ -1,6 +1,6 @@
-from conan import ConanFile
+from conan             import ConanFile
 from conan.tools.build import check_min_cppstd
-from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
+from conan.tools.cmake import CMake, cmake_layout
 
 
 class RohdeSchwarzConan(ConanFile):
@@ -26,14 +26,21 @@ class RohdeSchwarzConan(ConanFile):
     )
 
 
-    # requirements
-    requires      = 'boost/[>=1.83 <2.0]'
+    # required libraries
+    def requirements(self):
+        self.requires('boost/1.83.0', transitive_headers=True, transitive_libs=True)
+
+
+    # required build tools
     tool_requires = 'cmake/[>=3.27 <4.0]'
 
 
-    # build configuration, options
+    # build configuration
     package_type  = 'library'
     settings      = "os", "compiler", "build_type", "arch"
+
+
+    # build options
     options = {
         "shared": [True, False],
         "fPIC":   [True, False]
@@ -42,6 +49,22 @@ class RohdeSchwarzConan(ConanFile):
         "shared": False,
         "fPIC":   True
     }
+
+
+    # source files
+    exports_sources = (
+        'CMakeLists.txt',
+        'conanfile.py',
+        'LICENSE.txt',
+        'README.md',
+        'examples/*',
+        'include/*',
+        'src/*'
+    )
+
+
+    # cmake generators
+    generators = "CMakeDeps", "CMakeToolchain"
 
 
     def config_options(self):
@@ -55,11 +78,6 @@ class RohdeSchwarzConan(ConanFile):
 
     def layout(self):
         cmake_layout(self)
-
-
-    def generate(self):
-        tc = CMakeToolchain(self)
-        tc.generate()
 
 
     def build(self):
