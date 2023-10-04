@@ -1,6 +1,6 @@
 /**
  * \file  socket.hpp
- * \brief rohdeschwarz::Socket class definition
+ * \brief rohdeschwarz::busses::socket::Socket class definition
  */
 #ifndef ROHDESCHWARZ_SOCKET_HPP
 #define ROHDESCHWARZ_SOCKET_HPP
