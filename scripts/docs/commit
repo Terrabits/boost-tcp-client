@@ -9,16 +9,15 @@ cd "$ROOT_DIR"
 # values
 COMMIT_MSG="📝 generated updated docs"
 RETURN_CODE=0
-SILENT=">/dev/null 2>&1"
 
 
 # generate updated docs
 scripts/docs/clean
-scripts/docs/build  $SILENT
+scripts/docs/build  >/dev/null 2>&1
 
 
 # checkout gh-pages, clean
-git checkout gh-pages  $SILENT
+git checkout gh-pages  >/dev/null 2>&1
 rm -rf search *.html *.png *.svg *.css *.js
 
 
@@ -28,9 +27,9 @@ rm -rf docs
 
 
 # commit and push
-git add --update  $SILENT
-git add --force search *.html *.png *.svg *.css *.js  $SILENT
-if git commit -m "$COMMIT_MSG" $SILENT; then
+git add --update  >/dev/null 2>&1
+git add --force search *.html *.png *.svg *.css *.js  >/dev/null 2>&1
+if git commit -m "$COMMIT_MSG" >/dev/null 2>&1; then
   git push
 else
   echo "no changes to commit"
@@ -39,5 +38,5 @@ fi
 
 
 # checkout main branch
-git checkout main  $SILENT
+git checkout main  >/dev/null 2>&1
 exit $RETURN_CODE
