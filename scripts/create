@@ -7,4 +7,4 @@ cd "$ROOT_DIR"
 
 
 # create
-conan create . "$@"
+conan create --update --build missing . "$@"
