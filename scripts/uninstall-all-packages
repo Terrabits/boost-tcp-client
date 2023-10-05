@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -o errexit   # exit on error
+set -o pipefail  # exit on error in pipes
+set -o nounset   # exit on unset variable
+ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../.."
+cd "$ROOT_DIR"
+
+
+# loading icon function
+# arg: process_id
+function show_loading_icon_for_process_id()
+{
+  # process id argument
+  PID="$1"
+
+  # animation frames
+  SPIN[0]="-"
+  SPIN[1]="\\"
+  SPIN[2]="|"
+  SPIN[3]="/"
+
+  # animate v1
+  # echo -n "${SPIN[0]}"
+  while kill -0 "$PID" >/dev/null 2>&1; do
+    for i in "${SPIN[@]}" ; do
+      # echo -ne "\b$i"
+      printf "\rThis operation may take several minutes to complete. $i"
+      sleep 0.1
+    done
+  done
+  printf "\r                                                           "
+  printf "\r"
+}
+
+
+# remove all packages
+conan cache clean --source --build --download --temp &
+show_loading_icon_for_process_id $!
+conan remove "*" --confirm >/dev/null &
+show_loading_icon_for_process_id $!
