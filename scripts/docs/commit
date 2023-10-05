@@ -11,13 +11,16 @@ scripts/docs/clean
 scripts/docs/build
 
 
-# commit update to gh-pages
+# checkout, clean gh-pages
 git checkout gh-pages
 rm -rf search *.html *.png *.svg *.css *.js
+
+# commit updated docs
 cp -r docs/site/html/* .
 git add --update
 git add --force search *.html *.png *.svg *.css *.js
 git commit -m "📝 generated updated docs"
+git push
 
 
 # clean up
