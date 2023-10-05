@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['main_0',['main',['../examples_2socket_2src_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp'],['../test__package_2src_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../examples_2socket_2src_2main_8cpp.html',1,'(Global Namespace)'],['../test__package_2src_2main_8cpp.html',1,'(Global Namespace)']]]
+  ['busses_19',['busses',['../namespacerohdeschwarz_1_1busses.html',1,'rohdeschwarz']]],
+  ['read_20',['read',['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a7a71ed12c4f8239ade516a110beeb8e3',1,'rohdeschwarz::busses::socket::Socket::read()'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a7c862b233af8d1281b51c3588e37a022',1,'rohdeschwarz::busses::socket::Socket::read(std::size_t bufferSize_B)']]],
+  ['readme_2emd_21',['README.md',['../README_8md.html',1,'(Global Namespace)'],['../examples_2README_8md.html',1,'(Global Namespace)'],['../examples_2socket_2README_8md.html',1,'(Global Namespace)'],['../include_2rohdeschwarz_2busses_2README_8md.html',1,'(Global Namespace)'],['../include_2rohdeschwarz_2busses_2socket_2README_8md.html',1,'(Global Namespace)'],['../test__package_2README_8md.html',1,'(Global Namespace)']]],
+  ['resize_22',['resize',['../classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html#a42a868d591474b9a3cc639e5d94b0cc8',1,'rohdeschwarz::busses::socket::Buffer']]],
+  ['resolve_23',['resolve',['../classrohdeschwarz_1_1busses_1_1socket_1_1Address.html#afaff4212846312e6f90b6b02035b476c',1,'rohdeschwarz::busses::socket::Address']]],
+  ['rohdeschwarz_24',['rohdeschwarz',['../namespacerohdeschwarz.html',1,'']]],
+  ['rohdeschwarz_20_28c_2b_2b_29_25',['rohdeschwarz (C++)',['../index.html',1,'']]],
+  ['socket_26',['socket',['../namespacerohdeschwarz_1_1busses_1_1socket.html',1,'rohdeschwarz::busses']]]
 ];

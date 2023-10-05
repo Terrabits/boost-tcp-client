@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['c_0',['rohdeschwarz (C++)',['../index.html',1,'']]],
-  ['code_1',['code',['../md_test__package_2_r_e_a_d_m_e.html#autotoc_md23',1,'Return Code'],['../md_examples_2socket_2_r_e_a_d_m_e.html#autotoc_md13',1,'Source Code']]]
+  ['data_9',['data',['../classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html#a1e50862ebf40db7ad894ae92eec48d45',1,'rohdeschwarz::busses::socket::Buffer::data()'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html#ab5881b924a8e409f4d9ddfd151aee7d9',1,'rohdeschwarz::busses::socket::Buffer::data() const']]],
+  ['default_5fbuffer_5fsize_5fb_10',['DEFAULT_BUFFER_SIZE_B',['../socket_8cpp.html#aeb10dd33796e8e04a5fda179d447d932',1,'socket.cpp']]]
 ];
