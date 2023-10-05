@@ -27,4 +27,4 @@ class RohdeSchwarzTestPackageConan(ConanFile):
     def test(self):
         if can_run(self):
             cmd = os.path.join(self.cpp.build.bindir, "main")
-            self.run(cmd, quiet=True, env="conanrun")
+            self.run(cmd, env="conanrun")

@@ -1,25 +1,58 @@
 # rohdeschwarz (C++)
 
-A C++ TCPIP socket library for Rohde & Schwarz (R&S) instrument control
+An object-oriented test automation library for Rohde & Schwarz (R&S) General Purpose Test and Measurement (T&M) equipment.
 
-## Build Requirements
+## Requirements
 
--   [CMake](https::/cmake.org) ~= 3.20
 -   [Conan](https://conan.io) ~= 2.0
 -   [A Boost-compatible compiler](https://www.boost.org/development/tests/develop/developer/summary.html)\*
 
 \*See the [Boost OS and Compiler Regression Testing Result Tables](https://www.boost.org/development/tests/develop/developer/summary.html) for a list of known-good compilers and versions for the latest version of Boost.
 
-### Conan Extension for Visual Studio
-
-The [Conan Extension for Visual Studio](https://marketplace.visualstudio.com/items?itemName=conan-io.conan-vs-extension&ssr=false#review-details) is required to build this project in Visual Studio, as conan is required.
-
 ## Build
 
-Build scripts can be found in the [scripts](./scripts) folder.
+The following conan commands build a `static` `Release` version of this package:
+
+```shell
+cd path/to/rohdeschwarz
+conan install . --update --build missing
+conan build .
+```
+
+For convenience, the scripts [scripts/install](scripts/install)[.bat](scripts/install.bat) and [scripts/build](scripts/build)[.bat](scripts/build.bat) are also provided.
+
+### Shared, Debug Builds
+
+A static release build is the default. The following conan flags can be used with `conan install` and `conan build` to build other binaries:
+
+-   `--settings build_type=Debug`
+-   `--options */*:shared=True`
+
+For example, to build a `shared` `Debug` binary:
+
+
+```shell
+# flags
+SHARED="--options */*:shared=True"
+DEBUG="--settings build_type=Debug"
+
+# build shared debug
+scripts/install $SHARED $DEBUG
+scripts/build   $SHARED $DEBUG
+```
+
+## rohdeschwarz Library
+
+The `rohdeschwarz` library is comprised of the following `namespaces` based on their functionality.
+
+### busses
+
+The `rohdeschwarz::busses` namespace contains instrument I/O libraries.
+
+See [include/rohdeschwarz/busses/README.md](include/rohdeschwarz/busses/README.md) for more information.
 
 ## Examples
 
-### rohdeschwarz::busses::Socket
+Basic examples for various parts of the `rohdeschwarz` library are provided in the [examples/](examples/) folder.
 
-See [examples/socket.cpp](examples/socket.cpp) for a TCPIP sockets example.
+See [examples/README.md](examples/README.md) for more information.
