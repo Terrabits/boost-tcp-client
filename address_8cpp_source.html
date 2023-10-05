@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RohdeSchwarz: src/address.cpp Source File</title>
+<title>rohdeschwarz: src/busses/socket/address.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">RohdeSchwarz<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">rohdeschwarz<span id="projectnumber">&#160;0.1.0</span>
    </div>
    <div id="projectbrief">TCPIP socket library for Rohde &amp; Schwarz instrument control</div>
   </td>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5773a110072fdc35b4636b9fd604a3c7.html">busses</a></li><li class="navelem"><a class="el" href="dir_b57ee5ee0887dfe5949ef683c2b932c2.html">socket</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,12 +84,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="contents">
 <a href="address_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// rohdeschwarz</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="address_8hpp.html">rohdeschwarz/address.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_rohde_schwarz.html">RohdeSchwarz</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="address_8hpp.html">rohdeschwarz/busses/socket/address.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacerohdeschwarz_1_1busses_1_1socket.html">rohdeschwarz::busses::socket</a>;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_rohde_schwarz_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">   12</a></span><a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">Address::Address</a>(std::string host, <span class="keywordtype">int</span> port) :</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">   12</a></span><a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">Address::Address</a>(std::string host, <span class="keywordtype">int</span> port) :</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  _host(host),</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  _port(port)</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
@@ -99,7 +99,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_rohde_schwarz_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">   20</a></span>std::string <a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">Address::host</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">   20</a></span>std::string <a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">Address::host</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keywordflow">return</span> _host;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
@@ -107,7 +107,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_rohde_schwarz_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">   26</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">Address::port</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">   26</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">Address::port</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">return</span> _port;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
@@ -115,26 +115,26 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_rohde_schwarz_1_1_address.html#afaff4212846312e6f90b6b02035b476c">   32</a></span>boost::asio::ip::basic_resolver&lt;boost::asio::ip::tcp&gt;::results_type <a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#afaff4212846312e6f90b6b02035b476c">Address::resolve</a>(boost::asio::io_context&amp; io_context)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#afaff4212846312e6f90b6b02035b476c">   32</a></span>boost::asio::ip::basic_resolver&lt;boost::asio::ip::tcp&gt;::results_type <a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#afaff4212846312e6f90b6b02035b476c">Address::resolve</a>(boost::asio::io_context&amp; io_context)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// get port string</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  std::string <a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">port</a> = std::to_string(_port);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  std::string <a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">port</a> = std::to_string(_port);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// resolve endpoint(s)</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  boost::asio::ip::tcp::resolver resolver(io_context);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">return</span> resolver.resolve(_host.c_str(), <a class="code hl_function" href="class_rohde_schwarz_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">port</a>.c_str());</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">return</span> resolver.resolve(_host.c_str(), <a class="code hl_function" href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">port</a>.c_str());</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
 </div>
-<div class="ttc" id="aaddress_8hpp_html"><div class="ttname"><a href="address_8hpp.html">address.hpp</a></div><div class="ttdoc">RohdeSchwarz::Address class definition.</div></div>
-<div class="ttc" id="aclass_rohde_schwarz_1_1_address_html_a139d0916ebc6cb6f0bf769ed34936e82"><div class="ttname"><a href="class_rohde_schwarz_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">RohdeSchwarz::Address::host</a></div><div class="ttdeci">std::string host() const</div><div class="ttdoc">host or address</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00020">address.cpp:20</a></div></div>
-<div class="ttc" id="aclass_rohde_schwarz_1_1_address_html_a46e83b715f13f44db43995b54b9eebcb"><div class="ttname"><a href="class_rohde_schwarz_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">RohdeSchwarz::Address::Address</a></div><div class="ttdeci">Address(std::string host, int port)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00012">address.cpp:12</a></div></div>
-<div class="ttc" id="aclass_rohde_schwarz_1_1_address_html_a6f0d017e4a5b67b099fbd57a1016194f"><div class="ttname"><a href="class_rohde_schwarz_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">RohdeSchwarz::Address::port</a></div><div class="ttdeci">int port() const</div><div class="ttdoc">port number</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00026">address.cpp:26</a></div></div>
-<div class="ttc" id="aclass_rohde_schwarz_1_1_address_html_afaff4212846312e6f90b6b02035b476c"><div class="ttname"><a href="class_rohde_schwarz_1_1_address.html#afaff4212846312e6f90b6b02035b476c">RohdeSchwarz::Address::resolve</a></div><div class="ttdeci">boost::asio::ip::basic_resolver&lt; boost::asio::ip::tcp &gt;::results_type resolve(boost::asio::io_context &amp;io_context) const</div><div class="ttdoc">Resolves TCP IP endpoint(s) from host, port.</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00032">address.cpp:32</a></div></div>
-<div class="ttc" id="anamespace_rohde_schwarz_html"><div class="ttname"><a href="namespace_rohde_schwarz.html">RohdeSchwarz</a></div><div class="ttdef"><b>Definition</b> <a href="address_8hpp_source.html#l00017">address.hpp:18</a></div></div>
+<div class="ttc" id="aaddress_8hpp_html"><div class="ttname"><a href="address_8hpp.html">address.hpp</a></div><div class="ttdoc">rohdeschwarz::Address class definition</div></div>
+<div class="ttc" id="aclassrohdeschwarz_1_1busses_1_1socket_1_1_address_html_a139d0916ebc6cb6f0bf769ed34936e82"><div class="ttname"><a href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a139d0916ebc6cb6f0bf769ed34936e82">rohdeschwarz::busses::socket::Address::host</a></div><div class="ttdeci">std::string host() const</div><div class="ttdoc">host or address</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00020">address.cpp:20</a></div></div>
+<div class="ttc" id="aclassrohdeschwarz_1_1busses_1_1socket_1_1_address_html_a46e83b715f13f44db43995b54b9eebcb"><div class="ttname"><a href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a46e83b715f13f44db43995b54b9eebcb">rohdeschwarz::busses::socket::Address::Address</a></div><div class="ttdeci">Address(std::string host, int port)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00012">address.cpp:12</a></div></div>
+<div class="ttc" id="aclassrohdeschwarz_1_1busses_1_1socket_1_1_address_html_a6f0d017e4a5b67b099fbd57a1016194f"><div class="ttname"><a href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#a6f0d017e4a5b67b099fbd57a1016194f">rohdeschwarz::busses::socket::Address::port</a></div><div class="ttdeci">int port() const</div><div class="ttdoc">port number</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00026">address.cpp:26</a></div></div>
+<div class="ttc" id="aclassrohdeschwarz_1_1busses_1_1socket_1_1_address_html_afaff4212846312e6f90b6b02035b476c"><div class="ttname"><a href="classrohdeschwarz_1_1busses_1_1socket_1_1_address.html#afaff4212846312e6f90b6b02035b476c">rohdeschwarz::busses::socket::Address::resolve</a></div><div class="ttdeci">boost::asio::ip::basic_resolver&lt; boost::asio::ip::tcp &gt;::results_type resolve(boost::asio::io_context &amp;io_context) const</div><div class="ttdoc">Resolves TCP IP endpoint(s) from host, port.</div><div class="ttdef"><b>Definition</b> <a href="address_8cpp_source.html#l00032">address.cpp:32</a></div></div>
+<div class="ttc" id="anamespacerohdeschwarz_1_1busses_1_1socket_html"><div class="ttname"><a href="namespacerohdeschwarz_1_1busses_1_1socket.html">rohdeschwarz::busses::socket</a></div><div class="ttdef"><b>Definition</b> <a href="address_8hpp_source.html#l00017">address.hpp:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 2 2023 14:10:21 for RohdeSchwarz by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Oct 4 2023 21:38:33 for rohdeschwarz by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rohdeschwarz_20c_0',['RohdeSchwarz (C++)',['../index.html',1,'']]]
+  ['c_0',['rohdeschwarz (C++)',['../index.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RohdeSchwarz: RohdeSchwarz (C++)</title>
+<title>rohdeschwarz: rohdeschwarz (C++)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">RohdeSchwarz<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">rohdeschwarz<span id="projectnumber">&#160;0.1.0</span>
    </div>
    <div id="projectbrief">TCPIP socket library for Rohde &amp; Schwarz instrument control</div>
   </td>
@@ -70,29 +70,55 @@ $(function() {
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title"><a class="el" href="namespace_rohde_schwarz.html">RohdeSchwarz</a> (C++) </div></div>
+  <div class="headertitle"><div class="title">rohdeschwarz (C++) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> A C++ TCPIP socket library for Rohde &amp; Schwarz (R&amp;S) instrument control</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> An object-oriented test automation library for Rohde &amp; Schwarz (R&amp;S) General Purpose Test and Measurement (T&amp;M) equipment.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
 Requirements</h1>
 <ul>
-<li><a href="https::/cmake.org">CMake</a> ~= 3.20</li>
 <li><a href="https://conan.io">Conan</a> ~= 2.0</li>
-<li><a href="https://www.boost.org/development/tests/develop/developer/summary.html">A compatible compiler</a>*</li>
+<li><a href="https://www.boost.org/development/tests/develop/developer/summary.html">A Boost-compatible compiler</a>*</li>
 </ul>
 <p>*See the <a href="https://www.boost.org/development/tests/develop/developer/summary.html">Boost OS and Compiler Regression Testing Result Tables</a> for a list of known-good compilers and versions for the latest version of Boost.</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Conan Extension for Visual Studio</h2>
-<p>The <a href="https://marketplace.visualstudio.com/items?itemName=conan-io.conan-vs-extension&amp;ssr=false#review-details">Conan Extension for Visual Studio</a> is required to build this project in Visual Studio, as conan is required.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Build</h1>
-<p>Build scripts can be found in the <a href="./scripts">scripts</a> folder. </p>
+<p>The following conan commands build a <code>static</code> <code>Release</code> version of this package:</p>
+<div class="fragment"><div class="line">cd path/to/rohdeschwarz</div>
+<div class="line">conan install . --update --build missing</div>
+<div class="line">conan build .</div>
+</div><!-- fragment --><p>For convenience, the scripts <a href="scripts/install">scripts/install</a><a href="scripts/install.bat">.bat</a> and <a href="scripts/build">scripts/build</a><a href="scripts/build.bat">.bat</a> are also provided.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Shared, Debug Builds</h2>
+<p>A static release build is the default. The following conan flags can be used with <code>conan install</code> and <code>conan build</code> to build other binaries:</p>
+<ul>
+<li><code>--settings build_type=Debug</code></li>
+<li><code>--options */*:shared=True</code></li>
+</ul>
+<p>For example, to build a <code>shared</code> <code>Debug</code> binary:</p>
+<div class="fragment"><div class="line"># flags</div>
+<div class="line">SHARED=&quot;--options */*:shared=True&quot;</div>
+<div class="line">DEBUG=&quot;--settings build_type=Debug&quot;</div>
+<div class="line"> </div>
+<div class="line"># build shared debug</div>
+<div class="line">scripts/install $SHARED $DEBUG</div>
+<div class="line">scripts/build   $SHARED $DEBUG</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+rohdeschwarz Library</h1>
+<p>The <code>rohdeschwarz</code> library is comprised of the following <code>namespaces</code> based on their functionality.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+busses</h2>
+<p>The <code><a class="el" href="namespacerohdeschwarz_1_1busses.html">rohdeschwarz::busses</a></code> namespace contains instrument I/O libraries.</p>
+<p>See <a class="el" href="md_include_2rohdeschwarz_2busses_2_r_e_a_d_m_e.html">include/rohdeschwarz/busses/README.md</a> for more information.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Examples</h1>
+<p>Basic examples for various parts of the <code>rohdeschwarz</code> library are provided in the <a href="examples/">examples/</a> folder.</p>
+<p>See <a class="el" href="md_examples_2_r_e_a_d_m_e.html">examples/README.md</a> for more information. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 2 2023 14:10:22 for RohdeSchwarz by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Oct 4 2023 21:38:33 for rohdeschwarz by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
