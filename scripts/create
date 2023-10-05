@@ -6,8 +6,5 @@ ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 cd "$ROOT_DIR"
 
 
-# clean
-scripts/examples/clean
-scripts/test-package/clean
-rm -rf build
-rm -rf CMakeUserPresets.json
+# create
+conan create . "$@"

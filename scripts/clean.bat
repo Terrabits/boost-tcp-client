@@ -5,4 +5,7 @@ cd /d "%ROOT_DIR%"
 
 
 REM clean
-rmdir /Q /S build >nul 2>&1
+call scripts\examples\clean.bat
+call scripts\test_package\clean.bat
+rmdir /S /Q build
+del   /Q    CMakeUserPresets.json  >nul  2>&1
