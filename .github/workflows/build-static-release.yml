@@ -1,0 +1,22 @@
+name: Build Shared Release Package
+on: push
+jobs:
+  BuildSharedReleasePackge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install build tools
+        run:  |
+          sudo apt-get update
+          sudo apt-get install build-essential
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - uses: actions/checkout@v4
+      - name: install conan
+        run:  pip install --requirement requirements.txt
+      - name: create default conan profile
+        run:  conan profile detect
+      - name: install requirements
+        run:  scripts/install --options */*:shared=False --settings build_type=Release
+      - name: create and test package
+        run:  scripts/create  --options */*:shared=False --settings build_type=Release
