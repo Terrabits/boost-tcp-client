@@ -1,8 +1,0 @@
-@echo off
-setlocal
-SET "ROOT_DIR=%~dp0..\..\.."
-cd /d "%ROOT_DIR%"
-
-
-REM build
-call scripts\build.bat --options */*:shared=True --settings build_type=Debug %*
