@@ -26,9 +26,9 @@ git add --force search *.html *.png *.svg *.css *.js
 if git commit -m "📝 generated updated docs" ; then
   git push
   git checkout main
-  return 0
+  exit 0
 else
   echo "no changes to commit"
   git checkout main
-  return 1
+  exit 1
 fi
