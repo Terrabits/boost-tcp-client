@@ -11,18 +11,24 @@ scripts/docs/clean
 scripts/docs/build
 
 
-# checkout, clean gh-pages
+# checkout gh-pages, clean
 git checkout gh-pages
 rm -rf search *.html *.png *.svg *.css *.js
 
-# commit updated docs
+
+# install updated docs
 cp -r docs/site/html/* .
 git add --update
 git add --force search *.html *.png *.svg *.css *.js
-git commit -m "📝 generated updated docs"
-git push
 
 
-# clean up
-rm -rf docs
-git checkout main
+# commit and push
+if git commit -m "📝 generated updated docs" ; then
+  git push
+  git checkout main
+  return 0
+else
+  echo "no changes to commit"
+  git checkout main
+  return 1
+fi
