@@ -6,6 +6,7 @@ ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../.."
 cd "$ROOT_DIR"
 
 
-# build documentation
-mkdir -p docs/site
-doxygen Doxygen
+# commit new docs
+scripts/docs/clean
+scripts/docs/build
+git checkout gh-pages
