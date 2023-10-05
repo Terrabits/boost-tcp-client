@@ -1,7 +1,7 @@
-name: Build Shared Release Package
+name: Build Static Release Package
 on: push
 jobs:
-  BuildSharedReleasePackge:
+  BuildStaticReleasePackge:
     runs-on: ubuntu-latest
     steps:
       - name: install build tools
@@ -17,6 +17,6 @@ jobs:
       - name: create default conan profile
         run:  conan profile detect
       - name: install requirements
-        run:  scripts/install --options */*:shared=False --settings build_type=Release
+        run:  scripts/install --options */*:Static=False --settings build_type=Release
       - name: create and test package
-        run:  scripts/create  --options */*:shared=False --settings build_type=Release
+        run:  scripts/create  --options */*:Static=False --settings build_type=Release

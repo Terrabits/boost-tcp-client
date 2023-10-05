@@ -1,7 +1,7 @@
-name: Build Shared Release Package
+name: Build Shared Debug Package
 on: push
 jobs:
-  BuildSharedReleasePackge:
+  BuildSharedDebugPackge:
     runs-on: ubuntu-latest
     steps:
       - name: install build tools
