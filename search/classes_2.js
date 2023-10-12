@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['socket_42',['Socket',['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html',1,'rohdeschwarz::busses::socket']]]
+  ['channel_236',['Channel',['../classRsVisa_1_1Channel.html',1,'RsVisa']]],
+  ['cvisa_237',['CVisa',['../classRsVisa_1_1CVisa.html',1,'RsVisa']]]
 ];

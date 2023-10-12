@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>rohdeschwarz: include/rohdeschwarz/busses/busses.hpp Source File</title>
+<title>rohdeschwarz: include/rohdeschwarz/busses.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_23d962cd1d62827ab4c9aaeb66f46165.html">rohdeschwarz</a></li><li class="navelem"><a class="el" href="dir_a8735786ae5075c82eddf81691c00aed.html">busses</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_23d962cd1d62827ab4c9aaeb66f46165.html">rohdeschwarz</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -77,22 +77,26 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// rohdeschwarz</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;rohdeschwarz/busses/socket/socket/hpp&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespacerohdeschwarz.html">    9</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerohdeschwarz_1_1busses.html">rohdeschwarz::busses</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">using</span> <a class="code" href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html">Socket</a> = <a class="code" href="examples_2socket_2src_2main_8cpp.html#a886b189c3426059e9895a59f6fe78f1a">socket::Socket</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="visa_8hpp.html">rohdeschwarz/busses/visa/visa.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bus_8hpp.html">rohdeschwarz/busses/bus.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerohdeschwarz_1_1busses.html">rohdeschwarz::busses</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespacerohdeschwarz_1_1busses.html#a3be6e2e48a77eb3188db05257f49da5c">   15</a></span>&#160;<span class="keyword">using</span> <a class="code" href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html">Socket</a> = <a class="code" href="namespacerohdeschwarz_1_1busses.html#a3be6e2e48a77eb3188db05257f49da5c">socket::Socket</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespacerohdeschwarz_1_1busses.html#aa22ea07e8900b6c6d1af4ab2c03269d4">   16</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespacerohdeschwarz_1_1busses.html#aa22ea07e8900b6c6d1af4ab2c03269d4">Visa</a>   = <a class="code" href="namespacerohdeschwarz_1_1busses.html#aa22ea07e8900b6c6d1af4ab2c03269d4">visa::Visa</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// ROHDESCHWARZ_BUSSES_BUSSES_HPP</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}       <span class="comment">// namespace rohdeschwarz::busses</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// ROHDESCHWARZ_BUSSES_BUSSES_HPP</span></div>
+<div class="ttc" id="abus_8hpp_html"><div class="ttname"><a href="bus_8hpp.html">bus.hpp</a></div></div>
 <div class="ttc" id="aclassrohdeschwarz_1_1busses_1_1socket_1_1Socket_html"><div class="ttname"><a href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html">rohdeschwarz::busses::socket::Socket</a></div><div class="ttdoc">A class for managing synchronous TCP IP sockets.</div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00039">socket.hpp:40</a></div></div>
-<div class="ttc" id="aexamples_2socket_2src_2main_8cpp_html_a886b189c3426059e9895a59f6fe78f1a"><div class="ttname"><a href="examples_2socket_2src_2main_8cpp.html#a886b189c3426059e9895a59f6fe78f1a">Socket</a></div><div class="ttdeci">rohdeschwarz::busses::socket::Socket Socket</div><div class="ttdef"><b>Definition:</b> <a href="examples_2socket_2src_2main_8cpp_source.html#l00013">main.cpp:13</a></div></div>
-<div class="ttc" id="anamespacerohdeschwarz_1_1busses_html"><div class="ttname"><a href="namespacerohdeschwarz_1_1busses.html">rohdeschwarz::busses</a></div><div class="ttdef"><b>Definition:</b> <a href="busses_8hpp_source.html#l00009">busses.hpp:10</a></div></div>
+<div class="ttc" id="anamespacerohdeschwarz_1_1busses_html"><div class="ttname"><a href="namespacerohdeschwarz_1_1busses.html">rohdeschwarz::busses</a></div><div class="ttdef"><b>Definition:</b> <a href="bus_8hpp_source.html#l00005">bus.hpp:6</a></div></div>
+<div class="ttc" id="anamespacerohdeschwarz_1_1busses_html_a3be6e2e48a77eb3188db05257f49da5c"><div class="ttname"><a href="namespacerohdeschwarz_1_1busses.html#a3be6e2e48a77eb3188db05257f49da5c">rohdeschwarz::busses::Socket</a></div><div class="ttdeci">socket::Socket Socket</div><div class="ttdef"><b>Definition:</b> <a href="busses_8hpp_source.html#l00015">busses.hpp:15</a></div></div>
+<div class="ttc" id="anamespacerohdeschwarz_1_1busses_html_aa22ea07e8900b6c6d1af4ab2c03269d4"><div class="ttname"><a href="namespacerohdeschwarz_1_1busses.html#aa22ea07e8900b6c6d1af4ab2c03269d4">rohdeschwarz::busses::Visa</a></div><div class="ttdeci">visa::Visa Visa</div><div class="ttdef"><b>Definition:</b> <a href="busses_8hpp_source.html#l00016">busses.hpp:16</a></div></div>
+<div class="ttc" id="avisa_8hpp_html"><div class="ttname"><a href="visa_8hpp.html">visa.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

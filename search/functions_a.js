@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['write_72',['write',['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a0eb869ad91041d6f2d72f50b66a3fe56',1,'rohdeschwarz::busses::socket::Socket::write(const char *data)'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#abb0178d13b9d3114192808ee01aba73c',1,'rohdeschwarz::busses::socket::Socket::write(const char *data, std::size_t size)'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a47c52afde57d479ec8c977ebc3d20160',1,'rohdeschwarz::busses::socket::Socket::write(const std::string &amp;data)']]]
+  ['open_347',['open',['../classRsVisa_1_1Instrument.html#acded5bbf21f89db6b8ab0b64e62386b9',1,'RsVisa::Instrument::open(const char *resource, unsigned int timeout_ms=2000)'],['../classRsVisa_1_1Instrument.html#a54f2a09d03934e77f4773ce0c8cde9d0',1,'RsVisa::Instrument::open(const std::string &amp;resource, unsigned int timeout_ms=2000)']]],
+  ['options_348',['options',['../classRsVisa_1_1Instrument.html#a40c94c32281ef4bd08ca9b3d39c41619',1,'RsVisa::Instrument']]]
 ];
