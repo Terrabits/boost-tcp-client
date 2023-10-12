@@ -1,4 +1,4 @@
-name: Build
+name: Build Conan Package
 on: push
 jobs:
   Build:
