@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['channel_2ecpp_263',['channel.cpp',['../channel_8cpp.html',1,'']]],
-  ['channel_2ehpp_264',['channel.hpp',['../channel_8hpp.html',1,'']]],
-  ['cvisa_2ecpp_265',['cvisa.cpp',['../cvisa_8cpp.html',1,'']]],
-  ['cvisa_2ehpp_266',['cvisa.hpp',['../cvisa_8hpp.html',1,'']]],
-  ['cvisatypes_2ehpp_267',['cvisatypes.hpp',['../cvisatypes_8hpp.html',1,'']]]
+  ['main_2ecpp_51',['main.cpp',['../examples_2socket_2src_2main_8cpp.html',1,'(Global Namespace)'],['../test__package_2src_2main_8cpp.html',1,'(Global Namespace)']]]
 ];

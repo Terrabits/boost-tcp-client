@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_5f11_5fkb_5f_415',['_11_kB_',['../vna_8cpp.html#a095c13f0939c002f899e27cf318020dc',1,'vna.cpp']]],
-  ['_5f12_5fkb_5f_416',['_12_kB_',['../vna_8cpp.html#aaaa676b751b14984440a40e3403f5517',1,'vna.cpp']]]
+  ['default_5fbuffer_5fsize_5fb_74',['DEFAULT_BUFFER_SIZE_B',['../socket_8cpp.html#aeb10dd33796e8e04a5fda179d447d932',1,'socket.cpp']]]
 ];

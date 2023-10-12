@@ -1,26 +1,4 @@
 var searchData=
 [
-  ['id_319',['id',['../classRsVisa_1_1Instrument.html#a6bfea46559fcf03078238d0ece890431',1,'RsVisa::Instrument']]],
-  ['index_320',['index',['../classRsVisa_1_1Channel.html#af071e89e45fd92c99a399e9bbbc33ba5',1,'RsVisa::Channel']]],
-  ['indexesfrom_321',['indexesFrom',['../structRsVisa_1_1IndexName.html#a6b358cfe1a7d5872a76dd2af248b3186',1,'RsVisa::IndexName']]],
-  ['instrument_322',['Instrument',['../classRsVisa_1_1Instrument.html#a1a297b2cbe1e239c8ede2e90185e2880',1,'RsVisa::Instrument']]],
-  ['isascii_323',['isAscii',['../classRsVisa_1_1DataFormat.html#ab522d0950cb8a6ee12d0f1aec3c77320',1,'RsVisa::DataFormat']]],
-  ['isbigendian_324',['isBigEndian',['../classRsVisa_1_1DataFormat.html#aefe73cafe9d649bdbd32056834293d36',1,'RsVisa::DataFormat']]],
-  ['isbinary32bit_325',['isBinary32Bit',['../classRsVisa_1_1DataFormat.html#ab2ccc470a0b71905a88bd42683dcf3ce',1,'RsVisa::DataFormat']]],
-  ['isbinary64bit_326',['isBinary64Bit',['../classRsVisa_1_1DataFormat.html#aca08f0301ed9c85e2680606a4846264c',1,'RsVisa::DataFormat']]],
-  ['ischannel_327',['isChannel',['../classRsVisa_1_1Znx.html#a01ac13d6fee3e24f6dde1dc35f753351',1,'RsVisa::Znx']]],
-  ['iscomplete_328',['isComplete',['../classRsVisa_1_1BlockData.html#a181a172ced05367de84dac8f1f3f4619',1,'RsVisa::BlockData']]],
-  ['iserror_329',['isError',['../classRsVisa_1_1Instrument.html#ad0ecef2ced34399347049828ebddb18f',1,'RsVisa::Instrument']]],
-  ['isheader_330',['isHeader',['../classRsVisa_1_1BlockData.html#ad848029db49b626a965d7875b1bfd5c4',1,'RsVisa::BlockData']]],
-  ['isleftquote_331',['isLeftQuote',['../namespaceRsVisa.html#a9e79747e3100d956e58e105a1af88cfd',1,'RsVisa::isLeftQuote(const std::string &amp;text)'],['../namespaceRsVisa.html#ae97dd1c3274041bce063257070987513',1,'RsVisa::isLeftQuote(const char *text)']]],
-  ['islittleendian_332',['isLittleEndian',['../classRsVisa_1_1DataFormat.html#a73746b93b299747b11a9a81376d474b4',1,'RsVisa::DataFormat']]],
-  ['ismanualupdate_333',['isManualUpdate',['../classRsVisa_1_1Display.html#a11a3dcddc4c5c04657596e48e6fb480f',1,'RsVisa::Display']]],
-  ['ison_334',['isOn',['../classRsVisa_1_1Display.html#a9f471781012f9bcae45edc164deb99f7',1,'RsVisa::Display']]],
-  ['isopen_335',['isOpen',['../classRsVisa_1_1Instrument.html#a394b7d08e92750bf3703b36db889b181',1,'RsVisa::Instrument']]],
-  ['isoperationcomplete_336',['isOperationComplete',['../classRsVisa_1_1Instrument.html#a1bd96476fa29c7308ad79c70dfe01e7f',1,'RsVisa::Instrument']]],
-  ['ispartialheader_337',['isPartialHeader',['../classRsVisa_1_1BlockData.html#ab5a3292c80a795a432f4521395d0b13c',1,'RsVisa::BlockData']]],
-  ['isquoted_338',['isQuoted',['../namespaceRsVisa.html#ad80fead4771f26f4d289d49f023c7a57',1,'RsVisa::isQuoted(const char *text)'],['../namespaceRsVisa.html#a638bdf9407c742933ffd402584e323ca',1,'RsVisa::isQuoted(const std::string &amp;text)']]],
-  ['isrightquote_339',['isRightQuote',['../namespaceRsVisa.html#a54d637e97b6d7d83329ceb9e1f6ba3ff',1,'RsVisa::isRightQuote(const char *text)'],['../namespaceRsVisa.html#a949c7dedb0525acf5d01511c9843cd53',1,'RsVisa::isRightQuote(const std::string &amp;text)']]],
-  ['istrace_340',['isTrace',['../classRsVisa_1_1Znx.html#add3978f4061965c2410ccb9ad7b620de',1,'RsVisa::Znx::isTrace(const char *name)'],['../classRsVisa_1_1Znx.html#ada120439bb901bbfe568e8379c3ccb53',1,'RsVisa::Znx::isTrace(const std::string &amp;name)']]],
-  ['isvisa_341',['isVisa',['../classRsVisa_1_1CVisa.html#a8e5a762735fd9a25233747410448f1b2',1,'RsVisa::CVisa::isVisa()'],['../classRsVisa_1_1Instrument.html#a39001a428657184c0ba434648d8ecc7b',1,'RsVisa::Instrument::isVisa()']]]
+  ['query_62',['query',['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#ac4780133301b7fc472cb8f74a0c78ab4',1,'rohdeschwarz::busses::socket::Socket::query(const char *scpi)'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#adfc435ce81329ec68b93a675c1869eda',1,'rohdeschwarz::busses::socket::Socket::query(const char *scpi, std::size_t bufferSize_B)'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a56e6caa27afad4fa45b367fe51b3b44f',1,'rohdeschwarz::busses::socket::Socket::query(const std::string &amp;scpi)'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#aaab6e32df8461f0e70835eb26ece68e1',1,'rohdeschwarz::busses::socket::Socket::query(const std::string &amp;scpi, std::size_t bufferSize_B)']]]
 ];
