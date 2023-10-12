@@ -2,7 +2,7 @@
 #define ROHDESCHWARZ_BUS_BUS_HPP
 
 
-namespace rohdeschwarz
+namespace rohdeschwarz::busses
 {
 
 
