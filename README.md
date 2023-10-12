@@ -1,4 +1,5 @@
-# rohdeschwarz (C++)
+# rohdeschwarz (C++) ![Static Release Build Badge](https://github.com/Terrabits/rohdeschwarz-cpp/actions/workflows/build-static-release.yml/badge.svg) ![Static Debug Build Badge](https://github.com/Terrabits/rohdeschwarz-cpp/actions/workflows/build-static-debug.yml/badge.svg) ![Shared Release Build Badge](https://github.com/Terrabits/rohdeschwarz-cpp/actions/workflows/build-shared-release.yml/badge.svg) ![Shared Debug Build Badge](https://github.com/Terrabits/rohdeschwarz-cpp/actions/workflows/build-shared-debug.yml/badge.svg)
+
 
 An object-oriented test automation library for Rohde & Schwarz (R&S) General Purpose Test and Measurement (T&M) equipment.
 
