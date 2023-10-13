@@ -1,17 +1,18 @@
-name: Release Source Code
+name: Release Source
 
 
-# execute on release tag
+# execute on release build
 on:
-  push:
-    tags:
-      - 'releases/**'
+  workflow_run:
+    workflows: [ "Build All"   ]
+    tags:      [ "releases/**" ]
+    types:     [ completed     ]
 
 
 jobs:
 
 
-  ReleaseSourceCode:
+  ReleaseSource:
     runs-on: ubuntu-latest
     steps:
 

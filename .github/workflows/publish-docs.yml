@@ -1,26 +1,24 @@
-name: Deploy Docs to Github Pages
+name: Publish Docs
 
 
-# execute on release tag
+# execute on release build
 on:
-  push:
-    tags:
-      - 'releases/**'
+  workflow_run:
+    workflows: [ "Build All"   ]
+    tags:      [ "releases/**" ]
+    types:     [ completed     ]
 
 
 jobs:
 
-  DeployDocsToGithubPages:
-
+  PublishDocs:
 
     # linux host
     runs-on: ubuntu-latest
 
-
     # need write permissions to push to gh-pages
     permissions:
       contents: write
-
 
     steps:
 
@@ -38,7 +36,7 @@ jobs:
       - name: build docs
         run:  scripts/docs/build
 
-      # push to branch gh-pages; pages are deployed from this branch
+      # push to gh-pages to push
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
