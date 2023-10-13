@@ -1,30 +1,39 @@
-name: Build Conan Package
-on: push
+name: Build
+
+
+# execute unless tagged as release
+on:
+  push:
+    branches: [ '**' ]
+
+
 jobs:
+
+
   Build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
+
+        # install latest python 3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+
+      # check out source code
       - uses: actions/checkout@v4
+
+      # install conan
       - name: install conan
         run:  pip install --requirement requirements.txt
+
+      # create default conan profile
       - name: create default conan profile
         run:  conan profile detect
-      - name: build static release
-        run:  |
-          scripts/install --options */*:shared=False --settings build_type=Release
-          scripts/create  --options */*:shared=False --settings build_type=Release
-      - name: build static debug
-        run:  |
-          scripts/install --options */*:shared=False --settings build_type=Debug
-          scripts/create  --options */*:shared=False --settings build_type=Debug
-      - name: build shared release
-        run:  |
-          scripts/install --options */*:shared=True --settings build_type=Release
-          scripts/create  --options */*:shared=True --settings build_type=Release
-      - name: build shared debug
-        run:  |
-          scripts/install --options */*:shared=True --settings build_type=Debug
-          scripts/create  --options */*:shared=True --settings build_type=Debug
+
+      # install conan packages
+      - name: install conan packages
+        run:  scripts/install
+
+      # build
+      - name: build
+        run:  scripts/create
