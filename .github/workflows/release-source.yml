@@ -1,0 +1,28 @@
+name: Release Source Code
+
+
+# execute on release tag
+on:
+  push:
+    tags:
+      - 'releases/**'
+
+
+jobs:
+
+
+  ReleaseSourceCode:
+    runs-on: ubuntu-latest
+    steps:
+
+      # check out source code
+      - uses: actions/checkout@v4
+
+      # git archive to zip
+      - name: archive
+        run:  scripts/archive
+
+      # release
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/rohdeschwarz-src-*.zip"
