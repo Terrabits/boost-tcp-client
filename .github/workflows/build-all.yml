@@ -55,10 +55,33 @@ jobs:
       - name: create default conan profile
         run:  conan profile detect
 
+      # requires c++ standard >= 17
+      - name: c++ standard should be >=17
+        run:  |
+          # default to no option
+          OPTION_CPP_STD=""
+          # get cpp standard from profile
+          PROFILE_CPP_STD="$(conan profile show | grep -i 'compiler.cppstd' | head -n 1)"
+          PROFILE_CPP_STD=${PROFILE_CPP_STD//compiler.cppstd=}
+          # check if null, <17
+          BAD_CPP_STDS=(null 98 "03" 11 14)
+          BAD_CPP_STDS="$(printf '%s\n' "${BAD_CPP_STDS[@]}")"
+          if printf "$BAD_CPP_STDS" | grep -i --line-regexp "$PROFILE_CPP_STD" >/dev/null 2>&1 ; then
+            echo "setting c++ standard to 17"
+            OPTION_CPP_STD="--settings compiler.cppstd=17"
+          fi
+          # check if <gnu17
+          BAD_GNU_CPP_STDS=(gnu98 gnu03 gnu11 gnu14)
+          BAD_GNU_CPP_STDS="$(printf '%s\n' "${BAD_GNU_CPP_STDS[@]}")"
+          if printf "$BAD_CPP_STDS" | grep -i --line-regexp "$PROFILE_CPP_STD" >/dev/null 2>&1 ; then
+            echo "setting c++ standard to gnu17"
+            OPTION_CPP_STD="--settings compiler.cppstd=gnu17"
+          fi
+
       # install conan packages
       - name: install conan packages
-        run:  scripts/install --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }}
+        run:  scripts/install --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} $OPTION_CPP_STD
 
       # build
       - name: build
-        run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }}
+        run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} $OPTION_CPP_STD
