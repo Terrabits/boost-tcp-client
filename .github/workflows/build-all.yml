@@ -24,8 +24,8 @@ jobs:
 
         # build shared, static
         shared:
-          - False
-          - True
+          - "False"
+          - "True"
 
         # build release, debug
         build_type:
