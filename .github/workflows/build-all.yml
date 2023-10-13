@@ -32,6 +32,7 @@ jobs:
           - Release
           - Debug
 
+
     # default environment variables
     env:
       OPTION_CPP_STD: ""
@@ -62,7 +63,8 @@ jobs:
       # set msvc c++ standard to 17
       - name: msvc c++ standard should be >=17
         if:   runner.os == 'Windows'
-        run:  OPTION_CPP_STD="--settings compiler.cppstd=17"
+        env:
+          OPTION_CPP_STD: "--settings compiler.cppstd=17"
 
       # install conan packages
       - name: install conan packages
