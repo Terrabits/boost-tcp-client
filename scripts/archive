@@ -7,5 +7,5 @@ cd "$ROOT_DIR"
 
 
 # archive
-mkdir dist
+mkdir -p dist
 git archive --output dist/rohdeschwarz-src-0.1.0.zip main
