@@ -34,7 +34,7 @@ jobs:
 
 
     # variables
-    var:
+    vars:
       OPTION_CPP_STD: ""
 
 
