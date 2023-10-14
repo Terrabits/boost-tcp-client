@@ -63,9 +63,7 @@ jobs:
       # if running on windows, set c++ standard to 17
       - name: if running on windows, set c++ standard to 17
         if:   runner.os == 'Windows'
-        env:
-          OPTION_CPP_STD: "--settings compiler.cppstd=17"
-        run: echo using option ${{ env.OPTION_CPP_STD }}
+        run: $Env:OPTION_CPP_STD = "--settings compiler.cppstd=17"
 
       # install conan packages
       - name: install conan packages
