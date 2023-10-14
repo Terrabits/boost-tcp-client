@@ -1,7 +1,7 @@
 name: Release
 
 
-# execute unless tagged as release
+# execute on release
 on:
   push:
     tags:
