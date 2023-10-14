@@ -1,7 +1,7 @@
 name: Publish Docs
 
 
-# execute on release build
+# execute on build all
 on:
   workflow_run:
     workflows:
