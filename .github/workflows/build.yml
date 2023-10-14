@@ -1,8 +1,10 @@
 name: Build
 
 
-# execute unless tagged as release
+# execute manually or on push
 on:
+  workflow_dispatch:
+    inputs: null
   push:
     branches: [ '**' ]
 
