@@ -33,8 +33,8 @@ jobs:
           - Debug
 
 
-    # default environment variables
-    env:
+    # variables
+    var:
       OPTION_CPP_STD: ""
 
 
@@ -60,15 +60,17 @@ jobs:
       - name: create default conan profile
         run:  conan profile detect
 
-      # set msvc c++ standard to 17
-      - name: msvc c++ standard should be >=17
+      # if running on windows, set c++ standard to 17
+      - name: if running on windows, set c++ standard to 17
         if:   runner.os == 'Windows'
-        run:  $Env:OPTION_CPP_STD = "--settings compiler.cppstd=17"
+        var:
+          OPTION_CPP_STD: "--settings compiler.cppstd=17"
+        run: echo using option ${{ vars.OPTION_CPP_STD }}
 
       # install conan packages
       - name: install conan packages
-        run:  scripts/install --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} $OPTION_CPP_STD
+        run:  scripts/install --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} ${{ vars.OPTION_CPP_STD }}
 
       # build
       - name: build
-        run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} $OPTION_CPP_STD
+        run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} ${{ vars.OPTION_CPP_STD }}
