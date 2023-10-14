@@ -1,0 +1,42 @@
+name: Release
+
+
+# manually triggered
+on:
+  workflow_dispatch:
+    inputs: null
+
+
+jobs:
+
+  publish_docs:
+
+    name:    Publish Docs
+    runs-on: ubuntu-latest
+
+    # required to push
+    permissions:
+      contents: write
+
+
+    steps:
+
+      # check out source
+      - uses: actions/checkout@v4
+
+      # install doxygen
+      - name: install doxygen
+        run:  |
+          sudo apt-add-repository universe
+          sudo apt-get update
+          sudo apt-get install doxygen
+
+      # run doxygen
+      - name: build docs
+        run:  scripts/docs/build
+
+      # push to gh-pages to push
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/site/html
