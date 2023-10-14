@@ -1,4 +1,4 @@
-name: Build All
+name: Release
 
 
 # execute unless tagged as release
@@ -10,7 +10,8 @@ on:
 
 jobs:
 
-  BuildAll:
+  build:
+    name: Build vs OS, shared, build type
 
     # build configurations
     strategy:
@@ -63,7 +64,7 @@ jobs:
       # if running on windows, set c++ standard to 17
       - name: if running on windows, set c++ standard to 17
         if:   runner.os == 'Windows'
-        run: echo "OPTION_CPP_STD=--settings compiler.cppstd=17" >> $env:GITHUB_ENV
+        run:  echo "OPTION_CPP_STD=--settings compiler.cppstd=17" >> $env:GITHUB_ENV
 
       # install conan packages
       - name: install conan packages
@@ -72,3 +73,36 @@ jobs:
       # build
       - name: build
         run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} ${{ env.OPTION_CPP_STD }}
+
+  publish_docs:
+
+    name:    Publish Docs
+    needs:   build
+    runs-on: ubuntu-latest
+
+    # required to push
+    permissions:
+      contents: write
+
+
+    steps:
+
+      # check out source
+      - uses: actions/checkout@v4
+
+      # install doxygen
+      - name: install doxygen
+        run:  |
+          sudo apt-add-repository universe
+          sudo apt-get update
+          sudo apt-get install doxygen
+
+      # run doxygen
+      - name: build docs
+        run:  scripts/docs/build
+
+      # push to gh-pages to push
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/site/html
