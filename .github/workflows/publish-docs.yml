@@ -4,9 +4,12 @@ name: Publish Docs
 # execute on release build
 on:
   workflow_run:
-    workflows: [ "Build All"   ]
-    tags:      [ "releases/**" ]
-    types:     [ completed     ]
+    workflows:
+      - Build All
+    branches:
+      - main
+    types:
+      - completed
 
 
 jobs:
@@ -19,6 +22,7 @@ jobs:
     # need write permissions to push to gh-pages
     permissions:
       contents: write
+
 
     steps:
 
