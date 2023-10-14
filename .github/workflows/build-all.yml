@@ -33,7 +33,7 @@ jobs:
           - Debug
 
 
-    # variables
+    # environment variables
     env:
       OPTION_CPP_STD: ""
 
@@ -63,7 +63,7 @@ jobs:
       # if running on windows, set c++ standard to 17
       - name: if running on windows, set c++ standard to 17
         if:   runner.os == 'Windows'
-        run: $Env:OPTION_CPP_STD = "--settings compiler.cppstd=17"
+        run: echo "OPTION_CPP_STD=--settings compiler.cppstd=17" >> $env:GITHUB_ENV
 
       # install conan packages
       - name: install conan packages
