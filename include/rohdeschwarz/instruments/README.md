@@ -2,6 +2,4 @@
 
 TODO:
 
--   Change namespace to `rohdeschwarz::instruments`
--   Add `Visa` support to `Instrument`
--   
+-   Add `Bus`, `Visa` support to `Instrument`
