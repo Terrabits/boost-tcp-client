@@ -12,11 +12,12 @@
 #include "rohdeschwarz/busses/visa/cvisatypes.hpp"
 
 
-// ivi
-#include "rs-visa/visa.h"
+// ivi foundation
+#include "visa.h"
 
 
 // ms win32 api
+// TODO: replace with boost dll
 #include <windows.h>
 
 

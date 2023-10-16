@@ -8,8 +8,8 @@
 #define ROHDESCHWARZ_BUSSES_VISA_CVISATYPES_HPP
 
 
-// rs visa
-#include "rs-visa/visa.h"
+// ivi foundation
+#include "visa.h"
 
 
 namespace rohdeschwarz::busses::visa
