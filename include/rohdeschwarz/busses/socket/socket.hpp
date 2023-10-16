@@ -2,8 +2,8 @@
  * \file  socket.hpp
  * \brief rohdeschwarz::busses::socket::Socket class definition
  */
-#ifndef ROHDESCHWARZ_SOCKET_HPP
-#define ROHDESCHWARZ_SOCKET_HPP
+#ifndef ROHDESCHWARZ_BUSSES_SOCKET_SOCKET_HPP
+#define ROHDESCHWARZ_BUSSES_SOCKET_SOCKET_HPP
 
 
 // rohdeschwarz
@@ -221,4 +221,4 @@ private:
 
 
 }       // namespace rohdeschwarz::busses::socket
-#endif  // ROHDESCHWARZ_SOCKET_HPP
+#endif  // ROHDESCHWARZ_BUSSES_SOCKET_SOCKET_HPP

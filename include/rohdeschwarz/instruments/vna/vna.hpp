@@ -1,19 +1,19 @@
 /**
- * \file znx.hpp
- * \brief RsVisa::Znx definition
+ * \file vna.hpp
+ * \brief rohdeschwarz::instruments::vna::Vna definition
  */
 
 
-#ifndef RS_VISA_ZNX_HPP
-#define RS_VISA_ZNX_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_VNA_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_VNA_HPP
 
 
-// RsVisa
-#include "channel.hpp"
-#include "data_format.hpp"
-#include "display.hpp"
-#include "instrument.hpp"
-#include "trace.hpp"
+// rohdeschwarz
+#include "rohdeschwarz/instruments/instrument.hpp"
+#include "rohdeschwarz/instruments/vna/channel.hpp"
+#include "rohdeschwarz/instruments/vna/data_format.hpp"
+#include "rohdeschwarz/instruments/vna/display.hpp"
+#include "rohdeschwarz/instruments/vna/trace.hpp"
 
 
 // std lib
@@ -21,16 +21,16 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
 /** \brief Object-oriented R&S ZNX-series VNA control
  *
- * `Znx` provides object-oriented control of a Rohde & Schwarz
+ * `Vna` provides object-oriented control of a Rohde & Schwarz
  * ZNX-series Vector Network Analyzer via a VISA connection
  * and SCPI commands.
  */
-class Znx : public Instrument
+class Vna : public rohdeschwarz::instruments::Instrument
 {
 
 public:
@@ -142,5 +142,5 @@ public:
 };
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_ZNX_HPP
+}       // namespace rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_VNA_HPP

@@ -1,5 +1,5 @@
-#ifndef ROHDESCHWARZ_BUS_BUS_HPP
-#define ROHDESCHWARZ_BUS_BUS_HPP
+#ifndef ROHDESCHWARZ_BUSSES_BUS_HPP
+#define ROHDESCHWARZ_BUSSES_BUS_HPP
 
 
 namespace rohdeschwarz::busses
@@ -21,7 +21,7 @@ private:
 
 
 };  // class Bus
-}  // namespace rohdeschwarz
 
 
-#endif  // ROHDESCHWARZ_BUS_BUS_HPP
+}       // rohdeschwarz::busses
+#endif  // ROHDESCHWARZ_BUSSES_BUS_HPP

@@ -1,23 +1,23 @@
 /**
 * \file channel.hpp
-* \brief RsVisa::Channel definition
+* \brief rohdeschwarz::instruments::vna::Channel definition
  */
 
 
-#ifndef RS_VISA_CHANNEL_HPP
-#define RS_VISA_CHANNEL_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_CHANNEL_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_CHANNEL_HPP
 
 
 // std lib
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
 
 // forward declarations
-class Znx;
+class Vna;
 
 
 /** \brief Object-oriented measurement channel control
@@ -34,10 +34,10 @@ public:
   /**
    * \brief Constructor
    *
-   * \param[in] znx   pointer to underlying `Znx` instance
+   * \param[in] vna   pointer to underlying `Vna` instance
    * \param[in] index channel index
    */
-  Channel(Znx *znx, unsigned int index);
+  Channel(Vna *vna, unsigned int index);
 
 
   /**
@@ -102,12 +102,12 @@ public:
 
 private:
 
-  Znx*         _znx;
+  Vna*         _vna;
   unsigned int _index;
 
 
-};
+};  // Channel
 
 
-}       // RsVisa
-#endif  // RS_VISA_CHANNEL_HPP
+}       // rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_CHANNEL_HPP

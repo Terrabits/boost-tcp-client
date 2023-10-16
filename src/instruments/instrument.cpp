@@ -1,17 +1,17 @@
 /**
  * \file instrument.cpp
- * \brief RsVisa::Instrument implementation
+ * \brief rohdeschwarz::instruments::Instrument implementation
  */
 
 
-#include "instrument.hpp"
-
-
-// RsVisa
-#include "bool.hpp"
-#include "helpers.hpp"
-#include "preserve_timeout.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/instrument.hpp"
+#include "rohdeschwarz/instruments/preserve_timeout.hpp"
+#include "rohdeschwarz/scpi/bool.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz::instruments;
+using namespace rohdeschwarz::scpi;
+using namespace rohdeschwarz;
 
 
 // std lib

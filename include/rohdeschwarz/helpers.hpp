@@ -1,11 +1,11 @@
 /**
  * \file helpers.hpp
- * \brief RsVisa helper function definition
+ * \brief rohdeschwarz helper function definition
  */
 
 
-#ifndef RS_VISA_HELPERS_HPP
-#define RS_VISA_HELPERS_HPP
+#ifndef ROHDESCHWARZ_HELPERS_HPP
+#define ROHDESCHWARZ_HELPERS_HPP
 
 
 // std lib
@@ -13,7 +13,7 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz
 {
 
 
@@ -153,5 +153,5 @@ std::vector<std::string> split(const char* csvList, const char separator = ',');
 std::vector<std::string> split(const std::string& csvList, const char separator = ',');
 
 
-}      // RsVisa
-#endif // RS_VISA_HELPERS_HPP
+}      // rohdeschwarz
+#endif // ROHDESCHWARZ_HELPERS_HPP

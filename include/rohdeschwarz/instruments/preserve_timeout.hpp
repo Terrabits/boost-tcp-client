@@ -1,18 +1,18 @@
 /**
 * \file preserve_timeout.hpp
-* \brief RsVisa::PreserveTimeout definition
+* \brief rohdeschwarz::instruments::PreserveTimeout definition
  */
 
 
-#ifndef RS_VISA_PRESERVE_TIMEOUT_HPP
-#define RS_VISA_PRESERVE_TIMEOUT_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_PRESERVE_TIMEOUT_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_PRESERVE_TIMEOUT_HPP
 
 
-// RsVisa
-#include "instrument.hpp"
+// rohdeschwarz
+#include "rohdeschwarz/instruments/instrument.hpp"
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments
 {
 
 /**
@@ -55,8 +55,8 @@ private:
   Instrument*  _instrument;
 
 
-};  // class PreserveTimeout
+};  // PreserveTimeout
 
 
-}  // namespace RsVisa
-#endif  // RS_VISA_PRESERVE_TIMEOUT_HPP
+}       // rohdeschwarz::instruments
+#endif  // ROHDESCHWARZ_INSTRUMENTS_PRESERVE_TIMEOUT_HPP

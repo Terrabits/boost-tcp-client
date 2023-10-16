@@ -1,6 +1,6 @@
 /**
  * \file  buffer.cpp
- * \brief rohdeschwarz::Buffer class implementation
+ * \brief rohdeschwarz::busses::socket::Buffer class implementation
  */
 
 

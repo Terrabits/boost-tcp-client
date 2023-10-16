@@ -1,18 +1,18 @@
 /**
  * \file bool.cpp
- * \brief RsVisa::toBool(), RsVisa::toScpi() declarations
+ * \brief rohdeschwarz::scpi::toBool(), rohdeschwarz::scpi::toScpi() declarations
  */
 
 
-#ifndef RS_VISA_BOOL_HPP
-#define RS_VISA_BOOL_HPP
+#ifndef ROHDESCHWARZ_SCPI_BOOL_HPP
+#define ROHDESCHWARZ_SCPI_BOOL_HPP
 
 
 // std lib
 #include <string>
 
 
-namespace RsVisa
+namespace rohdeschwarz::scpi
 {
 
 
@@ -32,5 +32,5 @@ std::string toScpi(bool value);
 bool toBool(const std::string& scpi);
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_BOOL_HPP
+}       // namespace rohdeschwarz::scpi
+#endif  // ROHDESCHWARZ_SCPI_BOOL_HPP

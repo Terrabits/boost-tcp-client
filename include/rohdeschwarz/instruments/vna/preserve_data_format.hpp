@@ -1,18 +1,18 @@
 /**
 * \file preserve_data_format.hpp
-* \brief RsVisa::PreserveDataFormat definition
+* \brief rohdeschwarz::instruments::vna::PreserveDataFormat definition
  */
 
 
-#ifndef RS_VISA_PRESERVE_DATA_FORMAT
-#define RS_VISA_PRESERVE_DATA_FORMAT
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_PRESERVE_DATA_FORMAT_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_PRESERVE_DATA_FORMAT_HPP
 
 
-// RsVisa
-#include "znx.hpp"
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/vna.hpp"
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
 /**
@@ -37,9 +37,9 @@ public:
    *
    * Stores the current data transfer format and byte order.
    *
-   * \param[in] znx Pointer to underlying `Znx` instance.
+   * \param[in] vna Pointer to underlying `Vna` instance.
    */
-  PreserveDataFormat(Znx *znx);
+  PreserveDataFormat(Vna *vna);
 
 
   /**
@@ -77,5 +77,5 @@ private:
 };  // class PreserveDataFormat
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_PRESERVE_DATA_FORMAT
+}       // namespace rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_PRESERVE_DATA_FORMAT_HPP

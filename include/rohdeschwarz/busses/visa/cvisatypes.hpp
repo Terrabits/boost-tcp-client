@@ -4,15 +4,15 @@
  */
 
 
-#ifndef RSVISA_CVISATYPES_HPP
-#define RSVISA_CVISATYPES_HPP
+#ifndef ROHDESCHWARZ_BUSSES_VISA_CVISATYPES_HPP
+#define ROHDESCHWARZ_BUSSES_VISA_CVISATYPES_HPP
 
 
 // rs visa
-#include "definitions/visa.h"
+#include "rs-visa/visa.h"
 
 
-namespace RsVisa
+namespace rohdeschwarz::busses::visa
 {
 
 
@@ -120,5 +120,5 @@ typedef ViStatus(_VI_FUNC * VI_GET_ATTRIBUTE_PTR)(ViObject vi, ViAttr attrName, 
 typedef ViStatus(_VI_FUNC * VI_STATUS_DESC_PTR)(ViObject vi, ViStatus status, ViChar _VI_FAR desc[]);
 
 
-}       // namespace RsVisa
-#endif  // RSVISA_CVISATYPES_HPP
+}       // rohdeschwarz::busses::visa
+#endif  // ROHDESCHWARZ_BUSSES_VISA_CVISATYPES_HPP

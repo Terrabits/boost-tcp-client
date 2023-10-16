@@ -1,26 +1,26 @@
 /**
 * \file cvisa.hpp
-* \brief RsVisa::CVisa definition
+* \brief rohdeschwarz::busses::visa::CVisa definition
  */
 
 
-#ifndef RSVISA_CVISA_HPP
-#define RSVISA_CVISA_HPP
+#ifndef ROHDESCHWARZ_BUSSES_VISA_CVISA_HPP
+#define ROHDESCHWARZ_BUSSES_VISA_CVISA_HPP
 
 
-// rs visa
-#include "cvisatypes.hpp"
+// rohdeschwarz
+#include "rohdeschwarz/busses/visa/cvisatypes.hpp"
 
 
 // ivi
-#include "definitions/visa.h"
+#include "rs-visa/visa.h"
 
 
 // ms win32 api
 #include <windows.h>
 
 
-namespace RsVisa
+namespace rohdeschwarz::busses::visa
 {
 
 
@@ -191,8 +191,8 @@ private:
   bool unload();
 
 
-};
+};  // CVisa
 
 
-}       // CVisa
-#endif  // RSVISA_CVISA_HPP
+}       // rohdeschwarz::busses::visa
+#endif  // ROHDESCHWARZ_BUSSES_VISA_CVISA_HPP

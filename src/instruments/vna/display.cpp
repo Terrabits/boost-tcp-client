@@ -1,17 +1,17 @@
 /**
  * \file display.cpp
- * \brief RsVisa::Display implementation
+ * \brief rohdeschwarz::instruments::vna::Display implementation
  */
 
 
-#include "display.hpp"
-
-
-// RsVisa
-#include "bool.hpp"
-#include "helpers.hpp"
-#include "znx.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/display.hpp"
+#include "rohdeschwarz/instruments/vna/vna.hpp"
+#include "rohdeschwarz/scpi/bool.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz::instruments::vna;
+using namespace rohdeschwarz::scpi;
+using namespace rohdeschwarz;
 
 
 // std lib

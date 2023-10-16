@@ -1,18 +1,17 @@
 /**
  * \file trace.cpp
- * \brief RsVisa::Trace implementation
+ * \brief rohdeschwarz::instruments::vna::Trace implementation
  */
 
 
-#include "trace.hpp"
-
-
-// RsVisa
-#include "helpers.hpp"
-#include "preserve_data_format.hpp"
-#include "to_vector.hpp"
-#include "znx.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/preserve_data_format.hpp"
+#include "rohdeschwarz/instruments/vna/trace.hpp"
+#include "rohdeschwarz/instruments/vna/vna.hpp"
+#include "rohdeschwarz/helpers.hpp"
+#include "rohdeschwarz/to_vector.hpp"
+using namespace rohdeschwarz;
+using namespace rohdeschwarz::instruments::vna;
 
 
 // std lib

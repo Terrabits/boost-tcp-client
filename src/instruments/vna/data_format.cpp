@@ -1,13 +1,15 @@
 /**
  * \file data_format.cpp
- * \brief RsVisa::DataFormat implementation
+ * \brief rohdeschwarz::instruments::vna::DataFormat implementation
  */
 
 
-#include "data_format.hpp"
-#include "helpers.hpp"
-#include "znx.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/data_format.hpp"
+#include "rohdeschwarz/instruments/vna/vna.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz;
+using namespace rohdeschwarz::instruments::vna;
 
 
 DataFormat::DataFormat(Znx* znx) :

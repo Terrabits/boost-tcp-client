@@ -1,20 +1,20 @@
 /**
  * \file instrument.hpp
- * \brief RsVisa::Instrument definition
+ * \brief rohdeschwarz::instruments::Instrument definition
  */
 
 
-#ifndef RSVISA_INSTRUMENT_HPP
-#define RSVISA_INSTRUMENT_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_INSTRUMENT_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_INSTRUMENT_HPP
+
+
+// rohdeschwarz
+#include "rohdeschwarz/scpi/block_data.hpp"
+#include "rohdeschwarz/busses/visa/cvisa.hpp"
 
 
 // rs visa
-#include "block_data.hpp"
-#include "cvisa.hpp"
-
-
-// ivi visa
-#include "visatype.h"
+#include "rs-visa/visatype.h"
 
 
 // std lib
@@ -22,14 +22,14 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments
 {
 
 
 /**
  * \brief Object-oriented R&S Instrument control
  *
- * `RsVisa::Instrument` is a class for controlling any general purpose
+ * `rohdeschwarz::instruments::Instrument` is a class for controlling any general purpose
  * instrument with VISA and SCPI. It manages the VISA
  * connection to the instrument. It also contains methods that wrap common SCPI
  * commands that apply to all general purpose instruments.
@@ -303,5 +303,5 @@ private:
 };  // Instrument
 
 
-}       // namespace RsVisa
-#endif  // RSVISA_INSTRUMENT_HPP
+}       // rohdeschwarz::instruments
+#endif  // ROHDESCHWARZ_INSTRUMENTS_INSTRUMENT_HPP

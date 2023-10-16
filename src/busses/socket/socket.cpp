@@ -1,6 +1,6 @@
 /**
  * \file  socket.cpp
- * \brief rohdeschwarz::busses::socket::Socket class implementation
+ * \brief rohdeschwarz::busses::socket::busses::socket::Socket class implementation
  */
 
 

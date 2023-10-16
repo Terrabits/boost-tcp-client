@@ -1,11 +1,11 @@
 /**
 * \file cvisa.cpp
-* \brief RsVisa::CVisa implementation
+* \brief rohdeschwarz::busses::visa::CVisa implementation
  */
 
 
-#include "cvisa.hpp"
-using namespace RsVisa;
+#include "rohdeschwarz/busses/visa/cvisa.hpp"
+using namespace rohdeschwarz::busses::visa;
 
 
 // constants

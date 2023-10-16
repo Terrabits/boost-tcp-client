@@ -1,5 +1,5 @@
-#ifndef ROHDESCHWARZ_BUSSES_BUSSES_HPP
-#define ROHDESCHWARZ_BUSSES_BUSSES_HPP
+#ifndef ROHDESCHWARZ_BUSSES_HPP
+#define ROHDESCHWARZ_BUSSES_HPP
 
 
 // rohdeschwarz
@@ -8,13 +8,13 @@
 #include "rohdeschwarz/busses/bus.hpp"
 
 
-namespace rohdeschwarz::busses
+namespace rohdeschwarz
 {
 
 
-using Socket = socket::Socket;
-using Visa   = visa::Visa;
+using Socket = busses::socket::Socket;
+using Visa   = busses::visa::Visa;
 
 
 }       // namespace rohdeschwarz::busses
-#endif  // ROHDESCHWARZ_BUSSES_BUSSES_HPP
+#endif  // ROHDESCHWARZ_BUSSES_HPP

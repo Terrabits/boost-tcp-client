@@ -1,11 +1,11 @@
 /**
  * \file preserve_timeout.cpp
- * \brief RsVisa::PreserveTimeout implementation
+ * \brief rohdeschwarz::instruments::PreserveTimeout implementation
  */
 
 
-#include "preserve_timeout.hpp"
-using namespace RsVisa;
+#include "rohdeschwarz/instruments/preserve_timeout.hpp"
+using namespace rohdeschwarz::instruments;
 
 
 PreserveTimeout::PreserveTimeout(Instrument *instrument) :

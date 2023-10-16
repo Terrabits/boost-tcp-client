@@ -1,11 +1,11 @@
 /**
  * \file index_name.cpp
- * \brief RsVisa::IndexName definition
+ * \brief rohdeschwarz::scpi::IndexName definition
  */
 
 
-#ifndef RS_VISA_INDEX_NAME_HPP
-#define RS_VISA_INDEX_NAME_HPP
+#ifndef ROHDESCHWARZ_SCPI_INDEX_NAME_HPP
+#define ROHDESCHWARZ_SCPI_INDEX_NAME_HPP
 
 
 // std lib
@@ -13,7 +13,7 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::scpi
 {
 
 
@@ -63,8 +63,8 @@ struct IndexName
    */
   static std::vector<std::string> namesFrom(const std::vector<IndexName>& list);
 
-};
+};  // IndexName
 
 
-}      // RsVisa
-#endif // RS_VISA_INDEX_NAME_HPP
+}      // rohdeschwarz::scpi
+#endif // ROHDESCHWARZ_SCPI_INDEX_NAME_HPP

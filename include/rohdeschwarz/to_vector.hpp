@@ -1,12 +1,12 @@
 /**
  * \file to_vector.hpp
- * \brief RsVisa::toVector(), RsVisa::toVectorComplexDouble()
+ * \brief rohdeschwarz::toVector(), rohdeschwarz::toVectorComplexDouble()
  * definitions and implementations
  */
 
 
-#ifndef RS_VISA_TO_VECTOR_HPP
-#define RS_VISA_TO_VECTOR_HPP
+#ifndef ROHDESCHWARZ_TO_VECTOR_HPP
+#define ROHDESCHWARZ_TO_VECTOR_HPP
 
 
 // std lib
@@ -15,7 +15,7 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz
 {
 
 
@@ -68,5 +68,5 @@ namespace RsVisa
   }
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_TO_VECTOR_HPP
+}       // rohdeschwarz
+#endif  // ROHDESCHWARZ_TO_VECTOR_HPP

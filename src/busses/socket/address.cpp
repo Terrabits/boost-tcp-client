@@ -1,6 +1,6 @@
 /**
  * \file  address.cpp
- * \brief rohdeschwarz::Address class implementation
+ * \brief rohdeschwarz::busses::socket::Address class implementation
  */
 
 

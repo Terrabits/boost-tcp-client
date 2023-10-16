@@ -1,20 +1,21 @@
-#ifndef ROHDESCHWARZ_INSTRUMENTS_INSTRUMENTS_HPP
-#define ROHDESCHWARZ_INSTRUMENTS_INSTRUMENTS_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_HPP
 
 
 // rohdeschwarz
-#include "rohdeschwarz/instruments/vna/vna.hpp"
 #include "rohdeschwarz/instruments/instrument.hpp"
+#include "rohdeschwarz/instruments/vna/vna.hpp"
 
 
-namespace rohdeschwarz::instruments
+namespace rohdeschwarz
 {
 
 
-using Vna = vna::Vna;
+using Instrument = instruments::Instrument
+using Vna        = instruments::vna::Vna;
 
 
 }
 
 
-#endif  // ROHDESCHWARZ_INSTRUMENTS_INSTRUMENTS_HPP
+#endif  // ROHDESCHWARZ_INSTRUMENTS_HPP

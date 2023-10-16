@@ -2,8 +2,8 @@
  * \file  buffer.hpp
  * \brief rohdeschwarz::Buffer class definition
  */
-#ifndef ROHDESCHWARZ_BUFFER_HPP
-#define ROHDESCHWARZ_BUFFER_HPP
+#ifndef ROHDESCHWARZ_BUSSES_SOCKET_BUFFER_HPP
+#define ROHDESCHWARZ_BUSSES_SOCKET_BUFFER_HPP
 
 
 // std lib
@@ -122,4 +122,4 @@ private:
 
 
 }       // namespace rohdeschwarz::busses::socket
-#endif  // ROHDESCHWARZ_BUFFER_HPP
+#endif  // ROHDESCHWARZ_BUSSES_SOCKET_BUFFER_HPP

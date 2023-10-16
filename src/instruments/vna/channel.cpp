@@ -1,13 +1,16 @@
 /**
  * \file channel.cpp
- * \brief RsVisa::Channel implementation
+ * \brief rohdeschwarz::instruments::vna::Channel implementation
  */
 
 
-#include "channel.hpp"
-#include "preserve_data_format.hpp"
-#include "to_vector.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/channel.hpp"
+#include "rohdeschwarz/instruments/vna/preserve_data_format.hpp"
+#include "rohdeschwarz/instruments/vna/vna.hpp"
+#include "rohdeschwarz/to_vector.hpp"
+using namespace rohdeschwarz;
+using namespace rohdeschwarz::instruments::vna;
 
 
 // std lib

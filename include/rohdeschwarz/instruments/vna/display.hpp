@@ -1,23 +1,23 @@
 /**
  * \file display.hpp
- * \brief RsVisa::Display definition
+ * \brief rohdeschwarz::instruments::vna::Display definition
  */
 
 
-#ifndef RS_VISA_DISPLAY_HPP
-#define RS_VISA_DISPLAY_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_DISPLAY_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_DISPLAY_HPP
 
 
 // std lib
 #include <string>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
 
-// forward declare Znx
-class Znx;
+// forward declare Vna
+class Vna;
 
 
 /**
@@ -36,9 +36,9 @@ public:
   /**
    * \brief Constructor
    *
-   * \param[in] znx a pointer to the underlying `Znx` instance
+   * \param[in] vna a pointer to the underlying `Vna` instance
    */
-  Display(Znx* znx);
+  Display(Vna* vna);
 
 
   // display on / off
@@ -104,7 +104,7 @@ public:
 
 
 private:
-  Znx* _znx;
+  Vna* _vna;
 
 
   // helpers
@@ -143,5 +143,5 @@ private:
 };  // class Display
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_DISPLAY_HPP
+}       // namespace rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_DISPLAY_HPP

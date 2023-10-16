@@ -1,22 +1,22 @@
 /**
  * \file data_format.hpp
- * \brief RsVisa::DataFormat definition
+ * \brief rohdeschwarz::instruments::vna::DataFormat definition
  */
 
 
-#ifndef RS_VISA_DATA_FORMAT_HPP
-#define RS_VISA_DATA_FORMAT_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_DATA_FORMAT_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_DATA_FORMAT_HPP
 
 
 // std lib
 #include <string>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
-// forward declare Znx
-class Znx;
+// forward declare Vna
+class Vna;
 
 
 /**
@@ -41,9 +41,9 @@ public:
   /**
    * \brief Constructor
    *
-   * \param[in] znx Pointer to underlying `Znx` instance
+   * \param[in] vna Pointer to underlying `Vna` instance
    */
-  DataFormat(Znx* znx);
+  DataFormat(Vna* vna);
 
 
   // ascii
@@ -125,7 +125,7 @@ public:
 
 private:
 
-  Znx* _znx;
+  Vna* _vna;
 
 
   // helpers
@@ -149,5 +149,5 @@ private:
 };  // class DataFormat
 
 
-}       // namespace RsVisa
-#endif  // RS_VISA_DATA_FORMAT_HPP
+}       // namespace rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_DATA_FORMAT_HPP

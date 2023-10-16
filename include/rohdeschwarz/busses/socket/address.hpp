@@ -2,8 +2,8 @@
  * \file  address.hpp
  * \brief rohdeschwarz::Address class definition
  */
-#ifndef ROHDESCHWARZ_ADDRESS_HPP
-#define ROHDESCHWARZ_ADDRESS_HPP
+#ifndef ROHDESCHWARZ_BUSSES_SOCKET_ADDRESS_HPP
+#define ROHDESCHWARZ_BUSSES_SOCKET_ADDRESS_HPP
 
 
 // std lib
@@ -69,4 +69,4 @@ private:
 
 
 }       // namespace rohdeschwarz::busses::socket
-#endif  // ROHDESCHWARZ_ADDRESS_HPP
+#endif  // ROHDESCHWARZ_BUSSES_SOCKET_ADDRESS_HPP

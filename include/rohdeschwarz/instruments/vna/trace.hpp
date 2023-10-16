@@ -1,11 +1,11 @@
 /**
  * \file trace.hpp
- * \brief RsVisa::Trace definition
+ * \brief rohdeschwarz::instruments::vna::Trace definition
  */
 
 
-#ifndef RS_VISA_TRACE_HPP
-#define RS_VISA_TRACE_HPP
+#ifndef ROHDESCHWARZ_INSTRUMENTS_VNA_TRACE_HPP
+#define ROHDESCHWARZ_INSTRUMENTS_VNA_TRACE_HPP
 
 
 // std lib
@@ -14,12 +14,12 @@
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::instruments::vna
 {
 
 
 // forward declarations
-class Znx;
+class Vna;
 
 /**
  * \brief Object-oriented trace control
@@ -37,19 +37,19 @@ public:
   /**
    * \brief Constructor
    *
-   * \param[in] znx Pointer to underlying `Znx` instance
+   * \param[in] vna Pointer to underlying `Vna` instance
    * \param[in] name Name of existing trace to control as C style string
    */
-  Trace(Znx* znx, const char* name);
+  Trace(Vna* vna, const char* name);
 
 
   /**
    * \brief Constructor
    *
-   * \param[in] znx Pointer to underlying `Znx` instance
+   * \param[in] vna Pointer to underlying `Vna` instance
    * \param[in] name Name of existing trace to control as C++ style string
    */
-  Trace(Znx* znx, const std::string& name);
+  Trace(Vna* vna, const std::string& name);
 
 
   /**
@@ -170,12 +170,12 @@ public:
 
 private:
 
-  Znx*        _znx;
+  Vna*        _vna;
   std::string _name;
 
 
 };
 
 
-}       // RsVisa
-#endif  // RS_VISA_TRACE_HPP
+}       // rohdeschwarz::instruments::vna
+#endif  // ROHDESCHWARZ_INSTRUMENTS_VNA_TRACE_HPP

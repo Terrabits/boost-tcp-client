@@ -1,18 +1,18 @@
 /**
  * \file block_data.hpp
- * \brief `BlockData` definition
+ * \brief `rohdeschwarz::scpi::BlockData` definition
  */
 
 
-#ifndef RS_VISA_BLOCK_DATA_HPP
-#define RS_VISA_BLOCK_DATA_HPP
+#ifndef ROHDESCHWARZ_SCPI_BLOCK_DATA_HPP
+#define ROHDESCHWARZ_SCPI_BLOCK_DATA_HPP
 
 
 // std lib
 #include <vector>
 
 
-namespace RsVisa
+namespace rohdeschwarz::scpi
 {
 
 
@@ -174,8 +174,8 @@ private:
   unsigned int bytesRemaining() const;
 
 
-}; // class BlockData
+};  // BlockData
 
 
-}       // RsVisa
-#endif  // RS_VISA_BLOCK_DATA_HPP
+}       // rohdeschwarz::scpi
+#endif  // ROHDESCHWARZ_SCPI_BLOCK_DATA_HPP

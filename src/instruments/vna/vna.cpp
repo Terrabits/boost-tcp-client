@@ -1,16 +1,16 @@
 /**
  * \file znx.cpp
- * \brief RsVisa::Znx implementation
+ * \brief rohdeschwarz::instruments::vna::Znx implementation
  */
 
 
-#include "znx.hpp"
-
-
-// RsVisa
-#include "helpers.hpp"
-#include "index_name.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/vna.hpp"
+#include "rohdeschwarz/scpi/index_name.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz::instruments::vna;
+using namespace rohdeschwarz::scpi;
+using namespace rohdeschwarz;
 
 
 // std lib

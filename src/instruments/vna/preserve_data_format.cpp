@@ -1,11 +1,12 @@
 /**
  * \file preserve_data_format.cpp
- * \brief RsVisa::PreserveDataFormat implementation
+ * \brief rohdeschwarz::instruments::vna::PreserveDataFormat implementation
  */
 
 
-#include "preserve_data_format.hpp"
-using namespace RsVisa;
+// rohdeschwarz
+#include "rohdeschwarz/instruments/vna/preserve_data_format.hpp"
+using namespace rohdeschwarz::instruments::vna;
 
 
 PreserveDataFormat::PreserveDataFormat(Znx *znx) :
