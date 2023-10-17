@@ -9,6 +9,7 @@
 // std lib
 #include <cstddef>
 #include <string>
+#include <vector>
 
 
 namespace rohdeschwarz::busses
