@@ -74,6 +74,11 @@ public:
   std::string query(const char* scpi, std::size_t size);
 
 
+  // status
+  virtual bool isError() const = 0;
+  virtual std::string statusMessage() const = 0;
+
+
 private:
 
   std::vector<unsigned char> _buffer;

@@ -124,6 +124,18 @@ bool Socket::writeData(const unsigned char* data, std::size_t dataSize, std::siz
 }
 
 
+bool Socket::isError() const
+{
+  return _socket.is_open();
+}
+
+
+std::string Socket::statusMessage() const
+{
+  return _socket.is_open()? "connection is open" : "warning: connection is closed";
+}
+
+
 bool Socket::open()
 {
   auto endpoints = resolve(_host, _port, _io_context);

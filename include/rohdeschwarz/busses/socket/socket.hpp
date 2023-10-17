@@ -115,6 +115,23 @@ public:
    virtual bool writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize = nullptr);
 
 
+   /**
+    * \brief Checks socket state for error
+    * \returns true if the connection is open; otherwise false
+    * otherwise.
+    */
+    virtual bool isError() const;
+
+
+   /**
+    * \brief human-readable bus status message
+    *
+    * \returns "connection is open" if connected;
+    *   "warning: connection is closed" otherwise.
+    */
+   virtual std::string statusMessage() const;
+
+
 private:
 
   // end point

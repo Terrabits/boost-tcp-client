@@ -9,7 +9,7 @@
 
 
 // ivi foundation
-#include "visa.h"
+#include "rs-visa/visa.h"
 
 
 namespace rohdeschwarz::busses::visa

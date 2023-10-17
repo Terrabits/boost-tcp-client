@@ -2,4 +2,181 @@
 using namespace rohdeschwarz::busses::visa;
 
 
-// TODO
+// std lib
+#include <cerrno>
+
+
+Visa::Visa(std::string resource, unsigned int connection_timeout_ms)
+{
+  // check for visa
+  if (!_visa.isVisa())
+  {
+    auto error_code = make_error_code(std::errc::not_connected);
+    throw system_error(error_code, "Error loading visa shared library");
+  }
+
+  // get default visa resource manager
+  if (!openDefaultResourceManager())
+  {
+    auto error_code = make_error_code(std::errc::not_connected);
+    throw system_error(error_code, "Error retrieveing VISA default Resource Manager.");
+  }
+
+
+  if (!openInstrument(resource, connection_timeout_ms))
+  {
+    closeResourceManager();
+
+    // throw exception
+    auto error_code = make_error_code(std::errc::not_connected);
+    throw system_error(error_code, "Error connecting to instrument");
+  }
+}
+
+
+Visa::~Visa()
+{
+  closeInstrument();
+  closeResourceManager();
+}
+
+
+std::string Visa::endpoint() const
+{
+  return _resource;
+}
+
+
+bool Visa::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize)
+{
+  // TODO
+  return false;
+}
+
+
+bool Visa::writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize)
+{
+  // TODO
+  return false;
+}
+
+
+ViStatus Visa::status() const
+{
+  return _status;
+}
+
+
+std::string Visa::statusMessage() const
+{
+  // get description
+  ViChar description[1000];
+  ViStatus status = _visa.viStatusDesc(
+    _instrument,
+    _status,
+    description
+  );
+
+  // success?
+  if (status < VI_SUCCESS)
+  {
+    // visa error
+    return std::string();
+  }
+
+  // return std::string
+  return std::string(description);
+}
+
+
+bool Visa::isError() const
+{
+  return _status < VI_SUCCESS;
+}
+
+
+bool Visa::isResourceManager() const
+{
+  return _resource_manager != VI_NULL;
+}
+
+
+bool Visa::openDefaultResourceManager()
+{
+  _status = _visa.viOpenDefaultRM(&_resource_manager);
+  return !isError();
+}
+
+
+bool Visa::closeResourceManager()
+{
+  // check if resource manager exists
+  if (!isResourceManager())
+  {
+    // nothing to close
+    return true;
+  }
+
+  // close
+  ViObject rm_obj = ViObject(_resource_manager);
+  _status = _visa.viClose(rm_obj);
+  if (isError())
+  {
+    // error
+    return false;
+  }
+
+  // clear
+  _resource_manager = VI_NULL;
+  return !isError();
+}
+
+
+bool Visa::isInstrument() const
+{
+  return _instrument != VI_NULL;
+}
+
+
+bool Visa::openInstrument(std::string resource, unsigned int timeout_ms)
+{
+  // save resource for use in endpoint()
+  _resource = resource;
+
+  // open instrument connection
+  ViRsrc   visaResource = ViRsrc(_resource.c_str());
+  ViUInt32 visaMode     = VI_NULL;
+  ViUInt32 visaTimeout  = ViUInt32(timeout_ms);
+  _status = _visa.viOpen(
+    _resource_manager,
+    visaResource,
+    visaMode,
+    visaTimeout,
+    &_instrument
+  );
+  return !isError();
+}
+
+
+bool Visa::closeInstrument()
+{
+  // check if instrument exists
+  if (!isInstrument())
+  {
+    // nothing to close
+    return true;
+  }
+
+  // close
+  ViObject instrument_obj = ViObject(_instrument);
+  _status = _visa.viClose(instrument_obj);
+  if (isError())
+  {
+    // error
+    return false;
+  }
+
+  // clear
+  _instrument = VI_NULL;
+  return !isError();
+}
