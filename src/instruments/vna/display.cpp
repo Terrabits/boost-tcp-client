@@ -18,8 +18,8 @@ using namespace rohdeschwarz;
 #include <sstream>
 
 
-Display::Display(Znx* znx) :
-  _znx(znx)
+Display::Display(Vna* znx) :
+  _vna(znx)
 {
   // no operations
 }
@@ -63,13 +63,13 @@ void Display::update()
 
 void Display::local()
 {
-  _znx->write("@LOC");
+  _vna->write("@LOC");
 }
 
 
 void Display::remote()
 {
-  _znx->write("@REM");
+  _vna->write("@REM");
 }
 
 
@@ -77,7 +77,7 @@ void Display::remote()
 
 std::string Display::updateSetting()
 {
-  return rightTrim(_znx->query(":SYST:DISP:UPD?"));
+  return rightTrim(_vna->query(":SYST:DISP:UPD?"));
 }
 
 
@@ -92,5 +92,5 @@ void Display::setUpdateSetting(const std::string& value)
 {
   std::stringstream scpi;
   scpi << ":SYST:DISP:UPD " << value;
-  _znx->write(scpi.str());
+  _vna->write(scpi.str());
 }

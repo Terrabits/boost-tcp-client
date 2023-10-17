@@ -1,23 +1,23 @@
 /**
  * \file bool.cpp
- * \brief RsVisa::toBool(), RsVisa::toScpi() implementations
+ * \brief rohdeschwarz::scpi::toBool(), rohdeschwarz::scpi::toScpi() implementations
  */
 
 
-#include "bool.hpp"
+// rohdeschwarz
+#include "rohdeschwarz/scpi/bool.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz::scpi;
+using namespace rohdeschwarz;
 
 
-// RsVisa
-#include "helpers.hpp"
-
-
-std::string RsVisa::toScpi(bool value)
+std::string toScpi(bool value)
 {
   return value? "1" : "0";
 }
 
 
-bool RsVisa::toBool(const std::string& scpi)
+bool toBool(const std::string& scpi)
 {
   return trim(scpi) == "1";
 }

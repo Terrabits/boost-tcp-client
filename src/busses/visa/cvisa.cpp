@@ -29,8 +29,7 @@ CVisa::CVisa()
     viGpibSendIFC(nullptr),
     viSetAttribute(nullptr),
     viGetAttribute(nullptr),
-    viStatusDesc(nullptr),
-    _visa(nullptr)
+    viStatusDesc(nullptr)
 {
   // TODO: throw exception on error
   load();
@@ -50,7 +49,7 @@ CVisa::~CVisa()
 
 bool CVisa::isVisa() const
 {
-  return _visa != nullptr;
+  return _visa.is_loaded();
 }
 
 
@@ -62,30 +61,31 @@ bool CVisa::load()
   }
 
   // load visa
-  _visa = LoadLibrary(FILENAME);
+  _visa = boost::dll::shared_library(FILENAME);
+
   if (!isVisa())
   {
     return false;
   }
 
   // load functions
-  viOpenDefaultRM = reinterpret_cast<VI_OPEN_DEFAULT_RM_PTR>(GetProcAddress(_visa, "viOpenDefaultRM"));
-  viFindRsrc = reinterpret_cast<VI_FIND_RSRC_PTR>(GetProcAddress(_visa, "viFindRsrc"));
-  viFindNext = reinterpret_cast<VI_FIND_NEXT_PTR>(GetProcAddress(_visa, "viFindNext"));
-  viParseRsrcEx = reinterpret_cast<VI_PARSE_RSRC_EX_PTR>(GetProcAddress(_visa, "viParseRsrcEx"));
-  viOpen = reinterpret_cast<VI_OPEN_PTR>(GetProcAddress(_visa, "viOpen"));
-  viClose = reinterpret_cast<VI_CLOSE_PTR>(GetProcAddress(_visa, "viClose"));
-  viWrite = reinterpret_cast<VI_WRITE_PTR>(GetProcAddress(_visa, "viWrite"));
-  viRead = reinterpret_cast<VI_READ_PTR>(GetProcAddress(_visa, "viRead"));
-  viEnableEvent = reinterpret_cast<VI_ENABLE_EVENT_PTR>(GetProcAddress(_visa, "viEnableEvent"));
-  viDisableEvent = reinterpret_cast<VI_DISABLE_EVENT_PTR>(GetProcAddress(_visa, "viDisableEvent"));
-  viWaitOnEvent = reinterpret_cast<VI_WAITON_EVENT_PTR>(GetProcAddress(_visa, "viWaitOnEvent"));
-  viDiscardEvents = reinterpret_cast<VI_DISCARD_EVENTS_PTR>(GetProcAddress(_visa, "viDiscardEvents"));
-  viReadSTB = reinterpret_cast<VI_READ_STB_PTR>(GetProcAddress(_visa, "viReadSTB"));
-  viGpibSendIFC = reinterpret_cast<VI_GPIB_SEND_IFC_PTR>(GetProcAddress(_visa, "viGpibSendIFC"));
-  viSetAttribute = reinterpret_cast<VI_SET_ATTRIBUTE_PTR>(GetProcAddress(_visa, "viSetAttribute"));
-  viGetAttribute = reinterpret_cast<VI_GET_ATTRIBUTE_PTR>(GetProcAddress(_visa, "viGetAttribute"));
-  viStatusDesc = reinterpret_cast<VI_STATUS_DESC_PTR>(GetProcAddress(_visa, "viStatusDesc"));
+  viOpenDefaultRM = _visa.get<VI_OPEN_DEFAULT_RM_PTR>("viOpenDefaultRM");
+  viFindRsrc      = _visa.get<VI_FIND_RSRC_PTR>      ("viFindRsrc");
+  viFindNext      = _visa.get<VI_FIND_NEXT_PTR>      ("viFindNext");
+  viParseRsrcEx   = _visa.get<VI_PARSE_RSRC_EX_PTR>  ("viParseRsrcEx");
+  viOpen          = _visa.get<VI_OPEN_PTR>           ("viOpen");
+  viClose         = _visa.get<VI_CLOSE_PTR>          ("viClose");
+  viWrite         = _visa.get<VI_WRITE_PTR>          ("viWrite");
+  viRead          = _visa.get<VI_READ_PTR>           ("viRead");
+  viEnableEvent   = _visa.get<VI_ENABLE_EVENT_PTR>   ("viEnableEvent");
+  viDisableEvent  = _visa.get<VI_DISABLE_EVENT_PTR>  ("viDisableEvent");
+  viWaitOnEvent   = _visa.get<VI_WAITON_EVENT_PTR>   ("viWaitOnEvent");
+  viDiscardEvents = _visa.get<VI_DISCARD_EVENTS_PTR> ("viDiscardEvents");
+  viReadSTB       = _visa.get<VI_READ_STB_PTR>       ("viReadSTB");
+  viGpibSendIFC   = _visa.get<VI_GPIB_SEND_IFC_PTR>  ("viGpibSendIFC");
+  viSetAttribute  = _visa.get<VI_SET_ATTRIBUTE_PTR>  ("viSetAttribute");
+  viGetAttribute  = _visa.get<VI_GET_ATTRIBUTE_PTR>  ("viGetAttribute");
+  viStatusDesc    = _visa.get<VI_STATUS_DESC_PTR>    ("viStatusDesc");
 
   // functions found?
   if (
@@ -120,12 +120,10 @@ bool CVisa::load()
 
 bool CVisa::unload()
 {
-  if (!isVisa())
+  if (isVisa())
   {
-    // not loaded
-    return true;
+    _visa.unload();
   }
 
-  // unload
-  return FreeLibrary(_visa);
+  return !isVisa();
 }

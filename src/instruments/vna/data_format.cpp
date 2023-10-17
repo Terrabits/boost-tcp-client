@@ -12,8 +12,8 @@ using namespace rohdeschwarz;
 using namespace rohdeschwarz::instruments::vna;
 
 
-DataFormat::DataFormat(Znx* znx) :
-  _znx(znx)
+DataFormat::DataFormat(Vna* znx) :
+  _vna(znx)
 {
   // no operations
 }
@@ -27,7 +27,7 @@ bool DataFormat::isAscii()
 
 void DataFormat::setAscii()
 {
-  _znx->write(":FORM ASC");
+  _vna->write(":FORM ASC");
 }
 
 
@@ -39,7 +39,7 @@ bool DataFormat::isBinary32Bit()
 
 void DataFormat::setBinary32Bit()
 {
-  _znx->write(":FORM REAL,32");
+  _vna->write(":FORM REAL,32");
 }
 
 
@@ -51,7 +51,7 @@ bool DataFormat::isBinary64Bit()
 
 void DataFormat::setBinary64Bit()
 {
-  _znx->write(":FORM REAL,64");
+  _vna->write(":FORM REAL,64");
 }
 
 
@@ -63,7 +63,7 @@ bool DataFormat::isBigEndian()
 
 void DataFormat::setBigEndian()
 {
-  _znx->write(":FORM:BORD NORM");
+  _vna->write(":FORM:BORD NORM");
 }
 
 
@@ -75,7 +75,7 @@ bool DataFormat::isLittleEndian()
 
 void DataFormat::setLittleEndian()
 {
-  _znx->write(":FORM:BORD SWAP");
+  _vna->write(":FORM:BORD SWAP");
 }
 
 
@@ -83,11 +83,11 @@ void DataFormat::setLittleEndian()
 
 std::string DataFormat::dataFormat()
 {
-  return rightTrim(_znx->query(":FORM?"));
+  return rightTrim(_vna->query(":FORM?"));
 }
 
 
 std::string DataFormat::byteOrder()
 {
-  return rightTrim(_znx->query(":FORM:BORD?"));
+  return rightTrim(_vna->query(":FORM:BORD?"));
 }

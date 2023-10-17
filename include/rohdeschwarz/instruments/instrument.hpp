@@ -11,6 +11,7 @@
 // rohdeschwarz
 #include "rohdeschwarz/scpi/block_data.hpp"
 #include "rohdeschwarz/busses/visa/cvisa.hpp"
+using CVisa = rohdeschwarz::busses::visa::CVisa;
 
 
 // rs visa
@@ -152,7 +153,7 @@ public:
    *
    * `readBlockData` reads data in IEEE 488.2 Block Data format.
    */
-  BlockData readBlockData(unsigned int bufferSize_B = 1024);
+  scpi::BlockData readBlockData(unsigned int bufferSize_B = 1024);
 
 
   /**
@@ -164,7 +165,7 @@ public:
    * \param[in] bufferSize_B buffer size for reading Block Data, in bytes
    * \returns Block Data read
    */
-  BlockData queryBlockData(const std::string &scpi, unsigned int bufferSize_B = 1024);
+  scpi::BlockData queryBlockData(const std::string &scpi, unsigned int bufferSize_B = 1024);
 
 
   // string io

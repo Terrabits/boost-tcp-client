@@ -1,6 +1,6 @@
 /**
  * \file znx.cpp
- * \brief rohdeschwarz::instruments::vna::Znx implementation
+ * \brief rohdeschwarz::instruments::vna::Vna implementation
  */
 
 
@@ -23,19 +23,19 @@ const unsigned int _11_kB_ = 11 * 1024;
 const unsigned int _12_kB_ = 12 * 1024;
 
 
-Display Znx::display()
+Display Vna::display()
 {
   return Display(this);
 }
 
 
-DataFormat Znx::dataFormat()
+DataFormat Vna::dataFormat()
 {
   return DataFormat(this);
 }
 
 
-bool Znx::isChannel(unsigned int index)
+bool Vna::isChannel(unsigned int index)
 {
   const std::vector<unsigned int> channels = this->channels();
   auto i = std::find(channels.begin(), channels.end(), index);
@@ -43,7 +43,7 @@ bool Znx::isChannel(unsigned int index)
 }
 
 
-Channel Znx::createChannel(unsigned int index)
+Channel Vna::createChannel(unsigned int index)
 {
   // CONF:CHAN<Ch> 1
   std::stringstream scpi;
@@ -54,13 +54,13 @@ Channel Znx::createChannel(unsigned int index)
 }
 
 
-Channel Znx::channel(unsigned int index)
+Channel Vna::channel(unsigned int index)
 {
   return Channel(this, index);
 }
 
 
-std::vector<unsigned int> Znx::channels()
+std::vector<unsigned int> Vna::channels()
 {
   // CONF:CHAN:CAT?
   const std::string response = query(":CONF:CHAN:CAT?", _11_kB_);
@@ -70,14 +70,14 @@ std::vector<unsigned int> Znx::channels()
 }
 
 
-bool Znx::isTrace(const char* name)
+bool Vna::isTrace(const char* name)
 {
   const std::string name_str(name);
   return isTrace(name_str);
 }
 
 
-bool Znx::isTrace(const std::string& name)
+bool Vna::isTrace(const std::string& name)
 {
   const std::vector<std::string> traces = this->traces();
   auto i = std::find(traces.begin(), traces.end(), name);
@@ -85,14 +85,14 @@ bool Znx::isTrace(const std::string& name)
 }
 
 
-Trace Znx::createTrace(const char* name, unsigned int channel)
+Trace Vna::createTrace(const char* name, unsigned int channel)
 {
   const std::string name_str(name);
   return createTrace(name_str, channel);
 }
 
 
-Trace Znx::createTrace(const std::string& name, unsigned int channel)
+Trace Vna::createTrace(const std::string& name, unsigned int channel)
 {
   // CALC<Ch>:PAR:SDEF '<name>','S21'
   std::stringstream scpi;
@@ -106,20 +106,20 @@ Trace Znx::createTrace(const std::string& name, unsigned int channel)
 }
 
 
-Trace Znx::trace(const char* name)
+Trace Vna::trace(const char* name)
 {
   const std::string name_str(name);
   return trace(name_str);
 }
 
 
-Trace Znx::trace(const std::string& name)
+Trace Vna::trace(const std::string& name)
 {
   return Trace(this, name);
 }
 
 
-std::vector<std::string> Znx::traces()
+std::vector<std::string> Vna::traces()
 {
   // CONF:TRAC:CAT?
   const std::string response = query(":CONF:TRAC:CAT?", _12_kB_);

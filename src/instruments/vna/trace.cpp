@@ -18,16 +18,16 @@ using namespace rohdeschwarz::instruments::vna;
 #include <sstream>
 
 
-Trace::Trace(Znx* znx, const char* name) :
-  _znx(znx),
+Trace::Trace(Vna* znx, const char* name) :
+  _vna(znx),
   _name(name)
 {
   // no operations
 }
 
 
-Trace::Trace(Znx* znx, const std::string& name) :
-  _znx(znx),
+Trace::Trace(Vna* znx, const std::string& name) :
+  _vna(znx),
   _name(name)
 {
   // no operations
@@ -47,7 +47,7 @@ void Trace::select()
   scpi << ":CALC" << channel();
   scpi << ":PAR:SEL ";
   scpi << quote(_name);
-  _znx->write(scpi.str());
+  _vna->write(scpi.str());
 }
 
 
@@ -58,7 +58,7 @@ std::string Trace::parameter()
   scpi << ":CALC" << channel();
   scpi << ":PAR:MEAS? ";
   scpi << quote(_name);
-  const std::string response = _znx->query(scpi.str());
+  const std::string response = _vna->query(scpi.str());
   return unquote(rightTrim(response));
 }
 
@@ -78,7 +78,7 @@ void Trace::setParameter(const std::string& parameter)
   scpi << ":PAR:MEAS ";
   scpi << quote(_name) << ",";
   scpi << quote(parameter);
-  _znx->write(scpi.str());
+  _vna->write(scpi.str());
 }
 
 
@@ -90,7 +90,7 @@ std::string Trace::format()
   std::stringstream scpi;
   scpi << ":CALC" << channel();
   scpi << ":FORM?";
-  return rightTrim(_znx->query(scpi.str()));
+  return rightTrim(_vna->query(scpi.str()));
 }
 
 
@@ -109,7 +109,7 @@ void Trace::setFormat(const std::string& format)
   std::stringstream scpi;
   scpi << ":CALC" << channel();
   scpi << ":FORM " << format;
-  _znx->write(scpi.str());
+  _vna->write(scpi.str());
 }
 
 
@@ -119,7 +119,7 @@ unsigned int Trace::channel()
   std::stringstream scpi;
   scpi << ":CONF:TRAC:CHAN:NAME:ID? ";
   scpi << quote(_name);
-  return std::stoi(_znx->query(scpi.str()));
+  return std::stoi(_vna->query(scpi.str()));
 }
 
 
@@ -129,7 +129,7 @@ unsigned int Trace::diagram()
   std::stringstream scpi;
   scpi << ":CONF:TRAC:WIND? ";
   scpi << quote(_name);
-  return std::stoi(_znx->query(scpi.str()));
+  return std::stoi(_vna->query(scpi.str()));
 }
 
 
@@ -140,7 +140,7 @@ void Trace::setDiagram(unsigned int diagram)
   scpi << ":DISP:WIND" << diagram;
   scpi << ":TRAC:EFE ";
   scpi << quote(_name);
-  _znx->write(scpi.str());
+  _vna->write(scpi.str());
 }
 
 
@@ -149,7 +149,8 @@ std::vector<double> Trace::y()
   // CALC:DATA:TRAC? '<name>',FDAT
 
   // get channel
-  Channel channel(_znx->channel(channel()));
+  auto index   = this->channel();
+  auto channel = _vna->channel(index);
 
   // calculate buffer size (Bytes)
   // note: requires points() scpi query
@@ -161,8 +162,8 @@ std::vector<double> Trace::y()
   const uint buffer_size = header + payload;
 
   // set binary data format
-  PreserveDataFormat preserve_data_format(_znx);
-  DataFormat format = _znx->dataFormat();
+  PreserveDataFormat preserve_data_format(_vna);
+  DataFormat format = _vna->dataFormat();
   format.setBinary64Bit();
   format.setLittleEndian();
 
@@ -173,7 +174,7 @@ std::vector<double> Trace::y()
   scpi << ",FDAT";
 
   // query data
-  BlockData data = _znx->queryBlockData(scpi.str(), buffer_size + 1);
+  scpi::BlockData data = _vna->queryBlockData(scpi.str(), buffer_size + 1);
   if (!data.isComplete())
   {
     // query failed
@@ -188,7 +189,7 @@ std::vector<double> Trace::y()
 std::vector<std::complex<double>> Trace::y_complex()
 {
   // get channel
-  Channel channel = _znx->channel(this->channel());
+  Channel channel = _vna->channel(this->channel());
 
   // calculate buffer size (Bytes)
   // note: requires points() scpi query
@@ -200,8 +201,8 @@ std::vector<std::complex<double>> Trace::y_complex()
   const uint buffer_size = header + payload;
 
   // set binary data format
-  PreserveDataFormat preserve_data_format(_znx);
-  DataFormat format = _znx->dataFormat();
+  PreserveDataFormat preserve_data_format(_vna);
+  DataFormat format = _vna->dataFormat();
   format.setBinary64Bit();
   format.setLittleEndian();
 
@@ -212,7 +213,7 @@ std::vector<std::complex<double>> Trace::y_complex()
   scpi << ",SDAT";
 
   // query data
-  BlockData data = _znx->queryBlockData(scpi.str(), buffer_size + 1);
+  scpi::BlockData data = _vna->queryBlockData(scpi.str(), buffer_size + 1);
   if (!data.isComplete())
   {
     // query failed

@@ -9,7 +9,7 @@
 using namespace rohdeschwarz::instruments::vna;
 
 
-PreserveDataFormat::PreserveDataFormat(Znx *znx) :
+PreserveDataFormat::PreserveDataFormat(Vna *znx) :
   _dataFormat(znx->dataFormat())
 {
   _isBinary    = !_dataFormat.isAscii();

@@ -9,7 +9,7 @@ endif()
 
 
 # find boost components
-find_package(Boost 1.83.0 REQUIRED COMPONENTS system)
+find_package(Boost 1.83.0 REQUIRED COMPONENTS filesystem system)
 
 
 # rohdeschwarz
@@ -41,6 +41,7 @@ target_link_libraries(
   rohdeschwarz
   PUBLIC
   Boost::headers
+  Boost::filesystem
   Boost::system
 )
 

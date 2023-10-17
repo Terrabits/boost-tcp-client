@@ -1,11 +1,11 @@
 /**
  * \file block_data.cpp
- * \brief `RsVisa::BlockData` implementation
+ * \brief `rohdeschwarz::scpi::BlockData` implementation
  */
 
 
-#include "block_data.hpp"
-using namespace RsVisa;
+#include "rohdeschwarz/scpi/block_data.hpp"
+using namespace rohdeschwarz::scpi;
 
 
 // std lib
@@ -16,6 +16,7 @@ using namespace RsVisa;
 
 // types
 using uint = unsigned int;
+
 
 BlockData::BlockData() :
   _isHeader(false),

@@ -1,12 +1,13 @@
 /**
  * \file index_name.cpp
- * \brief RsVisa::IndexName implementation
+ * \brief rohdeschwarz::scpi::IndexName implementation
  */
 
 
-#include "index_name.hpp"
-#include "helpers.hpp"
-using namespace RsVisa;
+#include "rohdeschwarz/scpi/index_name.hpp"
+#include "rohdeschwarz/helpers.hpp"
+using namespace rohdeschwarz::scpi;
+using namespace rohdeschwarz;
 
 
 // std lib

@@ -12,13 +12,8 @@
 #include "rohdeschwarz/busses/visa/cvisatypes.hpp"
 
 
-// ivi foundation
-#include "visa.h"
-
-
-// ms win32 api
-// TODO: replace with boost dll
-#include <windows.h>
+// boost
+#include "boost/dll/shared_library.hpp"
 
 
 namespace rohdeschwarz::busses::visa
@@ -175,7 +170,7 @@ public:
 
 private:
 
-  HMODULE _visa;
+  boost::dll::shared_library _visa;
 
 
   // helpers

@@ -1,10 +1,10 @@
 /**
  * \file helpers.cpp
- * \brief RsVisa helper function implementations
+ * \brief rohdeschwarz helper function implementations
  */
 
 
-#include "helpers.hpp"
+#include "rohdeschwarz/helpers.hpp"
 
 
 // std lib
@@ -36,7 +36,7 @@ auto is_quote_char = [](char character)
 // helpers
 
 
-std::string RsVisa::leftTrim(std::string text)
+std::string rohdeschwarz::leftTrim(std::string text)
 {
   const auto end = std::find_if(text.begin(), text.end(), not_a_space);
   text.erase(text.begin(), end);
@@ -44,7 +44,7 @@ std::string RsVisa::leftTrim(std::string text)
 }
 
 
-std::string RsVisa::rightTrim(std::string text)
+std::string rohdeschwarz::rightTrim(std::string text)
 {
   const auto rbegin = std::find_if(text.rbegin(), text.rend(), not_a_space);
   const auto begin  = rbegin.base();
@@ -53,20 +53,20 @@ std::string RsVisa::rightTrim(std::string text)
 }
 
 
-std::string RsVisa::trim(const std::string& text)
+std::string rohdeschwarz::trim(const std::string& text)
 {
   return leftTrim(rightTrim(text));
 }
 
 
-bool RsVisa::isLeftQuote(const char* text)
+bool rohdeschwarz::isLeftQuote(const char* text)
 {
   const std::string text_str(text);
   return isLeftQuote(text_str);
 }
 
 
-bool RsVisa::isLeftQuote(const std::string& text)
+bool rohdeschwarz::isLeftQuote(const std::string& text)
 {
   if (text.empty())
   {
@@ -77,40 +77,40 @@ bool RsVisa::isLeftQuote(const std::string& text)
 }
 
 
-bool RsVisa::isRightQuote(const char* text)
+bool rohdeschwarz::isRightQuote(const char* text)
 {
   const std::string text_str(text);
   return isRightQuote(text_str);
 }
 
 
-bool RsVisa::isRightQuote(const std::string& text)
+bool rohdeschwarz::isRightQuote(const std::string& text)
 {
   return !text.empty() && is_quote_char(text.back());
 }
 
 
-bool RsVisa::isQuoted(const char* text)
+bool rohdeschwarz::isQuoted(const char* text)
 {
   const std::string text_str(text);
   return isQuoted(text_str);
 }
 
 
-bool RsVisa::isQuoted(const std::string& text)
+bool rohdeschwarz::isQuoted(const std::string& text)
 {
   return isLeftQuote(text) && isRightQuote(text);
 }
 
 
-std::string RsVisa::quote(const char* text, char quote_character)
+std::string rohdeschwarz::quote(const char* text, char quote_character)
 {
   const std::string text_str(text);
   return quote(text_str, quote_character);
 }
 
 
-std::string RsVisa::quote(const std::string& text, char quote_character)
+std::string rohdeschwarz::quote(const std::string& text, char quote_character)
 {
   std::stringstream quoted_text;
   quoted_text << quote_character << text << quote_character;
@@ -118,14 +118,14 @@ std::string RsVisa::quote(const std::string& text, char quote_character)
 }
 
 
-std::string RsVisa::unquote(const char* text)
+std::string rohdeschwarz::unquote(const char* text)
 {
   const std::string text_str(text);
   return unquote(text_str);
 }
 
 
-std::string RsVisa::unquote(const std::string& text)
+std::string rohdeschwarz::unquote(const std::string& text)
 {
   return isQuoted(text)?
     text.substr(1, text.size() - 2)
@@ -133,14 +133,14 @@ std::string RsVisa::unquote(const std::string& text)
 }
 
 
-std::vector<std::string> RsVisa::split(const char* csvList, const char separator)
+std::vector<std::string> rohdeschwarz::split(const char* csvList, const char separator)
 {
   const std::string csv_list_str(csvList);
   return split(csv_list_str, separator);
 }
 
 
-std::vector<std::string> RsVisa::split(const std::string& csvList, const char separator)
+std::vector<std::string> rohdeschwarz::split(const std::string& csvList, const char separator)
 {
   std::vector<std::string> parts;
   if (csvList.empty())

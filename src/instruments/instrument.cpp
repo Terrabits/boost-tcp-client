@@ -4,6 +4,10 @@
  */
 
 
+ // ignore strcpy warnings on windows
+ #define _CRT_SECURE_NO_WARNINGS 1
+
+
 // rohdeschwarz
 #include "rohdeschwarz/instruments/instrument.hpp"
 #include "rohdeschwarz/instruments/preserve_timeout.hpp"
@@ -17,6 +21,10 @@ using namespace rohdeschwarz;
 // std lib
 #include <cstring>
 #include <sstream>
+
+
+// types
+using char_p = char*;
 
 
 Instrument::Instrument()
@@ -155,12 +163,12 @@ void Instrument::write(const std::string &scpi)
 }
 
 
-BlockData Instrument::readBlockData(unsigned int bufferSize_B)
+scpi::BlockData Instrument::readBlockData(unsigned int bufferSize_B)
 {
-  BlockData data(binaryRead(bufferSize_B));
+  scpi::BlockData data(binaryRead(bufferSize_B));
   if (isError())
   {
-    return BlockData();
+    return scpi::BlockData();
   }
 
   while (!data.isComplete())
@@ -168,7 +176,7 @@ BlockData Instrument::readBlockData(unsigned int bufferSize_B)
     if (!data.isPartialHeader())
     {
       // header error; return empty data
-      return BlockData();
+      return scpi::BlockData();
     }
 
     // read more data
@@ -176,7 +184,7 @@ BlockData Instrument::readBlockData(unsigned int bufferSize_B)
     if (isError())
     {
       // visa error
-      return BlockData();
+      return scpi::BlockData();
     }
   }
 
@@ -185,12 +193,12 @@ BlockData Instrument::readBlockData(unsigned int bufferSize_B)
 }
 
 
-BlockData Instrument::queryBlockData(const std::string &scpi, unsigned int bufferSize_B)
+scpi::BlockData Instrument::queryBlockData(const std::string &scpi, unsigned int bufferSize_B)
 {
   write(scpi);
   if (isError())
   {
-    return BlockData();
+    return scpi::BlockData();
   }
 
   return readBlockData(bufferSize_B);
@@ -199,9 +207,9 @@ BlockData Instrument::queryBlockData(const std::string &scpi, unsigned int buffe
 
 std::string Instrument::read(unsigned int bufferSize_B)
 {
-  using char_p = char*;
-  const std::vector<unsigned char> buffer = binaryRead(bufferSize_B);
-  return std::string(char_p(buffer.data()));
+  auto buffer     = binaryRead(bufferSize_B);
+  auto buffer_ptr = char_p(buffer.data());
+  return std::string(buffer_ptr, buffer.size());
 }
 
 
@@ -315,10 +323,10 @@ std::vector<unsigned char> Instrument::binaryCopy(const std::string &input)
 {
   // prepare binary buffer
   std::vector<unsigned char> output;
-  output.resize(input.size() + 5);
+  output.resize(input.size() + 1);
 
   // copy to buffer
-  using char_p = char*;
-  strncpy_s(char_p(output.data()), output.size(), input.c_str(), _TRUNCATE);
+  char_p output_ptr = char_p(output.data());
+  strncpy(output_ptr, input.c_str(), input.size());
   return output;
 }
