@@ -1,0 +1,74 @@
+name: Build All
+
+
+# manually triggered
+on:
+  workflow_dispatch:
+    inputs: null
+
+
+jobs:
+
+  build:
+    name: Build vs OS, shared, build type
+
+    # build configurations
+    strategy:
+      matrix:
+
+        # build ubuntu, windows, macos
+        os:
+         - ubuntu-latest
+         - windows-latest
+         - macos-latest
+
+        # build shared, static
+        shared:
+          - "False"
+          - "True"
+
+        # build release, debug
+        build_type:
+          - Release
+          - Debug
+
+
+    # environment variables
+    env:
+      OPTION_CPP_STD: ""
+
+
+    # operating system
+    runs-on: ${{ matrix.os }}
+
+
+    steps:
+
+      # use latest python 3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # checkout source code
+      - uses: actions/checkout@v4
+
+      # install python packages (conan)
+      - name: install conan
+        run:  pip install --requirement requirements.txt
+
+      # create conan profile
+      - name: create default conan profile
+        run:  conan profile detect
+
+      # if running on windows, set c++ standard to 17
+      - name: if running on windows, set c++ standard to 17
+        if:   runner.os == 'Windows'
+        run:  echo "OPTION_CPP_STD=--settings compiler.cppstd=17" >> $env:GITHUB_ENV
+
+      # install conan packages
+      - name: install conan packages
+        run:  scripts/install --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} ${{ env.OPTION_CPP_STD }}
+
+      # build
+      - name: build
+        run:  scripts/create --options */*:shared=${{ matrix.shared }} --settings build_type=${{ matrix.build_type }} ${{ env.OPTION_CPP_STD }}
