@@ -14,7 +14,6 @@ namespace rohdeschwarz::busses::visa
 class Visa : public rohdeschwarz::busses::Bus
 {
 
-
 public:
 
   // TODO

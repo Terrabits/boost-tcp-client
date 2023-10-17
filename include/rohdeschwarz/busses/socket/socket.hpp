@@ -7,8 +7,7 @@
 
 
 // rohdeschwarz
-#include "rohdeschwarz/busses/socket/address.hpp"
-#include "rohdeschwarz/busses/socket/buffer.hpp"
+#include "rohdeschwarz/busses/bus.hpp"
 
 
 // boost
@@ -36,7 +35,7 @@ using system_error = boost::system::system_error;
 /**
  * \brief A class for managing synchronous TCP IP sockets
  */
-class Socket
+class Socket : public rohdeschwarz::busses::Bus
 {
 
 public:
@@ -73,131 +72,57 @@ public:
    *
    * The destructor closes the socket if it is currently open
    */
-  ~Socket();
+  virtual ~Socket();
 
 
   /**
-   * \brief Host or ip address
+   * \brief returns the host or ip address
    */
   std::string host() const;
 
 
   /**
-   * \brief Port number
+   * \brief returns the port
    */
-  int port() const;
+   int port() const;
 
 
   /**
-   * \brief Returns the current read buffer size, in bytes
+   * \brief Returns string '{host}:{port}'
    */
-  std::size_t bufferSize_B() const;
+   virtual std::string endpoint() const;
 
 
-  /**
-   * \brief Sets the read buffer size, in bytes
-   *
-   * \param[in] size_B New buffer size, in bytes
-   */
-  void setBufferSize(std::size_t size_B);
+   /**
+    * \brief read data into buffer
+    *
+    * \param[in]  buffer     Buffer for read
+    * \param[in]  bufferSize Size of buffer
+    * \param[out] readSize   Returns bytes read
+    * \returns    true if read succeeded; false otherwise
+    */
+   virtual bool readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize = nullptr);
 
 
-
-  /**
-   * \brief Read data from socket
-   *
-   * \returns Data read from socket
-   *
-   * \note The maximum read size is determined by Socket::bufferSize_B(),
-   * Socket::setBufferSize()
-   */
-  std::string read();
-
-
-  /**
-   * \brief Read at most `bufferSize_B` bytes from socket
-   *
-   * \param[in] bufferSize_B Maximum number of bytes to read
-   * \returns   Data read from socket
-   */
-  std::string read(std::size_t bufferSize_B);
-
-  /**
-   * \brief Write data
-   *
-   * \param[in] data Null-terminated c string
-   * \returns   Number of bytes written
-   */
-  std::size_t write(const char* data);
-
-
-  /**
-   * \brief Write `size` bytes from `data`
-   *
-   * \param[in] data `char[]` data
-   * \param[in] size Number of bytes
-   * \returns   Number of bytes written
-   */
-  std::size_t write(const char* data, std::size_t size);
-
-
-  /**
-   * \brief Write string data
-   *
-   * \param[in] data String data
-   * \returns   Number of bytes written
-   */
-  std::size_t write(const std::string& data);
-
-
-  /**
-   * \brief Perform SCPI query
-   *
-   * \param[in] scpi Null-terminated SCPI query
-   * \returns   Query response
-   *
-   * \note The maximum read size is determined by Socket::bufferSize_B(),
-   * Socket::setBufferSize()
-   */
-  std::string query(const char* scpi);
-
-
-  /**
-   * \brief Perform SCPI query
-   *
-   * \param[in] scpi Null-terminated SCPI query
-   * \param[in] bufferSize_B Maximum number of bytes to read
-   * \returns   Query response
-   */
-  std::string query(const char* scpi, std::size_t bufferSize_B);
-
-
-  /**
-   * \brief Perform SCPI query
-   *
-   * \param[in] scpi SCPI query
-   * \returns   Query response
-   *
-   * \note The maximum read size is determined by Socket::bufferSize_B(),
-   * Socket::setBufferSize()
-   */
-  std::string query(const std::string& scpi);
-
-
-  /**
-   * \brief Perform SCPI query
-   *
-   * \param[in] scpi Null-terminated SCPI query
-   * \param[in] bufferSize_B Maximum number of bytes to read
-   * \returns   Query response
-   */
-  std::string query(const std::string& scpi, std::size_t bufferSize_B);
+   /**
+    * \brief read data into buffer
+    *
+    * \param[in]  data      Data to be written
+    * \param[in]  dataSize  Size of data to be written
+    * \param[out] writeSize Returns bytes written
+    * \returns    true if write succeeded; false otherwise
+    */
+   virtual bool writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize = nullptr);
 
 
 private:
 
-  Address _address;
-  Buffer  _buffer;
+  // end point
+  std::string _host;
+  int         _port;
+
+
+  // socket
   boost::asio::io_context _io_context;
   boost::asio::ip::tcp::socket _socket;
 

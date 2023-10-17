@@ -16,8 +16,7 @@ find_package(Boost 1.83.0 REQUIRED COMPONENTS filesystem system)
 
 add_library(
   rohdeschwarz
-  src/busses/socket/address.cpp
-  src/busses/socket/buffer.cpp
+  src/busses/socket/helpers.cpp
   src/busses/socket/socket.cpp
   src/busses/visa/cvisa.cpp
   src/busses/visa/visa.cpp
