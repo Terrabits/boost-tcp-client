@@ -50,20 +50,16 @@ std::string Visa::endpoint() const
 int Visa::timeout_ms() const
 {
   // get timeout
-  ViAttrState value;
-  if (!attribute(VI_ATTR_TMO_VALUE, &value))
-  {
-    // error
-    return -999;
-  }
+  ViAttrState value = -999;
+  attribute(VI_ATTR_TMO_VALUE, &value);
 
+  // convert to int
   return int(value);
 }
 
-
 bool Visa::setTimeout(int timeout_ms)
 {
-  return setAttribute(VI_ATTR_TMO_VALUE, ViAttrState(timeout_ms));
+  return setAttribute(VI_ATTR_TMO_VALUE, ViAttrState(timeout_ms)) >= VI_SUCCESS;
 }
 
 

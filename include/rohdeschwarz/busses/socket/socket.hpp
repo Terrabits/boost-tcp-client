@@ -152,8 +152,9 @@ private:
 
 
   // socket
-  boost::asio::io_context _io_context;
+  boost::asio::io_context      _io_context;
   boost::asio::ip::tcp::socket _socket;
+  boost::asio::ip::tcp::socket::native_handle_type _native_handle;
 
 
   // helpers

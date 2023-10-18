@@ -19,14 +19,18 @@ const auto shutdown_both = boost::asio::ip::tcp::socket::shutdown_both;
 
 
 // types
+// Note: do I need WS2tcpip.h on windows?
+// See https://stackoverflow.com/a/4454036/1390788
 using char_p       = char*;
 using const_char_p = const char*;
+using socklen_t_p  = socklen_t*;
 
 
 Socket::Socket(const char* host, int port) :
   _host(host),
   _port(port),
-  _socket(_io_context)
+  _socket(_io_context),
+  _native_handle(_socket.native_handle())
 {
   open();
 }
@@ -35,8 +39,8 @@ Socket::Socket(const char* host, int port) :
 Socket::Socket(const std::string& host, int port) :
   _host(host),
   _port(port),
-  _socket(_io_context)
-
+  _socket(_io_context),
+  _native_handle(_socket.native_handle())
 {
   open();
 }
@@ -70,15 +74,45 @@ std::string Socket::endpoint() const
 
 int Socket::timeout_ms() const
 {
-  // TODO
-  return -999;
+  // use read timeout
+  int timeout_ms;
+  int bytes_read;
+  getsockopt(
+    _native_handle,
+    SOL_SOCKET, SO_RCVTIMEO,
+    char_p(&timeout_ms),
+    socklen_t_p(&bytes_read)
+  );
+  return timeout_ms;
 }
 
 
 bool Socket::setTimeout(int timeout_ms)
 {
-  // TODO
-  return false;
+  // set read timeout
+  int result = setsockopt
+  (
+      _native_handle,
+      SOL_SOCKET, SO_RCVTIMEO,
+      const_char_p(&timeout_ms),
+      sizeof(timeout_ms)
+  );
+  if (result != 0)
+  {
+    // error
+    return false;
+  }
+
+  // set write timeout
+  result = setsockopt(
+    _native_handle,
+    SOL_SOCKET, SO_SNDTIMEO,
+    const_char_p(&timeout_ms),
+    sizeof(timeout_ms)
+  );
+
+  // success?
+  return result == 0;
 }
 
 
