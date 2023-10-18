@@ -14,7 +14,7 @@
 #include "rohdeschwarz/helpers.hpp"
 using system_error = rohdeschwarz::busses::socket::system_error;
 using Instrument   = rohdeschwarz::instruments::Instrument;
-using trim         = rohdeschwarz::trim();
+using trim         = rohdeschwarz::trim;
 
 
 // std lib
