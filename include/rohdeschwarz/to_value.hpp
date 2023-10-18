@@ -2,10 +2,6 @@
 #define ROHDESCHWARZ_TO_VALUE_HPP
 
 
-// rohdeschwarz
-#include "rohdeschwarz/helpers.hpp"
-
-
 // std lib
 #include <string>
 
@@ -24,34 +20,22 @@ OutputType to_value(std::string input);
 
 // int
 template<>
-int to_value(std::string input)
-{
-  return std::stoi(trim(input));
-};
+int to_value(std::string input);
 
 
 // unsigned int
 template<>
-unsigned int to_value(std::string input)
-{
-  return std::stoul(trim(input));
-};
+unsigned int to_value(std::string input);
 
 
 // double
 template<>
-double to_value(std::string input)
-{
-  return std::stod(trim(input));
-};
+double to_value(std::string input);
 
 
 // string
 template<>
-std::string to_value(std::string input)
-{
-  return unquote(trim(input));
-}
+std::string to_value(std::string input);
 
 
 }       // rohdeschwarz

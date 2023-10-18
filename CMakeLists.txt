@@ -33,6 +33,7 @@ add_library(
   src/scpi/bool.cpp
   src/scpi/index_name.cpp
   src/helpers.cpp
+  src/to_value.cpp
 )
 
 
