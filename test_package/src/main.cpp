@@ -14,7 +14,6 @@
 #include "rohdeschwarz/helpers.hpp"
 using system_error = rohdeschwarz::busses::socket::system_error;
 using Instrument   = rohdeschwarz::instruments::Instrument;
-using trim         = rohdeschwarz::trim;
 
 
 // std lib
@@ -34,7 +33,7 @@ if (instrument.openTcp("localhost"))
   const auto id = rohdeschwarz::trim(instrument.id());
 
   // print for debug
-  #ifdef NDEBUG
+  #ifndef NDEBUG
     std::cout << "connected: " << id << std::endl;
   #endif
 
@@ -44,7 +43,7 @@ else
   // connection failed
 
   // print for debug
-  #ifdef NDEBUG
+  #ifndef NDEBUG
     std::cout << "error: connection to localhost failed" << std::endl;
   #endif
 
