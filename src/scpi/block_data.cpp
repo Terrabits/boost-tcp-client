@@ -14,10 +14,6 @@ using namespace rohdeschwarz::scpi;
 #include <string>
 
 
-// types
-using uint = unsigned int;
-
-
 BlockData::BlockData() :
   _isHeader(false),
   _headerSize_B (0),
@@ -28,7 +24,7 @@ BlockData::BlockData() :
 }
 
 
-BlockData::BlockData(const std::vector<unsigned char> &data) :
+BlockData::BlockData(std::vector<unsigned char> data) :
   _isHeader(false),
   _headerSize_B (0),
   _payloadSize_B(0),
@@ -39,70 +35,58 @@ BlockData::BlockData(const std::vector<unsigned char> &data) :
 }
 
 
-BlockData::BlockData(std::vector<unsigned char>&& data) :
-  _isHeader(false),
-  _headerSize_B (0),
-  _payloadSize_B(0),
-  _blockSize_B  (0),
-  _data(data)
-{
-  processHeader();
-}
-
-
-bool BlockData::isPartialHeader() const
+bool BlockData::isHeaderError() const
 {
   if (isHeader())
   {
-    // full header
-    return true;
+    // full, valid header
+    return false;
   }
 
   if (_data.empty())
   {
-    // no data;
-    // default to true
-    return true;
+    // no data to validate; no error yet...
+    return false;
   }
 
   if (char(_data[0]) != '#')
   {
     // missing magic character
-    return false;
+    return true;
   }
 
   if (_data.size() == 1)
   {
     // nothing else to check
-    return true;
+    return false;
   }
 
   // check number of size digits
   if (!std::isdigit(char(_data[1])))
   {
-    // invalid
-    return false;
+    // error: not a number
+    return true;
   }
 
   if (_data.size() == 2)
   {
     // nothing else to check
-    return true;
+    return false;
   }
 
   // check available size digits
-  const uint digits = std::min(parseNumberOfSizeDigits(), uint(_data.size() - 2));
-  for (uint digit = 0; digit < digits; digit++)
+  const auto digits = std::min(parseNumberOfSizeDigits(), _data.size() - 2);
+  for (std::size_t digit = 0; digit < digits; digit++)
   {
     if (!std::isdigit(_data[2 + digit]))
     {
-      // invalid
-      return false;
+      // error: not a number
+      return true;
     }
   }
 
   // no errors found
-  return true;
+  return false;
 }
 
 
@@ -122,48 +106,40 @@ bool BlockData::isComplete() const
 }
 
 
-void BlockData::push_back(const std::vector<unsigned char>& data)
+void BlockData::push_back(std::vector<unsigned char>::const_iterator begin, std::size_t size)
 {
   if (isComplete())
   {
-    // payload already complete
+    // block needs no more data
     return;
   }
 
-  if (data.empty())
+  if (!isHeader())
   {
-    // nothing to push back
+    // copy all
+    auto end = begin + size;
+    _data.insert(_data.end(), begin, end);
+    processHeader();
     return;
   }
 
-  // find last byte to insert
-  auto data_end = data.end();
-  if (isHeader())
-  {
-    // only insert necessary, valid data
-    const uint bytesToRead = std::min(bytesRemaining(), uint(data.size()));
-    data_end = data.begin() + bytesToRead;
-  }
+  // get number of bytes to read from data
+  const auto read_bytes = std::min(bytesRemaining(), size);
 
-  // insert and process
-  _data.insert(_data.end(), data.begin(), data_end);
+  // insert data and process
+  auto end = begin + read_bytes;
+  _data.insert(_data.end(), begin, end);
   processHeader();
 }
 
 
-void BlockData::push_back(std::vector<unsigned char>&& data)
-{
-  push_back(data);
-}
-
-
-unsigned int BlockData::payloadSize_B() const
+std::size_t BlockData::size() const
 {
   return _payloadSize_B;
 }
 
 
-unsigned char* BlockData::payload()
+unsigned char* BlockData::data()
 {
   if (!isHeader())
   {
@@ -174,7 +150,7 @@ unsigned char* BlockData::payload()
 }
 
 
-unsigned int BlockData::parseNumberOfSizeDigits() const
+std::size_t BlockData::parseNumberOfSizeDigits() const
 {
   if (_data.size() < 2)
   {
@@ -190,9 +166,9 @@ unsigned int BlockData::parseNumberOfSizeDigits() const
 }
 
 
-unsigned int BlockData::parsePayloadSize_B() const
+std::size_t BlockData::parsePayloadSize_B() const
 {
-  const uint digits = parseNumberOfSizeDigits();
+  const std::size_t digits = parseNumberOfSizeDigits();
   if (!digits)
   {
     // cannot proceed
@@ -216,29 +192,29 @@ void BlockData::processHeader()
 {
   if (isHeader())
   {
-    // already processed
+    // header already processed
     return;
   }
 
-  if (!isPartialHeader())
+  if (isHeaderError())
   {
-    // header is invalid
+    // header is invalid; cannot process
     return;
   }
 
-  // header size digits
-  const uint numberOfSizeDigits = parseNumberOfSizeDigits();
+  // get number of header size digits
+  const auto numberOfSizeDigits = parseNumberOfSizeDigits();
   if (!numberOfSizeDigits)
   {
-    // cannot process
+    // cannot process (yet)
     return;
   }
 
   // payload size
-  const uint payloadSize_B = parsePayloadSize_B();
+  const std::size_t payloadSize_B = parsePayloadSize_B();
   if (!payloadSize_B)
   {
-    // cannot process
+    // cannot process (yet)
     return;
   }
 
@@ -251,12 +227,12 @@ void BlockData::processHeader()
 }
 
 
-unsigned int BlockData::bytesRemaining() const
+std::size_t BlockData::bytesRemaining() const
 {
   if (isComplete())
   {
     return 0;
   }
 
-  return uint(_blockSize_B - _data.size());
+  return _blockSize_B - _data.size();
 }

@@ -29,7 +29,7 @@ std::string toScpi(bool value);
  *
  * \returns `true` if `scpi` is `"1"`; `false` otherwise
  */
-bool toBool(const std::string& scpi);
+bool toBool(std::string scpi);
 
 
 }       // namespace rohdeschwarz::scpi

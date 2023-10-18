@@ -10,27 +10,25 @@
 
 // rohdeschwarz
 #include "rohdeschwarz/busses/socket/socket.hpp"
+#include "rohdeschwarz/instruments/instrument.hpp"
 using system_error = rohdeschwarz::busses::socket::system_error;
-using Socket       = rohdeschwarz::busses::socket::Socket;
-
-
-// std lib
-#include <iostream>
+using Instrument   = rohdeschwarz::instruments::Instrument;
 
 
 int main()
 {
   try
   {
-    // create open socket
-    Socket socket("localhost", 5025);
-
-    // get instrument id
-    socket.query("*IDN?\n");
+    // query id string
+    Instrument instrument;
+    instrument.openTcp("localhost");
+    instrument.id();
   }
+
+  // error?
   catch (system_error& e)
   {
-    // ignore error
+    // ignore
   }
   return 0;
 }

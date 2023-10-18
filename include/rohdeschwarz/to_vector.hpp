@@ -1,6 +1,6 @@
 /**
  * \file to_vector.hpp
- * \brief rohdeschwarz::toVector(), rohdeschwarz::toVectorComplexDouble()
+ * \brief rohdeschwarz::to_vector(), rohdeschwarz::to_vector_complex_double()
  * definitions and implementations
  */
 
@@ -24,7 +24,7 @@ namespace rohdeschwarz
    * primitive type.
    */
   template <class out_type, class in_type = unsigned char>
-  std::vector<out_type> toVector(in_type* data, std::size_t data_size)
+  std::vector<out_type> to_vector(in_type* data, std::size_t data_size)
   {
     // out pointer type
     using out_type_p = out_type*;
@@ -48,10 +48,10 @@ namespace rohdeschwarz
    * `<real1><imag1><real2><imag2>...`
    */
   template <class in_type = unsigned char>
-  std::vector<std::complex<double>> toVectorComplexDouble(in_type* data, std::size_t data_size)
+  std::vector<std::complex<double>> to_vector_complex_double(in_type* data, std::size_t data_size)
   {
     // parse to double
-    std::vector<double> values = toVector<double>(data, data_size);
+    std::vector<double> values = to_vector<double>(data, data_size);
 
     // reserve output
     std::vector<std::complex<double>> output;

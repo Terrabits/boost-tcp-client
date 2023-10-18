@@ -93,36 +93,19 @@ void Channel::setStopFrequency(double frequency_Hz)
 
 std::vector<double> Channel::frequencies_Hz()
 {
-  // calculate buffer size (Bytes)
-  // note: requires points() scpi query
-  using uint = unsigned int;
-  const uint points      = this->points();
-  const uint bytes_per_point = 8;
-  const uint payload     = points * bytes_per_point;
-  const uint header      = 2 + uint(std::to_string(payload).size());
-  const uint buffer_size = header + payload;
-
-  // construct scpi command
-  std::stringstream stream;
-  stream << ":CALC" << _index;
-  stream << ":DATA:STIM?";
-  const std::string scpi = stream.str();
-
-  // set data format to
-  // binary 64-bit, little endian
+  // set data format to binary 64-bit, little-endian
   PreserveDataFormat preserve_data_format(_vna);
   DataFormat format = _vna->dataFormat();
   format.setBinary64Bit();
   format.setLittleEndian();
 
-  // query frequencies block data
-  scpi::BlockData block_data = _vna->queryBlockData(scpi, buffer_size + 1);
-  if (!block_data.isComplete())
+  // write
+  if (!_vna->write(":CALC%1%:DATA:STIM?", _index))
   {
-    // query failed
+    // error
     return std::vector<double>();
   }
 
-  // return frequencies vector
-  return toVector<double>(block_data.payload(), block_data.payloadSize_B());
+  // read
+  return _vna->read64BitVector();
 }

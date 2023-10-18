@@ -7,17 +7,15 @@
 // rohdeschwarz
 #include "rohdeschwarz/scpi/bool.hpp"
 #include "rohdeschwarz/helpers.hpp"
-using namespace rohdeschwarz::scpi;
-using namespace rohdeschwarz;
 
 
-std::string toScpi(bool value)
+std::string rohdeschwarz::scpi::toScpi(bool value)
 {
   return value? "1" : "0";
 }
 
 
-bool toBool(const std::string& scpi)
+bool rohdeschwarz::scpi::toBool(std::string scpi)
 {
-  return trim(scpi) == "1";
+  return rohdeschwarz::trim(scpi) == "1";
 }

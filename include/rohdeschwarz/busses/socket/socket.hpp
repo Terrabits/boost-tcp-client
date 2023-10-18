@@ -94,6 +94,18 @@ public:
 
 
    /**
+    * \brief Get timeout, in ms
+    */
+   virtual int timeout_ms() const;
+
+
+   /**
+    * \brief Set timeout, in ms
+    */
+   virtual bool setTimeout(int timeout_ms);
+
+
+   /**
     * \brief read data into buffer
     *
     * \param[in]  buffer     Buffer for read

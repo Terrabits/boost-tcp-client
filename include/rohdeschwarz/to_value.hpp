@@ -26,7 +26,7 @@ OutputType to_value(std::string input);
 template<>
 int to_value(std::string input)
 {
-  return std::stoi(input);
+  return std::stoi(trim(input));
 };
 
 
@@ -34,7 +34,7 @@ int to_value(std::string input)
 template<>
 unsigned int to_value(std::string input)
 {
-  return std::stoul(input);
+  return std::stoul(trim(input));
 };
 
 
@@ -42,7 +42,7 @@ unsigned int to_value(std::string input)
 template<>
 double to_value(std::string input)
 {
-  return std::stod(input);
+  return std::stod(trim(input));
 };
 
 

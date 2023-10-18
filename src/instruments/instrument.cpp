@@ -4,15 +4,16 @@
  */
 
 
- // ignore strcpy warnings on windows
- #define _CRT_SECURE_NO_WARNINGS 1
-
-
 // rohdeschwarz
+#include "rohdeschwarz/busses/socket/socket.hpp"
+#include "rohdeschwarz/busses/visa/visa.hpp"
 #include "rohdeschwarz/instruments/instrument.hpp"
 #include "rohdeschwarz/instruments/preserve_timeout.hpp"
 #include "rohdeschwarz/scpi/bool.hpp"
 #include "rohdeschwarz/helpers.hpp"
+#include "rohdeschwarz/to_vector.hpp"
+using namespace rohdeschwarz::busses::socket;
+using namespace rohdeschwarz::busses::visa;
 using namespace rohdeschwarz::instruments;
 using namespace rohdeschwarz::scpi;
 using namespace rohdeschwarz;
@@ -24,62 +25,27 @@ using namespace rohdeschwarz;
 
 
 // types
-using char_p = char*;
-
-
-Instrument::Instrument()
-  : _resource_manager(VI_NULL),
-    _instrument(VI_NULL),
-    _status(VI_SUCCESS)
-{
-  // TODO: throw exception on error?
-  openDefaultRM();
-}
-
-
-Instrument::~Instrument()
-{
-  if (isOpen())
-  {
-    close();
-  }
-}
-
-
-bool Instrument::isVisa() const
-{
-  return _visa.isVisa();
-}
+using const_char_p = const char*;
 
 
 bool Instrument::isOpen() const
 {
-  return _instrument != VI_NULL;
+  return _bus != nullptr;
 }
 
 
-bool Instrument::open(const char* resource, unsigned int timeout_ms)
+bool Instrument::openVisa(std::string resource, unsigned int timeout_ms)
 {
-  const std::string resource_str(resource);
-  return open(resource_str, timeout_ms);
-}
-
-
-bool Instrument::open(const std::string& resource, unsigned int timeout_ms)
-{
-  // open
-  _status = _visa.viOpen(
-    _resource_manager,
-    ViRsrc(resource.c_str()),
-    ViUInt32(VI_NULL), // mode
-    ViUInt32(timeout_ms),
-    &_instrument
-  );
-
-  if (isError())
+  // connect to resource
+  using rohdeschwarz::busses::visa::system_error;
+  try
   {
-    // connection failed
-    close();
+    _bus.reset(new Visa(resource, timeout_ms));
+  }
+
+  // error
+  catch (const system_error& error)
+  {
     return false;
   }
 
@@ -88,176 +54,214 @@ bool Instrument::open(const std::string& resource, unsigned int timeout_ms)
 }
 
 
-bool Instrument::close()
+bool Instrument::openTcp(std::string host, unsigned int timeout_ms)
 {
-  if (isOpen())
+  // connect to host
+  using rohdeschwarz::busses::socket::system_error;
+  try
   {
-    // close connection
-    _status = _visa.viClose(ViObject(_instrument));
-    if (_status < VI_SUCCESS)
-    {
-      // close failed
-      return false;
-    }
+    _bus.reset(new Socket(host, timeout_ms));
   }
 
-  // clear instrument session
-  _instrument = VI_NULL;
+  // error
+  catch (const system_error& error)
+  {
+    return false;
+  }
+
+  // success
   return true;
+}
+
+
+void Instrument::close()
+{
+  _bus.reset();
+}
+
+
+std::size_t Instrument::bufferSize_B() const
+{
+  return _bus->bufferSize_B();
+}
+
+
+void Instrument::setBufferSize(std::size_t size_bytes)
+{
+  _bus->setBufferSize(size_bytes);
+}
+
+
+std::vector<unsigned char>* Instrument::buffer()
+{
+  return _bus->buffer();
+}
+
+const std::vector<unsigned char>* Instrument::buffer() const
+{
+  return _bus->buffer();
+}
+
+std::vector<unsigned char> Instrument::takeData()
+{
+  return _bus->takeData();
 }
 
 
 int Instrument::timeout_ms()
 {
-  return int(attribute(VI_ATTR_TMO_VALUE));
+  return _bus->timeout_ms();
 }
 
 
 bool Instrument::setTimeout(int timeout_ms)
 {
-  return setAttribute(VI_ATTR_TMO_VALUE, ViAttrState(timeout_ms));
+  return _bus->setTimeout(timeout_ms);
 }
 
 
-void Instrument::binaryWrite(const std::vector<unsigned char> &data)
+bool Instrument::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize)
 {
-  ViUInt32 bytes_written;
-  _status = _visa.viWrite(
-    _instrument,
-    ViBuf(data.data()),
-    ViUInt32(data.size()),
-    &bytes_written
-  );
+  return _bus->readData(buffer, bufferSize, readSize);
 }
 
 
-std::vector<unsigned char> Instrument::binaryRead(unsigned int bufferSize_B)
+bool Instrument::writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize)
 {
-  std::vector<unsigned char> buffer(bufferSize_B);
-  ViUInt32 bytes_read;
-  _status = _visa.viRead(
-    _instrument,
-    buffer.data(),
-    bufferSize_B,
-    &bytes_read
-  );
-  return buffer;
+  return _bus->writeData(data, dataSize, writeSize);
 }
 
 
-std::vector<unsigned char> Instrument::binaryQuery(std::vector<unsigned char> scpi, unsigned int bufferSize_B)
+bool Instrument::readData(std::size_t* readSize)
 {
-  binaryWrite(scpi);
-  if (isError())
+  return _bus->readData(readSize);
+}
+
+
+std::string Instrument::read()
+{
+  // read data
+  std::size_t size;
+  if (!readData(&size))
   {
-    // write failed
-    return std::vector<unsigned char>();
+    // error
+    return std::string();
   }
-  return binaryRead(bufferSize_B);
+
+  // convert to string
+  auto data = const_char_p(buffer()->data());
+  return std::string(data, size);
 }
 
 
-void Instrument::write(const std::string &scpi)
+std::vector<double> Instrument::readAsciiVector()
 {
-  binaryWrite(binaryCopy(scpi));
+  // TODO
+  return std::vector<double>();
 }
 
 
-scpi::BlockData Instrument::readBlockData(unsigned int bufferSize_B)
+std::vector<std::complex<double>> Instrument::readAsciiComplexVector()
 {
-  scpi::BlockData data(binaryRead(bufferSize_B));
-  if (isError())
+  // TODO
+  return std::vector<std::complex<double>>();
+}
+
+
+scpi::BlockData Instrument::readBlockData()
+{
+  // read initial data
+  std::size_t read_size;
+  if (!readData(&read_size))
   {
+    // error
     return scpi::BlockData();
   }
 
-  while (!data.isComplete())
+  // take initial data from buffer
+  auto data = takeData();
+  data.resize(read_size);
+
+  // create block
+  scpi::BlockData block_data(std::move(data));
+
+  // read until block data is complete
+  while (!block_data.isComplete())
   {
-    if (!data.isPartialHeader())
+    if (block_data.isHeaderError())
     {
-      // header error; return empty data
+      // cannot complete block without header
       return scpi::BlockData();
     }
 
     // read more data
-    data.push_back(binaryRead());
-    if (isError())
+    if (!readData(&read_size))
     {
-      // visa error
-      return scpi::BlockData();
+      // error
+      return BlockData();
     }
+
+    // push data to block
+    const auto begin = buffer()->begin();
+    block_data.push_back(begin, read_size);
   }
 
   // block data is complete
-  return data;
+  return block_data;
 }
 
 
-scpi::BlockData Instrument::queryBlockData(const std::string &scpi, unsigned int bufferSize_B)
+std::vector<double> Instrument::read64BitVector()
 {
-  write(scpi);
-  if (isError())
+  // read block data
+  BlockData data = readBlockData();
+  if (!data.isComplete())
   {
-    return scpi::BlockData();
+    // error
+    return std::vector<double>();
   }
 
-  return readBlockData(bufferSize_B);
+  // parse block data
+  return to_vector<double>(data.data(), data.size());
 }
 
 
-std::string Instrument::read(unsigned int bufferSize_B)
+std::vector<std::complex<double>> Instrument::read64BitComplexVector()
 {
-  auto buffer     = binaryRead(bufferSize_B);
-  auto buffer_ptr = char_p(buffer.data());
-  return std::string(buffer_ptr, buffer.size());
-}
-
-
-std::string Instrument::query(const std::string &scpi, unsigned int bufferSize_B)
-{
-  write(scpi);
-  if (isError())
+  // read block data
+  BlockData data = readBlockData();
+  if (!data.isComplete())
   {
-    // write failed
-    return std::string();
+    // error
+    return std::vector<std::complex<double>>();
   }
-  return read(bufferSize_B);
+
+  // parse block data
+  return to_vector_complex_double(data.data(), data.size());
 }
 
 
-bool Instrument::isError() const
+bool Instrument::isBusError() const
 {
-  return _status < VI_SUCCESS;
+  return _bus->isError();
 }
 
 
-ViStatus Instrument::status() const
+std::string Instrument::busStatus() const
 {
-  return _status;
-}
-
-
-std::string Instrument::statusMessage()
-{
-  ViChar description[1000];
-  _status = _visa.viStatusDesc(
-    _instrument,
-    _status,
-    description
-  );
-  return std::string(description);
+  return _bus->statusMessage();
 }
 
 
 std::string Instrument::id()
 {
-  return rightTrim(query("*IDN?"));
+  return trim(query("*IDN?"));
 }
 
 
 std::string Instrument::options()
 {
-  return rightTrim(query("*OPT?"));
+  return trim(query("*OPT?"));
 }
 
 
@@ -267,7 +271,7 @@ void Instrument::clearErrors()
 }
 
 
-void Instrument::reset()
+void Instrument::preset()
 {
   write("*RST");
 }
@@ -279,54 +283,9 @@ void Instrument::wait()
 }
 
 
-bool Instrument::isOperationComplete()
-{
-  return toBool(query("*OPC"));
-}
-
-
 bool Instrument::blockUntilOperationComplete(unsigned int timeout_ms)
 {
   PreserveTimeout preserve_timeout(this);
   setTimeout(timeout_ms);
-  return toBool(query("*OPC?"));
-}
-
-
-bool Instrument::openDefaultRM()
-{
-  _status = _visa.viOpenDefaultRM(&_resource_manager);
-  return !isError();
-}
-
-
-ViAttrState Instrument::attribute(ViAttr attribute)
-{
-  // value pointer type
-  using void_p = void _VI_PTR;
-
-  // get attribute
-  ViAttrState value = 0;
-  _status = _visa.viGetAttribute(_instrument, attribute, void_p(&value));
-  return value;
-}
-
-
-bool Instrument::setAttribute(ViAttr attribute, ViAttrState value)
-{
-  _status = _visa.viSetAttribute(_instrument, attribute, value);
-  return isError();
-}
-
-
-std::vector<unsigned char> Instrument::binaryCopy(const std::string &input)
-{
-  // prepare binary buffer
-  std::vector<unsigned char> output;
-  output.resize(input.size() + 1);
-
-  // copy to buffer
-  char_p output_ptr = char_p(output.data());
-  strncpy(output_ptr, input.c_str(), input.size());
-  return output;
+  return queryScpiBool("*OPC?");
 }

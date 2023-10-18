@@ -47,17 +47,61 @@ std::string Visa::endpoint() const
 }
 
 
+int Visa::timeout_ms() const
+{
+  // get timeout
+  ViAttrState value;
+  if (!attribute(VI_ATTR_TMO_VALUE, &value))
+  {
+    // error
+    return -999;
+  }
+
+  return int(value);
+}
+
+
+bool Visa::setTimeout(int timeout_ms)
+{
+  return setAttribute(VI_ATTR_TMO_VALUE, ViAttrState(timeout_ms));
+}
+
+
 bool Visa::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize)
 {
-  // TODO
-  return false;
+  _status = _visa.viRead(
+    _instrument,
+    ViPBuf(buffer),
+    ViUInt32(bufferSize),
+    ViPUInt32(readSize)
+  );
+  return isError();
 }
 
 
 bool Visa::writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize)
 {
-  // TODO
-  return false;
+  _status = _visa.viWrite(
+    _instrument,
+    ViBuf(data),
+    ViUInt32(dataSize),
+    ViPUInt32(writeSize)
+  );
+  return isError();
+}
+
+
+bool Visa::attribute(ViAttr name, ViAttrState* value) const
+{
+  auto status = _visa.viGetAttribute(_instrument, name, value);
+  return status >= VI_SUCCESS;
+}
+
+
+bool Visa::setAttribute(ViAttr name, ViAttrState value)
+{
+  _status = _visa.viSetAttribute(_instrument, name, value);
+  return isError();
 }
 
 

@@ -68,6 +68,20 @@ std::string Socket::endpoint() const
 }
 
 
+int Socket::timeout_ms() const
+{
+  // TODO
+  return -999;
+}
+
+
+bool Socket::setTimeout(int timeout_ms)
+{
+  // TODO
+  return false;
+}
+
+
 bool Socket::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize)
 {
   // read
@@ -79,7 +93,7 @@ bool Socket::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t
     _readSize = boost::asio::read(_socket, _buffer);
   }
 
-  // read error?
+  // error?
   catch (const system_error& error)
   {
     return false;
@@ -107,7 +121,7 @@ bool Socket::writeData(const unsigned char* data, std::size_t dataSize, std::siz
     _writeSize = boost::asio::write(_socket, _buffer);
   }
 
-  // write error?
+  // error?
   catch (const system_error& error)
   {
     return false;

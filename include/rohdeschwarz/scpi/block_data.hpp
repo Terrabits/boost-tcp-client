@@ -9,6 +9,7 @@
 
 
 // std lib
+#include <cstddef>
 #include <vector>
 
 
@@ -35,32 +36,23 @@ public:
   /**
    * \brief Constructor
    *
-   * \param[in] data Initial data to populate Block Data with
-   */
-  BlockData(const std::vector<unsigned char> &data);  // copy
-
-
-  /**
-   * \brief Constructor
-   *
    * This constructor supports move semantics.
    *
    * \param[in] data Initial data to populate Block Data with
    */
-  BlockData(std::vector<unsigned char>&& data);       // move
+  BlockData(std::vector<unsigned char> data);
 
 
   // header
 
   /**
-   * \brief Checks if Block Data header is at least partially valid
+   * \brief Checks the header for errors
    *
-   * Incomplete Block Data headers are checked for the potential to be correct
-   * with more data.
+   * Incomplete headers are judged based on the
    *
    * \returns `true` if block data header is valid or has the potential to be valid; `false` otherwise
    */
-  bool isPartialHeader() const;
+  bool isHeaderError() const;
 
 
   /**
@@ -78,17 +70,9 @@ public:
   // push back
 
   /**
-   * \brief Appends data to Block Data
+   * \brief Copies data to block
    */
-  void push_back(const std::vector<unsigned char>& data);
-
-
-  /**
-   * \brief Appends data to Block Data
-   *
-   * This method supports move semantics.
-   */
-  void push_back(std::vector<unsigned char>&& data);
+  void push_back(std::vector<unsigned char>::const_iterator begin, std::size_t size);
 
 
   // payload data
@@ -100,7 +84,7 @@ public:
    *
    * \returns payload size, in bytes, if header is valid and complete; `0` otherwise
    */
-  unsigned int payloadSize_B() const;
+  std::size_t size() const;
 
 
   /**
@@ -110,16 +94,16 @@ public:
    *
    * \returns pointer to payload data
    */
-  unsigned char* payload();
+  unsigned char* data();
 
 
 private:
 
   // header members
   bool         _isHeader;
-  unsigned int _headerSize_B;
-  unsigned int _payloadSize_B;
-  unsigned int _blockSize_B;
+  std::size_t _headerSize_B;
+  std::size_t _payloadSize_B;
+  std::size_t _blockSize_B;
 
 
   // data
@@ -137,7 +121,7 @@ private:
    *
    * Requires access to the second byte of the Block Data header
    */
-  unsigned int parseNumberOfSizeDigits() const;
+  std::size_t parseNumberOfSizeDigits() const;
 
 
   /**
@@ -145,7 +129,7 @@ private:
    *
    * Requires `isHeader()` to be `true`
    */
-  unsigned int parsePayloadSize_B() const;
+  std::size_t parsePayloadSize_B() const;
 
 
   /**
@@ -153,7 +137,7 @@ private:
    *
    * Requires `isHeader()` to be `true`
    */
-  unsigned int parseBlockSize_B()   const;
+  std::size_t parseBlockSize_B()   const;
 
 
   /**
@@ -171,7 +155,7 @@ private:
    *
    * Requires `isHeader()` to be `true`
    */
-  unsigned int bytesRemaining() const;
+  std::size_t bytesRemaining() const;
 
 
 };  // BlockData

@@ -146,80 +146,39 @@ void Trace::setDiagram(unsigned int diagram)
 
 std::vector<double> Trace::y()
 {
-  // CALC:DATA:TRAC? '<name>',FDAT
-
-  // get channel
-  auto index   = this->channel();
-  auto channel = _vna->channel(index);
-
-  // calculate buffer size (Bytes)
-  // note: requires points() scpi query
-  using uint = unsigned int;
-  const uint points      = channel.points();
-  const uint bytes_per_point = 8;
-  const uint payload     = points * bytes_per_point;
-  const uint header      = 2 + uint(std::to_string(payload).size());
-  const uint buffer_size = header + payload;
-
-  // set binary data format
+  // set data format to binary 64-bit, little-endian
   PreserveDataFormat preserve_data_format(_vna);
   DataFormat format = _vna->dataFormat();
   format.setBinary64Bit();
   format.setLittleEndian();
 
-  // scpi
-  std::stringstream scpi;
-  scpi << ":CALC:DATA:TRAC? ";
-  scpi << quote(name());
-  scpi << ",FDAT";
-
-  // query data
-  scpi::BlockData data = _vna->queryBlockData(scpi.str(), buffer_size + 1);
-  if (!data.isComplete())
+  // write
+  if (!_vna->write("CALC:DATA:TRAC? \'%1%\',FDAT", name()))
   {
-    // query failed
+    // error
     return std::vector<double>();
   }
 
-  // parse
-  return toVector<double>(data.payload(), data.payloadSize_B());
+  // read
+  return _vna->read64BitVector();
 }
 
 
 std::vector<std::complex<double>> Trace::y_complex()
 {
-  // get channel
-  Channel channel = _vna->channel(this->channel());
-
-  // calculate buffer size (Bytes)
-  // note: requires points() scpi query
-  using uint = unsigned int;
-  const uint points      = channel.points();
-  const uint bytes_per_point = 16;
-  const uint payload     = points * bytes_per_point;
-  const uint header      = 2 + uint(std::to_string(payload).size());
-  const uint buffer_size = header + payload;
-
-  // set binary data format
+  // set data format to binary 64-bit, little-endian
   PreserveDataFormat preserve_data_format(_vna);
   DataFormat format = _vna->dataFormat();
   format.setBinary64Bit();
   format.setLittleEndian();
 
-  // CALC:DATA:TRAC? '<name>',FDAT
-  std::stringstream scpi;
-  scpi << ":CALC:DATA:TRAC? ";
-  scpi << quote(name());
-  scpi << ",SDAT";
-
-  // query data
-  scpi::BlockData data = _vna->queryBlockData(scpi.str(), buffer_size + 1);
-  if (!data.isComplete())
+  // write
+  if (!_vna->write(":CALC:DATA:TRAC? \'%1%\',SDAT", name()))
   {
-    // query failed
+    // error
     return std::vector<std::complex<double>>();
   }
 
-  // parse
-  return toVectorComplexDouble(data.payload(), data.payloadSize_B());
+  // read
+  return _vna->read64BitComplexVector();
 }

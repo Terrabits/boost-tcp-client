@@ -9,6 +9,10 @@
 using namespace rohdeschwarz::busses;
 
 
+// std lib
+#include <utility>
+
+
 // constants
 const std::size_t _50_KB_ = 50 * 1024;
 
@@ -34,18 +38,6 @@ Bus::~Bus()
 }
 
 
-unsigned char* Bus::data()
-{
-  return _buffer.data();
-}
-
-
-const unsigned char* Bus::data() const
-{
-  return _buffer.data();
-}
-
-
 std::size_t Bus::bufferSize_B() const
 {
   return _buffer.size();
@@ -58,69 +50,27 @@ void Bus::setBufferSize(std::size_t bytes)
 }
 
 
+std::vector<unsigned char>* Bus::buffer()
+{
+  return &_buffer;
+}
+
+
+const std::vector<unsigned char>* Bus::buffer() const
+{
+  return &_buffer;
+}
+
+
+std::vector<unsigned char> Bus::takeData()
+{
+  auto buffer = std::move(_buffer);
+  setBufferSize(buffer.size());
+  return buffer;
+}
+
+
 bool Bus::readData(std::size_t* readSize)
 {
   return readData(_buffer.data(), _buffer.size(), readSize);
-}
-
-
-std::string Bus::read()
-{
-  // read data
-  std::size_t readSize;
-  if (!readData(&readSize))
-  {
-    // read failed
-    return std::string();
-  }
-
-  // copy data to string
-  char_p data_ptr = char_p(data());
-  return std::string(data_ptr, readSize);
-}
-
-
-bool Bus::write(const std::string& scpi)
-{
-  uchar_p data_ptr = uchar_p(scpi.c_str());
-  return writeData(data_ptr, scpi.size());
-}
-
-
-std::string Bus::query(const std::string& scpi)
-{
-  if (!write(scpi))
-  {
-    // write failed
-    return std::string();
-  }
-  return read();
-}
-
-
-bool Bus::write(const char* scpi)
-{
-  // TODO
-  return false;
-}
-
-
-bool Bus::write(const char* scpi, std::size_t size)
-{
-  // TODO
-  return false;
-}
-
-
-std::string Bus::query(const char* scpi)
-{
-  // TODO
-  return std::string();
-}
-
-
-std::string Bus::query(const char* scpi, std::size_t size)
-{
-  // TODO
-  return std::string();
 }

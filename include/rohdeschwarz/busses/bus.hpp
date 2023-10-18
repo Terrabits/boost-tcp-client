@@ -41,9 +41,9 @@ public:
   virtual std::string endpoint() const = 0;
 
 
-  // buffer
-  unsigned char* data();
-  const unsigned char* data() const;
+  // timeout
+  virtual int timeout_ms() const = 0;
+  virtual bool setTimeout(int timeout_ms) = 0;
 
 
   // buffer size
@@ -51,27 +51,19 @@ public:
   void setBufferSize(std::size_t bytes);
 
 
-  // raw io with external buffer; pure virtual
+  // buffer
+  std::vector<unsigned char>* buffer();
+  const std::vector<unsigned char>* buffer() const;
+  std::vector<unsigned char> takeData();
+
+
+  // raw io; pure virtual
   virtual bool readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize = nullptr) = 0;
   virtual bool writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize = nullptr) = 0;
 
 
   // raw io with internal buffer
   bool readData(std::size_t* readSize = nullptr);
-
-
-  // std::string io
-  std::string read();
-  bool write(const std::string& scpi);
-  std::string query(const std::string& scpi);
-
-
-  // c string io
-  bool write(const char* scpi);
-  bool write(const char* scpi, std::size_t size);
-
-  std::string query(const char* scpi);
-  std::string query(const char* scpi, std::size_t size);
 
 
   // status

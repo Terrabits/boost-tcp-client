@@ -49,10 +49,29 @@ public:
   virtual std::string endpoint() const;
 
 
+  virtual int timeout_ms() const;
+
+
+  virtual bool setTimeout(int timeout_ms);
+
+
   virtual bool readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize = nullptr);
 
 
   virtual bool writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize = nullptr);
+
+
+  // attributes
+
+  /**
+   * \brief get VISA attribute
+   */
+  bool attribute(ViAttr name, ViAttrState* value) const;
+
+  /**
+   * \brief set VISA attribute
+   */
+  bool setAttribute(ViAttr name, ViAttrState value);
 
 
   // visa status

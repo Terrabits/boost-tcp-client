@@ -9,16 +9,25 @@
 
 
 // rohdeschwarz
+#include "rohdeschwarz/busses/bus.hpp"
 #include "rohdeschwarz/scpi/block_data.hpp"
-#include "rohdeschwarz/busses/visa/cvisa.hpp"
-using CVisa = rohdeschwarz::busses::visa::CVisa;
+#include "rohdeschwarz/scpi/bool.hpp"
+#include "rohdeschwarz/helpers.hpp"
+#include "rohdeschwarz/to_value.hpp"
 
 
 // rs visa
 #include "rs-visa/visatype.h"
 
 
+// boost
+#include "boost/format.hpp"
+
+
 // std lib
+#include <complex>
+#include <cstddef>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -45,44 +54,13 @@ class Instrument
 
 public:
 
-  /**
-   * \brief Constructor
-   *
-   * The constructor attempts to load the VISA shared library.
-   */
-  Instrument();
+
+  // open / close connection
 
   /**
-   * \brief Destructor
-   *
-   * If necessary, the destructor will close the VISA connection and/or unload
-   * the VISA shared library.
-   */
-  ~Instrument();
-
-
-  /**
-   * \brief Check if the VISA shared library loaded
-   */
-  bool isVisa() const;
-
-
-  // connect / disconnect
-
-  /**
-   * \brief Check for an open VISA connection to instrument
+   * \brief Check for an open connection to an instrument
    */
   bool isOpen() const;
-
-
-  /**
-   * \brief Open VISA connection to instrument
-   *
-   * \param[in] resource   VISA resource string as a `C` style string
-   * \param[in] timeout_ms VISA open timeout time, in milliseconds
-   * \returns `true` on success; `false` otherwise
-   */
-  bool open(const char* resource, unsigned int timeout_ms = 2000);
 
 
   /**
@@ -92,58 +70,166 @@ public:
    * \param[in] timeout_ms open timeout time, in milliseconds
    * \returns `true` on success; `false` otherwise
    */
-  bool open(const std::string& resource, unsigned int timeout_ms = 2000);
+  bool openVisa(std::string resource, unsigned int timeout_ms = 2000);
 
 
   /**
-   * \brief Close VISA connection to instrument
+   * \brief Open tcp socket connection to an instrument
+   *
+   * Attempts to connect to the instrument at `host` with a TCP socket on port `5025`.
+   *
+   * \param[in] host             host name or ip address
+   * \param[in] timeout_ms open  timeout time, in milliseconds
+   * \returns `true` on success; `false` otherwise
    */
-  bool close();
+  bool openTcp(std::string host, unsigned int timeout_ms = 2000);
+
+
+  /**
+   * \brief Close the connection to the instrument
+   */
+  void close();
+
+
+  // io buffer
+
+  std::size_t bufferSize_B() const;
+
+  void setBufferSize(std::size_t size_bytes);
+
+  std::vector<unsigned char>* buffer();
+
+  const std::vector<unsigned char>* buffer() const;
+
+  std::vector<unsigned char> takeData();
 
 
   // timeout
 
   /**
-   * \brief Query VISA timeout, in milliseconds
+   * \brief Query IO timeout time, in milliseconds
    */
   int timeout_ms();
 
 
   /**
-   * \brief Set VISA timeout
+   * \brief Set IO timeout time
    *
-   * \param[in] timeout_ms VISA timeout, in milliseconds
+   * \param[in] timeout_ms timeout, in milliseconds
    */
   bool setTimeout(int timeout_ms);
 
 
-  // binary io
+  // raw io
+
+  bool readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize = nullptr);
+
+
+  bool writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize = nullptr);
+
+
+  // raw io with internal buffers
+
+  bool readData(std::size_t* readSize = nullptr);
+
+
+  // string io
+
+  std::string read();
+
+
+  template<class... Args>
+  bool write(std::string scpi_command, Args&&... args)
+  {
+    // format scpi command
+    auto format = boost::format(scpi_command);
+    ([&]
+    {
+      format % args;
+    } (), ...);
+
+    // get complete command string
+    auto command = format.str();
+
+    // get data pointer, size
+    using uchar_p = unsigned char*;
+    auto data = uchar_p(command.c_str());
+    auto size = command.size();
+
+    // write data
+    std::size_t writeSize;
+    if (!writeData(data, size, &writeSize))
+    {
+      // error
+      return false;
+    }
+
+    // write complete?
+    return writeSize == size;
+  }
+
+
+  template<class... Args>
+  std::string query(std::string scpi_command, Args&&... args)
+  {
+    // write
+    if (!write(scpi_command, &args...))
+    {
+      // error
+      return std::string();
+    }
+
+    // read
+    return read();
+  }
+
+
+  // basic type io
+
+  template<class OutputType>
+  OutputType readValue()
+  {
+    return to_value<OutputType>(read());
+  }
+
+
+  template<class OutputType, class... Args>
+  OutputType queryValue(std::string scpi_command, Args&&... args)
+  {
+    return to_value<OutputType>(query(scpi_command, &args...));
+  }
+
+  // scpi bool io
+
+  bool readScpiBool();
+
+  template<class... Args>
+  bool queryScpiBool(std::string scpi_command, Args&&... args)
+  {
+    // write
+    if (!write(scpi_command, &args...))
+    {
+      // error
+      return false;
+    }
+
+    // parse result
+    return rohdeschwarz::scpi::toBool(read());
+  }
+
+
+  // ascii data vector io
 
   /**
-   * \brief Writes binary data to instrument
-   *
-   * \param[in] data binary data to be written
+   * \brief reads ascii data and parses it into vector <double>
    */
-  void binaryWrite(const std::vector<unsigned char> &data);
+  std::vector<double> readAsciiVector();
 
 
   /**
-   * \brief Reads binary data from instrument
-   *
-   * \param[in] bufferSize_B size of the read buffer, in bytes
-   * \returns binary data read from instrument
+   * \brief reads ascii data and parses it into vector <complex <double>>
    */
-  std::vector<unsigned char> binaryRead(unsigned int bufferSize_B = 1024);
-
-
-  /**
-   * \brief Perform binary query
-   *
-   * \param[in] data binary data to be written to instrument
-   * \param[in] bufferSize_B buffer size for binary read, in bytes
-   * \returns binary data read from instrument
-   */
-  std::vector<unsigned char> binaryQuery(std::vector<unsigned char> data, unsigned int bufferSize_B = 1024);
+  std::vector<std::complex<double>> readAsciiComplexVector();
 
 
   // block data io
@@ -153,62 +239,38 @@ public:
    *
    * `readBlockData` reads data in IEEE 488.2 Block Data format.
    */
-  scpi::BlockData readBlockData(unsigned int bufferSize_B = 1024);
+  scpi::BlockData readBlockData();
+
+
+  // block data vector io
+
+  /**
+   * \brief Reads block data and parses it into vector <double>
+   */
+  std::vector<double> read64BitVector();
 
 
   /**
-   * \brief Queries Block Data
-   *
-   * `queryBlockData` reads data in IEEE 488.2 Block Data format.
-   *
-   * \param[in] scpi query SCPI command
-   * \param[in] bufferSize_B buffer size for reading Block Data, in bytes
-   * \returns Block Data read
+   * \brief Reads block data and parses it into vector <complex <double>>
    */
-  scpi::BlockData queryBlockData(const std::string &scpi, unsigned int bufferSize_B = 1024);
-
-
-  // string io
-
-  /**
-   * \brief Writes C++ style SCPI string to instrument
-   */
-  void write(const std::string &scpi);
-
-
-  /**
-   * \brief Reads C++ style string from instrument
-   */
-  std::string read(unsigned int bufferSize_B = 1024);
-
-
-  /**
-   * \brief Performs SCPI query with C++ style strings
-   */
-  std::string query(const std::string &scpi, unsigned int bufferSize_B = 1024);
+  std::vector<std::complex<double>> read64BitComplexVector();
 
 
   // status
 
   /**
-   * \brief Checks VISA status for an error
+   * \brief Checks the bus status for an error
    */
-  bool isError() const;
+  bool isBusError() const;
 
 
   /**
-   * \brief Gets VISA status
+   * \brief Gets the bus status as a human-readable string
    */
-  ViStatus status() const;
+  std::string busStatus() const;
 
 
-  /**
-   * \brief Gets VISA status as a human-readable message
-   */
-  std::string statusMessage();
-
-
-  // common scpi
+  // common scpi commands
 
   /**
    * \brief Queries instrument ID string
@@ -239,7 +301,7 @@ public:
    *
    * `reset` sends SCPI command `*RST`
    */
-  void reset();           // *RST
+  void preset();           // *RST
 
 
   /**
@@ -251,54 +313,14 @@ public:
 
 
   /**
-   * \brief Queries operation complete in a non-blocking way
-   *
-   * `isOperationComplete` queries SCPI command `*OPC`
+   * \brief Queries *OPC? - block until operation complete
    */
-  bool isOperationComplete();  // *OPC
-
-
-  /**
-   * \brief Does not return until operations are complete or timeout occurs
-   *
-   * `blockUntilOperationComplete` queries SCPI command `*OPC?`
-   */
-  bool blockUntilOperationComplete(unsigned int timeout_ms = 2000);  // *OPC?
+  bool blockUntilOperationComplete(unsigned int timeout_ms = 2000);
 
 
 private:
-  CVisa     _visa;
-  ViSession _resource_manager;
-  ViSession _instrument;
-  ViStatus  _status;
 
-
-  // helpers
-
-  /**
-   * \brief Opens default VISA resource manager
-   *
-   * \returns true if successful; false otherwise
-   */
-  bool openDefaultRM();
-
-
-  /**
-   * \brief Reads VISA attribute
-   */
-  ViAttrState attribute(ViAttr attribute);
-
-
-  /**
-   * \brief Sets VISA attribute
-   */
-  bool setAttribute(ViAttr attribute, ViAttrState value);
-
-
-  /**
-   * \brief Converts C++ style string to binary data
-   */
-  static std::vector<unsigned char> binaryCopy(const std::string &input);
+  std::shared_ptr<rohdeschwarz::busses::Bus> _bus;
 
 
 };  // Instrument
