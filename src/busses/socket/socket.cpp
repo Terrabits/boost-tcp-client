@@ -1,40 +1,46 @@
 /**
  * \file  socket.cpp
- * \brief rohdeschwarz::busses::socket::Socket class implementation
+ * \brief rohdeschwarz::busses::socket::busses::socket::Socket class implementation
  */
 
 
 // rohdeschwarz
+#include "rohdeschwarz/busses/socket/helpers.hpp"
 #include "rohdeschwarz/busses/socket/socket.hpp"
 using namespace rohdeschwarz::busses::socket;
 
 
 // boost
-using boost::asio::ip::tcp;
+const auto shutdown_both = boost::asio::ip::tcp::socket::shutdown_both;
 
 
 // std lib
-#include <cstring>
+#include <sstream>
 
 
-// constants
-const std::size_t DEFAULT_BUFFER_SIZE_B = 5 * 1024;  // 5 kB
+// types
+// Note: do I need WS2tcpip.h on windows?
+// See https://stackoverflow.com/a/4454036/1390788
+using char_p       = char*;
+using const_char_p = const char*;
+using socklen_t_p  = socklen_t*;
 
 
 Socket::Socket(const char* host, int port) :
-  _address(host, port),
-  _buffer(DEFAULT_BUFFER_SIZE_B),
-  _socket(_io_context)
+  _host(host),
+  _port(port),
+  _socket(_io_context),
+  _native_handle(_socket.native_handle())
 {
   open();
 }
 
 
 Socket::Socket(const std::string& host, int port) :
-  _address(host, port),
-  _buffer(DEFAULT_BUFFER_SIZE_B),
-  _socket(_io_context)
-
+  _host(host),
+  _port(port),
+  _socket(_io_context),
+  _native_handle(_socket.native_handle())
 {
   open();
 }
@@ -48,131 +54,139 @@ Socket::~Socket()
 
 std::string Socket::host() const
 {
-  return _address.host();
+  return _host;
 }
 
 
 int Socket::port() const
 {
-  return _address.port();
+  return _port;
 }
 
 
-std::size_t Socket::bufferSize_B() const
+std::string Socket::endpoint() const
 {
-  return _buffer.size();
+  std::stringstream stream;
+  stream << host() << ":" << port();
+  return stream.str();
 }
 
 
-void Socket::setBufferSize(std::size_t size_B)
+int Socket::timeout_ms() const
 {
-  _buffer.resize(size_B);
+  // use read timeout
+  int timeout_ms;
+  int bytes_read;
+  getsockopt(
+    _native_handle,
+    SOL_SOCKET, SO_RCVTIMEO,
+    char_p(&timeout_ms),
+    socklen_t_p(&bytes_read)
+  );
+  return timeout_ms;
 }
 
 
-std::string Socket::read()
+bool Socket::setTimeout(int timeout_ms)
 {
-  auto mutable_buffer = _buffer.toMutableBuffer();
-  auto size           = boost::asio::read(_socket, mutable_buffer);
-  return _buffer.toString(size);
-}
-
-
-std::string Socket::read(std::size_t bufferSize_B)
-{
-  // create mutable buffer
-  Buffer buffer(bufferSize_B);
-  auto mutable_buffer = buffer.toMutableBuffer();
-
-  // read
-  auto size = boost::asio::read(_socket, mutable_buffer);
-  return buffer.toString(size);
-}
-
-
-std::size_t Socket::write(const char* data)
-{
-  auto size = std::strlen(data);
-  return write(data, size);
-}
-
-
-std::size_t Socket::write(const char* data, std::size_t size)
-{
-  auto const_buffer = boost::asio::buffer(data, size);
-  return boost::asio::write(_socket, const_buffer);
-}
-
-
-std::size_t Socket::write(const std::string& data)
-{
-  auto const_buffer = boost::asio::buffer(data.c_str(), data.size());
-  return boost::asio::write(_socket, const_buffer);
-}
-
-
-std::string Socket::query(const char* scpi)
-{
-  // write
-  if (write(scpi) == 0)
+  // set read timeout
+  int result = setsockopt
+  (
+      _native_handle,
+      SOL_SOCKET, SO_RCVTIMEO,
+      const_char_p(&timeout_ms),
+      sizeof(timeout_ms)
+  );
+  if (result != 0)
   {
-    // write failed
-    return std::string();
+    // error
+    return false;
   }
 
-  // read
-  return read();
+  // set write timeout
+  result = setsockopt(
+    _native_handle,
+    SOL_SOCKET, SO_SNDTIMEO,
+    const_char_p(&timeout_ms),
+    sizeof(timeout_ms)
+  );
+
+  // success?
+  return result == 0;
 }
 
 
-std::string Socket::query(const char* scpi, std::size_t bufferSize_B)
+bool Socket::readData(unsigned char* buffer, std::size_t bufferSize, std::size_t* readSize)
 {
-  // write
-  if (write(scpi) == 0)
+  // read
+  boost::asio::mutable_buffer _buffer
+    = boost::asio::buffer(char_p(buffer), bufferSize);
+  std::size_t _readSize;
+  try
   {
-    // write failed
-    return std::string();
+    _readSize = boost::asio::read(_socket, _buffer);
   }
 
-  // read
-  return read(bufferSize_B);
+  // error?
+  catch (const system_error& error)
+  {
+    return false;
+  }
+
+  // return read size?
+  if (readSize != nullptr)
+  {
+    *readSize = _readSize;
+  }
+
+  // success
+  return true;
 }
 
 
-std::string Socket::query(const std::string& scpi)
+bool Socket::writeData(const unsigned char* data, std::size_t dataSize, std::size_t* writeSize)
 {
   // write
-  if (write(scpi) == 0)
+  boost::asio::const_buffer _buffer
+    = boost::asio::buffer(const_char_p(data), dataSize);
+  std::size_t _writeSize;
+  try
   {
-    // write failed
-    return std::string();
+    _writeSize = boost::asio::write(_socket, _buffer);
   }
 
-  // read
-  return read();
+  // error?
+  catch (const system_error& error)
+  {
+    return false;
+  }
+
+  // return write size?
+  if (writeSize != nullptr)
+  {
+    *writeSize = _writeSize;
+  }
+
+  // success
+  return true;
 }
 
 
-std::string Socket::query(const std::string& scpi, std::size_t bufferSize_B)
+bool Socket::isError() const
 {
-  // write
-  if (write(scpi) == 0)
-  {
-    // write failed
-    return std::string();
-  }
+  return _socket.is_open();
+}
 
-  // read
-  return read(bufferSize_B);
+
+std::string Socket::statusMessage() const
+{
+  return _socket.is_open()? "connection is open" : "warning: connection is closed";
 }
 
 
 bool Socket::open()
 {
-  // resolve host, port
-  auto endpoints = _address.resolve(_io_context);
-
-  // connect
+  auto endpoints = resolve(_host, _port, _io_context);
   boost::asio::connect(_socket, endpoints);
   return _socket.is_open();
 }
@@ -180,6 +194,6 @@ bool Socket::open()
 
 void Socket::close()
 {
-  _socket.shutdown(tcp::socket::shutdown_both);
+  _socket.shutdown(shutdown_both);
   _socket.close();
 }

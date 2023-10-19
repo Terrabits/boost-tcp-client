@@ -7,10 +7,10 @@
  * \include main.cpp
  */
 
- 
+
 // rohdeschwarz
-#include "rohdeschwarz/busses/socket/socket.hpp"
-using Socket = rohdeschwarz::busses::socket::Socket;
+#include "rohdeschwarz/busses.hpp"
+using Socket = rohdeschwarz::busses::Socket;
 
 
 // std lib

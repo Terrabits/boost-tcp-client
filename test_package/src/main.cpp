@@ -10,8 +10,10 @@
 
 // rohdeschwarz
 #include "rohdeschwarz/busses/socket/socket.hpp"
+#include "rohdeschwarz/instruments/instrument.hpp"
+#include "rohdeschwarz/helpers.hpp"
 using system_error = rohdeschwarz::busses::socket::system_error;
-using Socket       = rohdeschwarz::busses::socket::Socket;
+using Instrument   = rohdeschwarz::instruments::Instrument;
 
 
 // std lib
@@ -20,17 +22,33 @@ using Socket       = rohdeschwarz::busses::socket::Socket;
 
 int main()
 {
-  try
-  {
-    // create open socket
-    Socket socket("localhost", 5025);
 
-    // get instrument id
-    socket.query("*IDN?\n");
-  }
-  catch (system_error& e)
-  {
-    // ignore error
-  }
-  return 0;
+// connect to instrument
+Instrument instrument;
+if (instrument.openTcp("localhost"))
+{
+  // connected
+
+  // get id
+  const auto id = rohdeschwarz::trim(instrument.id());
+
+  // print for debug
+  #ifndef NDEBUG
+    std::cout << "connected: " << id << std::endl;
+  #endif
+
 }
+else
+{
+  // connection failed
+
+  // print for debug
+  #ifndef NDEBUG
+    std::cout << "error: connection to localhost failed" << std::endl;
+  #endif
+
+}
+return 0;
+
+
+}  // main

@@ -1,4 +1,5 @@
 from conan             import ConanFile
+from conan.errors      import ConanInvalidConfiguration
 from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMake, cmake_layout
 
@@ -28,10 +29,10 @@ class RohdeSchwarzConan(ConanFile):
 
     # required libraries
     def requirements(self):
-        self.requires('boost/1.83.0', transitive_headers=True, transitive_libs=True)
+        self.requires('boost/[>=1.83 <2]', transitive_headers=True, transitive_libs=True)
 
 
-    # required build tools
+    # build tools
     tool_requires = 'cmake/[>=3.27 <4.0]'
 
 
@@ -40,18 +41,20 @@ class RohdeSchwarzConan(ConanFile):
     settings      = "os", "compiler", "build_type", "arch"
 
 
-    # build options
+    # options
     options = {
         "shared": [True, False],
         "fPIC":   [True, False]
     }
+
+    # default options
     default_options = {
         "shared": False,
-        "fPIC":   True
+        "fPIC":   True,
     }
 
 
-    # source files
+    # sources
     exports_sources = (
         'CMakeLists.txt',
         'conanfile.py',
@@ -67,13 +70,21 @@ class RohdeSchwarzConan(ConanFile):
     generators = "CMakeDeps", "CMakeToolchain"
 
 
-    def config_options(self):
-        if self.settings.os == "Windows":
-            self.options.rm_safe("fPIC")
+    # delete fpic option on windows
+    implements = ['auto_shared_fpic']
 
 
     def validate(self):
+        # requires c++ std 17  or greater
         check_min_cppstd(self, '17')
+
+        # requires boost::filesystem
+        if self.dependencies["boost"].options.without_filesystem:
+            raise ConanInvalidConfiguration('boost option without_filesystem must be False; boost::filesystem is required')
+
+        # requires boost::system
+        if self.dependencies["boost"].options.without_system:
+            raise ConanInvalidConfiguration('boost option without_system must be False; boost::system is required')
 
 
     def layout(self):
