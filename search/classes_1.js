@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['buffer_41',['Buffer',['../classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html',1,'rohdeschwarz::busses::socket']]]
+  ['channel_245',['Channel',['../classrohdeschwarz_1_1instruments_1_1vna_1_1Channel.html',1,'rohdeschwarz::instruments::vna']]],
+  ['cvisa_246',['CVisa',['../classrohdeschwarz_1_1busses_1_1visa_1_1CVisa.html',1,'rohdeschwarz::busses::visa']]]
 ];

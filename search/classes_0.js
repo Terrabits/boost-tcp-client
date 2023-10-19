@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['address_40',['Address',['../classrohdeschwarz_1_1busses_1_1socket_1_1Address.html',1,'rohdeschwarz::busses::socket']]]
+  ['blockdata_243',['BlockData',['../classrohdeschwarz_1_1scpi_1_1BlockData.html',1,'rohdeschwarz::scpi']]],
+  ['bus_244',['Bus',['../classrohdeschwarz_1_1busses_1_1Bus.html',1,'rohdeschwarz::busses']]]
 ];

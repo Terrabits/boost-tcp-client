@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['port_16',['port',['../classrohdeschwarz_1_1busses_1_1socket_1_1Address.html#a6f0d017e4a5b67b099fbd57a1016194f',1,'rohdeschwarz::busses::socket::Address::port()'],['../classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#a616d167860ab2264f8d23dcf5c497583',1,'rohdeschwarz::busses::socket::Socket::port()']]],
-  ['port_17',['PORT',['../examples_2socket_2src_2main_8cpp.html#a11717c934f77ad5167dac5d28562d85a',1,'main.cpp']]]
+  ['filename_47',['FILENAME',['../cvisa_8cpp.html#a2a572e21627160338c80e385c236027d',1,'cvisa.cpp']]],
+  ['format_48',['format',['../classrohdeschwarz_1_1instruments_1_1vna_1_1Trace.html#a410d3f6ae8749ef7039bf9e5350af664',1,'rohdeschwarz::instruments::vna::Trace']]],
+  ['frequencies_5fhz_49',['frequencies_Hz',['../classrohdeschwarz_1_1instruments_1_1vna_1_1Channel.html#a67eea63bffed118ad314783715e08b92',1,'rohdeschwarz::instruments::vna::Channel']]]
 ];

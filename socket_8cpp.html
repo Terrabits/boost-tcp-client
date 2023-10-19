@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">rohdeschwarz
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">TCPIP socket library for Rohde &amp; Schwarz instrument control</div>
   </td>
@@ -68,42 +68,102 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">socket.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html" title="A class for managing synchronous TCP IP sockets.">rohdeschwarz::busses::socket::Socket</a> class implementation  
+<p>rohdeschwarz::busses::socket::busses::socket::Socket class implementation  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="socket_8hpp_source.html">rohdeschwarz/busses/socket/socket.hpp</a>&quot;</code><br />
-<code>#include &lt;cstring&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="busses_2socket_2helpers_8hpp_source.html">rohdeschwarz/busses/socket/helpers.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="socket_8hpp_source.html">rohdeschwarz/busses/socket/socket.hpp</a>&quot;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 </div>
 <p><a href="socket_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a9e6d1dc92b350de88b66d6e1467b9fab"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8cpp.html#a9e6d1dc92b350de88b66d6e1467b9fab">char_p</a> = char *</td></tr>
+<tr class="separator:a9e6d1dc92b350de88b66d6e1467b9fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a1f67f334d2154d4091e7e21ce3fa5f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8cpp.html#a7a1f67f334d2154d4091e7e21ce3fa5f">const_char_p</a> = const char *</td></tr>
+<tr class="separator:a7a1f67f334d2154d4091e7e21ce3fa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9cf3f689c504e792d3478c35d8bb0c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8cpp.html#acb9cf3f689c504e792d3478c35d8bb0c">socklen_t_p</a> = socklen_t *</td></tr>
+<tr class="separator:acb9cf3f689c504e792d3478c35d8bb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aeb10dd33796e8e04a5fda179d447d932"><td class="memItemLeft" align="right" valign="top">const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8cpp.html#aeb10dd33796e8e04a5fda179d447d932">DEFAULT_BUFFER_SIZE_B</a> = 5 * 1024</td></tr>
-<tr class="separator:aeb10dd33796e8e04a5fda179d447d932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b254f7a39acd14c58ad151ada9cd193"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8cpp.html#a7b254f7a39acd14c58ad151ada9cd193">shutdown_both</a> = boost::asio::ip::tcp::socket::shutdown_both</td></tr>
+<tr class="separator:a7b254f7a39acd14c58ad151ada9cd193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html" title="A class for managing synchronous TCP IP sockets.">rohdeschwarz::busses::socket::Socket</a> class implementation </p>
+<div class="textblock"><p>rohdeschwarz::busses::socket::busses::socket::Socket class implementation </p>
 
 <p class="definition">Definition in file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
-</div><h2 class="groupheader">Variable Documentation</h2>
-<a id="aeb10dd33796e8e04a5fda179d447d932"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb10dd33796e8e04a5fda179d447d932">&#9670;&nbsp;</a></span>DEFAULT_BUFFER_SIZE_B</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a9e6d1dc92b350de88b66d6e1467b9fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6d1dc92b350de88b66d6e1467b9fab">&#9670;&nbsp;</a></span>char_p</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::size_t DEFAULT_BUFFER_SIZE_B = 5 * 1024</td>
+          <td class="memname">using <a class="el" href="bus_8cpp.html#a9e6d1dc92b350de88b66d6e1467b9fab">char_p</a> =  char*</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00021">21</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00024">24</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a7a1f67f334d2154d4091e7e21ce3fa5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a1f67f334d2154d4091e7e21ce3fa5f">&#9670;&nbsp;</a></span>const_char_p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="socket_8cpp.html#a7a1f67f334d2154d4091e7e21ce3fa5f">const_char_p</a> =  const char*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00025">25</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acb9cf3f689c504e792d3478c35d8bb0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb9cf3f689c504e792d3478c35d8bb0c">&#9670;&nbsp;</a></span>socklen_t_p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="socket_8cpp.html#acb9cf3f689c504e792d3478c35d8bb0c">socklen_t_p</a> =  socklen_t*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00026">26</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a7b254f7a39acd14c58ad151ada9cd193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b254f7a39acd14c58ad151ada9cd193">&#9670;&nbsp;</a></span>shutdown_both</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto shutdown_both = boost::asio::ip::tcp::socket::shutdown_both</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00014">14</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
 </div>
 </div>

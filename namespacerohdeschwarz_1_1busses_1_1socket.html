@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">rohdeschwarz
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">TCPIP socket library for Rohde &amp; Schwarz instrument control</div>
   </td>
@@ -69,7 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">rohdeschwarz::busses::socket Namespace Reference</div>  </div>
 </div><!--header-->
@@ -77,12 +78,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrohdeschwarz_1_1busses_1_1socket_1_1Address.html">Address</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for resolving boost::asio TCP IP endpoints from host, port.  <a href="classrohdeschwarz_1_1busses_1_1socket_1_1Address.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html">Buffer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience class for boost::asio::buffer()  <a href="classrohdeschwarz_1_1busses_1_1socket_1_1Buffer.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html">Socket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for managing synchronous TCP IP sockets.  <a href="classrohdeschwarz_1_1busses_1_1socket_1_1Socket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,6 +87,12 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a2f9964afb25413e826626e512741aebf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerohdeschwarz_1_1busses_1_1socket.html#a2f9964afb25413e826626e512741aebf">system_error</a> = boost::system::system_error</td></tr>
 <tr class="memdesc:a2f9964afb25413e826626e512741aebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">System error exception.  <a href="namespacerohdeschwarz_1_1busses_1_1socket.html#a2f9964afb25413e826626e512741aebf">More...</a><br /></td></tr>
 <tr class="separator:a2f9964afb25413e826626e512741aebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae5597bf9c1a42f9dee333255893db027"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::basic_resolver&lt; boost::asio::ip::tcp &gt;::results_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerohdeschwarz_1_1busses_1_1socket.html#ae5597bf9c1a42f9dee333255893db027">resolve</a> (const std::string &amp;host, int port, boost::asio::io_context &amp;io_context)</td></tr>
+<tr class="memdesc:ae5597bf9c1a42f9dee333255893db027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves TCP IP endpoint(s) from host, port.  <a href="namespacerohdeschwarz_1_1busses_1_1socket.html#ae5597bf9c1a42f9dee333255893db027">More...</a><br /></td></tr>
+<tr class="separator:ae5597bf9c1a42f9dee333255893db027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a2f9964afb25413e826626e512741aebf"></a>
@@ -109,7 +110,55 @@ Typedefs</h2></td></tr>
 <p>System error exception. </p>
 <p>This is a reference to <code>boost::system::system_error</code> provided for convenience </p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00033">33</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00032">32</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae5597bf9c1a42f9dee333255893db027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5597bf9c1a42f9dee333255893db027">&#9670;&nbsp;</a></span>resolve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::ip::basic_resolver&lt; boost::asio::ip::tcp &gt;::results_type rohdeschwarz::busses::socket::resolve </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::asio::io_context &amp;&#160;</td>
+          <td class="paramname"><em>io_context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolves TCP IP endpoint(s) from host, port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">host</td><td>Host name or IP address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>TCP port </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">io_context</td><td>IO Context for scheduling <a class="el" href="namespacerohdeschwarz_1_1busses_1_1socket.html#ae5597bf9c1a42f9dee333255893db027" title="Resolves TCP IP endpoint(s) from host, port.">resolve()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A non-empty list if endpoints could be resolved; an empty list otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="busses_2socket_2helpers_8cpp_source.html#l00015">15</a> of file <a class="el" href="busses_2socket_2helpers_8cpp_source.html">helpers.cpp</a>.</p>
 
 </div>
 </div>
