@@ -8,7 +8,7 @@ class RohdeSchwarzConan(ConanFile):
 
     # basic info
     name    = "rohdeschwarz"
-    version = "0.1.0"
+    version = "0.2.0"
     license = "R&S Royalty Free License"
     author  = "Nick Lalic <nick.lalic@rsa.rohde-schwarz.com"
     url     = "https://github.com/Terrabits/boost-tcp-client"
