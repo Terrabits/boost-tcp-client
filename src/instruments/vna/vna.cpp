@@ -15,12 +15,6 @@ using namespace rohdeschwarz;
 
 // std lib
 #include <algorithm>
-#include <sstream>
-
-
-// constants
-const unsigned int _11_kB_ = 11 * 1024;
-const unsigned int _12_kB_ = 12 * 1024;
 
 
 Display Vna::display()
@@ -45,11 +39,7 @@ bool Vna::isChannel(unsigned int index)
 
 Channel Vna::createChannel(unsigned int index)
 {
-  // CONF:CHAN<Ch> 1
-  std::stringstream scpi;
-  scpi << ":CONF:CHAN" << index << " 1";
-  write(scpi.str());
-
+  write(":CONF:CHAN%1% 1", index);
   return channel(index);
 }
 
@@ -63,7 +53,7 @@ Channel Vna::channel(unsigned int index)
 std::vector<unsigned int> Vna::channels()
 {
   // CONF:CHAN:CAT?
-  const std::string response = query(":CONF:CHAN:CAT?", _11_kB_);
+  const std::string response = query(":CONF:CHAN:CAT?");
   const std::string csvList  = unquote(rightTrim(response));
   const std::vector<IndexName> index_names = IndexName::parse(csvList);
   return IndexName::indexesFrom(index_names);
@@ -94,14 +84,7 @@ Trace Vna::createTrace(const char* name, unsigned int channel)
 
 Trace Vna::createTrace(const std::string& name, unsigned int channel)
 {
-  // CALC<Ch>:PAR:SDEF '<name>','S21'
-  std::stringstream scpi;
-  scpi << ":CALC" << channel;
-  scpi << ":PAR:SDEF ";
-  scpi << quote(name);
-  scpi << "," << quote("S21");
-  write(scpi.str());
-
+  write(":CALC%1%:PAR:SDEF \'%2%\',\'S21\'", channel, name);
   return trace(name);
 }
 
@@ -122,7 +105,7 @@ Trace Vna::trace(const std::string& name)
 std::vector<std::string> Vna::traces()
 {
   // CONF:TRAC:CAT?
-  const std::string response = query(":CONF:TRAC:CAT?", _12_kB_);
+  const std::string response = query(":CONF:TRAC:CAT?");
   const std::string csvList  = unquote(rightTrim(response));
   const std::vector<IndexName> index_names = IndexName::parse(csvList);
   return IndexName::namesFrom(index_names);

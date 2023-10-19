@@ -15,7 +15,6 @@ using namespace rohdeschwarz;
 
 
 // std lib
-#include <sstream>
 
 
 Display::Display(Vna* znx) :
@@ -90,7 +89,5 @@ void Display::setUpdateSetting(const char* value)
 
 void Display::setUpdateSetting(const std::string& value)
 {
-  std::stringstream scpi;
-  scpi << ":SYST:DISP:UPD " << value;
-  _vna->write(scpi.str());
+  _vna->write(":SYST:DISP:UPD %1%", value);
 }

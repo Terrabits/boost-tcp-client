@@ -14,10 +14,6 @@ using namespace rohdeschwarz;
 using namespace rohdeschwarz::instruments::vna;
 
 
-// std lib
-#include <sstream>
-
-
 Trace::Trace(Vna* znx, const char* name) :
   _vna(znx),
   _name(name)
@@ -42,23 +38,13 @@ std::string Trace::name() const
 
 void Trace::select()
 {
-  // CALC<Ch>:PAR:SEL '<name>'
-  std::stringstream scpi;
-  scpi << ":CALC" << channel();
-  scpi << ":PAR:SEL ";
-  scpi << quote(_name);
-  _vna->write(scpi.str());
+  _vna->write(":CALC%1%:PAR:SEL \'%2%\'", channel(), _name);
 }
 
 
 std::string Trace::parameter()
 {
-  // CALC<Ch>:PAR:MEAS? '<name>'
-  std::stringstream scpi;
-  scpi << ":CALC" << channel();
-  scpi << ":PAR:MEAS? ";
-  scpi << quote(_name);
-  const std::string response = _vna->query(scpi.str());
+  const auto response = _vna->query(":CALC%1%:PAR:MEAS? \'%2%\'", channel(), _name);
   return unquote(rightTrim(response));
 }
 
@@ -72,25 +58,15 @@ void Trace::setParameter(const char* parameter)
 
 void Trace::setParameter(const std::string& parameter)
 {
-  // CALC<Ch>:PAR:MEAS '<name>','<parameter>'
-  std::stringstream scpi;
-  scpi << ":CALC" << channel();
-  scpi << ":PAR:MEAS ";
-  scpi << quote(_name) << ",";
-  scpi << quote(parameter);
-  _vna->write(scpi.str());
+  _vna->write(":CALC%1%:PAR:MEAS \'%2%\',\'%3%\'", channel(), _name, parameter);
 }
 
 
 std::string Trace::format()
 {
-  // CALC<Ch>:FORM?
   select();
-
-  std::stringstream scpi;
-  scpi << ":CALC" << channel();
-  scpi << ":FORM?";
-  return rightTrim(_vna->query(scpi.str()));
+  const auto response = _vna->query(":CALC%1%:FORM?", channel());
+  return rightTrim(response);
 }
 
 
@@ -104,43 +80,25 @@ void Trace::setFormat(const char* format)
 void Trace::setFormat(const std::string& format)
 {
   select();
-
-  // CALC<Ch>:FORM <format>
-  std::stringstream scpi;
-  scpi << ":CALC" << channel();
-  scpi << ":FORM " << format;
-  _vna->write(scpi.str());
+  _vna->write(":CALC%1%:FORM %2%", channel(), format);
 }
 
 
 unsigned int Trace::channel()
 {
-  // CONF:TRAC:CHAN:NAME:ID? '<name>'
-  std::stringstream scpi;
-  scpi << ":CONF:TRAC:CHAN:NAME:ID? ";
-  scpi << quote(_name);
-  return std::stoi(_vna->query(scpi.str()));
+  return std::stoi(_vna->query(":CONF:TRAC:CHAN:NAME:ID? \'%1%\'", _name));
 }
-
 
 unsigned int Trace::diagram()
 {
-  // CONF:TRAC:WIND? '<name>'
-  std::stringstream scpi;
-  scpi << ":CONF:TRAC:WIND? ";
-  scpi << quote(_name);
-  return std::stoi(_vna->query(scpi.str()));
+  auto response = _vna->query(":CONF:TRAC:WIND? \'%1%\'", _name);
+  return std::stoi(rightTrim(response));
 }
 
 
 void Trace::setDiagram(unsigned int diagram)
 {
-  // DISP:WIND<diagram>:TRAC:EFE '<name>'
-  std::stringstream scpi;
-  scpi << ":DISP:WIND" << diagram;
-  scpi << ":TRAC:EFE ";
-  scpi << quote(_name);
-  _vna->write(scpi.str());
+  _vna->write(":DISP:WIND%1%:TRAC:EFE \'%2%\'", diagram, _name);
 }
 
 

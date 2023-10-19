@@ -13,10 +13,6 @@ using namespace rohdeschwarz;
 using namespace rohdeschwarz::instruments::vna;
 
 
-// std lib
-#include <sstream>
-
-
 Channel::Channel(Vna *znx, unsigned int index) :
   _vna(znx),
   _index(index)
@@ -34,60 +30,37 @@ unsigned int Channel::index() const
 unsigned int Channel::points()
 {
   // :SENS<ch>:SWE:POIN?
-  std::stringstream scpi;
-  scpi << ":SENS" << index();
-  scpi << ":SWE:POIN?";
-  return std::stoi(_vna->query(scpi.str()));
+  return std::stoi(_vna->query(":SENS%1%:SWE:POIN?", index()));
 }
 
 
 void Channel::setPoints(unsigned int points)
 {
-  // :SENS<ch>:SWE:POIN <points>
-  std::stringstream scpi;
-  scpi << ":SENS"      << index();
-  scpi << ":SWE:POIN " << points;
-  _vna->write(scpi.str());
+  _vna->write(":SENS%1%:SWE:POIN %2%", index(), points);
 }
 
 
 double Channel::startFrequency_Hz()
 {
-  // :SENS<ch>:FREQ:STAR?
-  std::stringstream scpi;
-  scpi << ":SENS" << _index;
-  scpi << ":FREQ:STAR?";
-  return std::stod(_vna->query(scpi.str()));
+  return std::stod(_vna->query(":SENS%1%:FREQ:STAR?", _index));
 }
 
 
 void Channel::setStartFrequency(double frequency_Hz)
 {
-  // :SENS<ch>:FREQ:STAR <frequency_Hz>
-  std::stringstream scpi;
-  scpi << ":SENS"       << _index;
-  scpi << ":FREQ:STAR " << frequency_Hz;
-  _vna->write(scpi.str());
+  _vna->write(":SENS%1%:FREQ:STAR %2%", _index, frequency_Hz);
 }
 
 
 double Channel::stopFrequency_Hz()
 {
-  // :SENS<ch>:FREQ:STOP?
-  std::stringstream scpi;
-  scpi << ":SENS" << _index;
-  scpi << ":FREQ:STOP?";
-  return std::stod(_vna->query(scpi.str()));
+  return std::stod(_vna->query(":SENS%1%:FREQ:STOP?", _index));
 }
 
 
 void Channel::setStopFrequency(double frequency_Hz)
 {
-  // :SENS<ch>:FREQ:STOP <frequency_Hz>
-  std::stringstream scpi;
-  scpi << ":SENS"       << _index;
-  scpi << ":FREQ:STOP " << frequency_Hz;
-  _vna->write(scpi.str());
+  _vna->write(":SENS%1%:FREQ:STOP %2%", _index, frequency_Hz);
 }
 
 
