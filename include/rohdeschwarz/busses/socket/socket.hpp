@@ -146,7 +146,7 @@ public:
 
 private:
 
-  // end point
+  // for endpoint
   std::string _host;
   int         _port;
 
@@ -161,13 +161,13 @@ private:
 
 
   /**
-   * \brief Connects to server
+   * \brief Connects to instrument
    */
   bool open();
 
 
   /**
-   * \brief Disconnects from server
+   * \brief Disconnects from instrument
    */
   void close();
 
